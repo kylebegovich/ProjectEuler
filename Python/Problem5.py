@@ -3,7 +3,7 @@ import math
 x = 1
 product = 1
 
-def isPrime(x):
+def is_prime(x):
     i = 2
     while i <= math.sqrt(x):
         if x % i == 0:
@@ -14,7 +14,7 @@ def isPrime(x):
 
 if __name__ == '__main__':
     while x < 20:
-        if isPrime(x):
+        if is_prime(x):
             product *= x
             print x
         x += 1
