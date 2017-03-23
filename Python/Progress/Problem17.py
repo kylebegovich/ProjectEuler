@@ -13,8 +13,9 @@ tens_places = 46  # those above this one
 hundred = 7
 one_thousand = 11
 
-
 if __name__ == '__main__':
     less_than_hundred = one_to_nine + ten + eleven_to_nineteen + tens_places + tens_places * one_to_nine
-    summation = one_to_nine * hundred + one_to_nine * hundred * less_than_hundred
+    summation = less_than_hundred + \
+                one_to_nine * hundred + one_to_nine * hundred * less_than_hundred + \
+                one_thousand
     print summation

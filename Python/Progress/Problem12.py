@@ -12,6 +12,7 @@ def num_divisors(num):
     return count
 
 
+# need time to run / a more efficient method
 if __name__ == '__main__':
     index = 1
     curr = 1
