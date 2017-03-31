@@ -2,7 +2,6 @@ import math
 
 a = 999
 b = 999
-list = {}
 
 
 def is_palendrome(num):
