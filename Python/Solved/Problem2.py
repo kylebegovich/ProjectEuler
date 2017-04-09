@@ -14,7 +14,7 @@ if __name__ == '__main__':
         else:
             break
 
-    print summation
+    print (summation)
 
 
 # SOLVED : 4613732
