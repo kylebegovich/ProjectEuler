@@ -12,11 +12,11 @@ def is_triplet(a, b, c):
 
 if __name__ == '__main__':
     owf = True
-    for c in xrange(1000):
+    for c in range(1000):
         if owf:
-            for b in xrange(c):
+            for b in range(c):
                 if owf:
-                    for a in xrange(b):
+                    for a in range(b):
                         if is_triplet(a, b, c):
                             if a + b + c == 1000:
                                 print (a*b*c, a, b, c)
