@@ -28,22 +28,23 @@ def generate_hexagonal_nums(num):
 
 
 if __name__ == '__main__':
-    upper_bound = 10000
-    array = generate_triangular_nums(upper_bound)
-    print (array[284], array[285], array[286])
-    array = array[287:]
+    upper_bound = 1000000
+
+    triags = generate_triangular_nums(upper_bound)
+    print (triags[284], triags[285], triags[286])
+    triags = triags[287:]
     print ("done with triags")
-    pents = generate_triangular_nums(upper_bound)
+    pents = set(generate_pentagonal_nums(upper_bound))
+
     print ("done with pents")
-    hexes = generate_triangular_nums(upper_bound)
+    hexes = set(generate_hexagonal_nums(upper_bound))
+
     print ("done with hexes")
 
-    print (array)
-
-    for j in array:
+    for j in triags:
         if j in pents and j in hexes:
-            print ("hype", j)
+            print ("solved:", j)
             break
 
 
-# SOLVED : 5482660
+# SOLVED : 1533776805
