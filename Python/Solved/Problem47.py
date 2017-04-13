@@ -17,8 +17,6 @@ def get_prime_factors(num):
 
 if __name__ == '__main__':
 
-    
-
     try:
         for i in range(4, 10000000):
             factors = set(get_prime_factors(i))
@@ -26,16 +24,11 @@ if __name__ == '__main__':
                 print(i, factors)
                 try:
 
-                    for j in range(i+1, i+5):
+                    for j in range(i+1, i+4):
                         temp = set(get_prime_factors(j))
                         print(j, temp)
                         if len(temp) != 4:
                             raise StopIteration
-                        else:
-                            print(j, temp)
-                            for fac in temp:
-                                if fac in factors:
-                                    raise StopIteration
 
                     print ("this satisfies the condition: ", i)
                     raise OSError
@@ -46,3 +39,6 @@ if __name__ == '__main__':
 
     except OSError:
         print("python is stupid")
+
+
+# SOLVED : 134043
