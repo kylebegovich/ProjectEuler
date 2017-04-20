@@ -7,10 +7,10 @@ def sum_helper(p_index, best_len, primes):
 
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
     for i in range(0, p_index):
-        print (goal, p_index, i, primes[i], best,)
+        print (goal, p_index, i, primes[i], best)
         if primes[i]*best < goal:
             try:
-                for j in range(i, p_index):
+                for j in range(i + best_len - 1, p_index):
                     summation = sum(primes[i:j])
                     print (summation)
                     if summation > goal:
@@ -38,7 +38,7 @@ def primes_sieve(limit):
 
 
 if __name__ == '__main__':
-    primes = primes_sieve(1000000)
+    primes = primes_sieve(100)
     print(primes)
     length = len(primes)  # 78,498 for 1,000,000
 
