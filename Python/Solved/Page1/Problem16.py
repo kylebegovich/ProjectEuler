@@ -1,6 +1,6 @@
 import math
 
-number = math.pow(2, 1000)
+number = int(math.pow(2, 1000))
 
 
 def sum_digits(n):
@@ -13,4 +13,7 @@ def sum_digits(n):
 
 
 if __name__ == '__main__':
-    print sum_digits(number)
+    print(sum_digits(number))
+
+
+# SOLVED : 1366
