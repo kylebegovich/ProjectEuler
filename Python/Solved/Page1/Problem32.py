@@ -1,6 +1,6 @@
 import math
-sup = 10000
-inf = 1000
+sup = 100000
+inf = 100
 
 pandigital_set = {}
 
@@ -13,7 +13,9 @@ def is_pandigital(multiplicand, multiplier, product):
     if len(temp_str) != 9:
         return False
 
-    if len(set(temp_str)) == 9:
+    temp_set = set(temp_str)
+    if len(temp_set) == 9 and '0' not in temp_set:
+        print("TRUE: ", set(temp_str))
         return True
 
 
@@ -42,3 +44,6 @@ if __name__ == '__main__':
             count += i
 
     print(count)
+
+
+# SOLVED : 45228
