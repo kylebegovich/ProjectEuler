@@ -17,7 +17,7 @@ def is_lychrel(num, iters):
     else:
         lst = list(str(num))
         backward = lst[::-1]
-        if lst == backward:
+        if lst == backward and iters != 0:
             print (num)
             return True
         else:
@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     upper_bound = 10000
     counter = 0
-    for i in range(upper_bound):
+    for i in range(1, upper_bound):
         if is_lychrel(i, 0):
             counter += 1
         else:
