@@ -1,7 +1,7 @@
 import math
 
 
-def nCr(n,r):
+def nCr(n, r):
     f = math.factorial
     return f(n) / f(r) / f(n-r)
 
@@ -9,7 +9,8 @@ def nCr(n,r):
 if __name__ == '__main__':
     count = 0
 
-    for n in range(23, 101):
+    """
+    for n in range(22, 101):
         try:
             temp = int(math.ceil(n/2.0)) + 1
             for r in range(1, temp):
@@ -22,5 +23,15 @@ if __name__ == '__main__':
 
         except StopIteration:
             print("broke loop")
+    """
+
+    for n in range(22, 101):
+        print("n = ", n)
+        for r in range(2, n):
+            if nCr(n, r) > 1000000:
+                count += 1
 
     print(count)
+
+
+# SOLVED : 4075
