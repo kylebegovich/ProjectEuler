@@ -13,13 +13,13 @@ def list_to_int(my_list):
 
 def is_lychrel(num, iters):
     if iters > 50:
-        return False
+        return True
     else:
         lst = list(str(num))
         backward = lst[::-1]
         if lst == backward and iters != 0:
             print (num)
-            return True
+            return False
         else:
             print("not yet", num, iters)
 
@@ -37,6 +37,9 @@ if __name__ == '__main__':
         if is_lychrel(i, 0):
             counter += 1
         else:
-            print(i, "is not lychrel")
+            print(i, "is Lychrel")
 
     print(counter)
+
+
+# SOLVED : 249
