@@ -1,12 +1,198 @@
 import math
 
+
+def has_flush(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_flush")
+        return False
+    else:
+        temp = a_hand[0][1]
+        if all(card[1] == temp for card in a_hand):
+            return True  # also return highest card
+        else:
+            return False
+
+
+def has_straight(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_straight")
+        return False
+    else:
+        ranks = []
+        for card in a_hand:
+            ranks.append(card[0])
+        for i in range(0, 5):
+            r = ranks[i]
+            if r == "T":
+                ranks[i] = "10"
+            elif r == "J":
+                ranks[i] = "11"
+            elif r == "Q":
+                ranks[i] = "12"
+            elif r == "K":
+                ranks[i] = "13"
+            elif r == "A":
+                ranks[i] = "14"
+        ranks = list(map(int, ranks))
+        ranks = sorted(ranks)
+        temp = ranks[0]
+        for i in range(1, 5):
+            if not ranks[i] == temp + 1:
+                return False
+            else:
+                temp += 1
+        return True  # also return highest card
+
+
+def has_four_of_kind(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_four_of_kind")
+        return False
+    else:
+        for i in range(0, 5):
+            a_hand[i] = a_hand[i][0]
+        temp1 = a_hand[0]
+        temp2 = a_hand[1]
+        if all(rank == temp1 for rank in a_hand[2:5]) or all(rank == temp2 for rank in a_hand[2:5]):
+            return True  # also return rank of card
+        elif temp1 == temp2:
+            c = 2
+            for i in range(2, 5):
+                if a_hand[i] == temp1:
+                    c += 1
+            if c == 4:
+                return True  # also return rank of card
+        return False
+
+
+def has_three_of_kind(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_three_of_kind")
+        return False
+    else:
+        for i in range(0, 5):
+            a_hand[i] = a_hand[i][0]
+
+        if a_hand[0] == a_hand[1] == a_hand[2]:
+            return True  # also return rank of card
+        elif a_hand[0] == a_hand[1] or a_hand[0] == a_hand[2]:
+            for i in range(3, 5):
+                if a_hand[i] == a_hand[0]:
+                    return True  # also return rank of card
+        elif a_hand[1] == a_hand[2]:
+            for i in range(3, 5):
+                if a_hand[i] == a_hand[1]:
+                    return True  # also return rank of card
+        elif a_hand[3] == a_hand[4]:
+            for i in range(0, 3):
+                if a_hand[i] == a_hand[3]:
+                    return True  # also return rank of card
+        else:
+            return False
+
+
+def has_a_pair(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_a_pair")
+        return False
+    else:
+        for i in range(0, 5):
+            a_hand[i] = a_hand[i][0]
+
+        for i in range(0, 5):
+            r = a_hand[i]
+            if r == "T":
+                a_hand[i] = "10"
+            elif r == "J":
+                a_hand[i] = "11"
+            elif r == "Q":
+                a_hand[i] = "12"
+            elif r == "K":
+                a_hand[i] = "13"
+            elif r == "A":
+                a_hand[i] = "14"
+        ranks = list(map(int, a_hand))
+        ranks = sorted(ranks)
+        one_way_flag = False
+        for i in range(1, 4):
+            curr = a_hand[i]
+            if a_hand[i-1] == curr or a_hand[i+1] == curr and not one_way_flag:
+                one_way_flag = True
+            elif a_hand[i-1] == curr or a_hand[i+1] == curr:
+                return False  # This is a two-pair
+        return one_way_flag  # also return rank of card
+
+
+def has_two_pair(a_hand):
+    if not len(a_hand) == 5:
+        print("o dere", "has_two_pair")
+        return False
+    else:
+        for i in range(0, 5):
+            a_hand[i] = a_hand[i][0]
+
+        for i in range(0, 5):
+            r = a_hand[i]
+            if r == "T":
+                a_hand[i] = "10"
+            elif r == "J":
+                a_hand[i] = "11"
+            elif r == "Q":
+                a_hand[i] = "12"
+            elif r == "K":
+                a_hand[i] = "13"
+            elif r == "A":
+                a_hand[i] = "14"
+        ranks = list(map(int, a_hand))
+        ranks = sorted(ranks)
+        one_way_flag = False
+        for i in range(1, 4):
+            curr = a_hand[i]
+            if a_hand[i-1] == curr or a_hand[i+1] == curr and not one_way_flag:
+                one_way_flag = True
+            elif a_hand[i-1] == curr or a_hand[i+1] == curr:
+                return True  # also return rank of cards
+        return False
+
+
 def determine_best_hand(a_hand):
     if not len(a_hand) == 5:
         print("o dere")
+        return 0
     else:
-        print("we good for now")
-        #  do the hand comparison logic here
-        
+
+        flush = has_flush(a_hand)
+        straight = has_straight(a_hand)
+
+        if flush and straight:
+            print("has a straight flush")
+
+        four = has_four_of_kind(a_hand)
+
+        if four:
+            print("has four of a kind")
+
+        three = has_three_of_kind(a_hand)
+        pair = has_a_pair(a_hand)
+
+        if three and pair:
+            print("has a full house")
+        elif flush:
+            print("has a flush")
+        elif straight:
+            print("has a straight")
+        elif three:
+            print ("has three of a kind")
+
+        two_pair = has_two_pair(a_hand)
+
+        if two_pair:
+            print("has two pair")
+        elif pair:
+            print("has pair")
+        else:
+            print("high card")
+
 
 def does_first_win(curr_hand):
     if not (len(curr_hand) == 29):
@@ -20,7 +206,13 @@ def does_first_win(curr_hand):
 
         print(first_hand, second_hand)
 
-        determine_best_hand(first_hand)
+        first_best = determine_best_hand(first_hand)
+        second_best = determine_best_hand(second_hand)
+
+        if first_best > second_best:
+            return True
+        else:
+            return False
 
 
 if __name__ == '__main__':
@@ -28,7 +220,9 @@ if __name__ == '__main__':
     count = 0
 
     for line in hands:
-        if (does_first_win(line[0:29])):
+        if does_first_win(line[0:29]):
             count += 1
+
+    print(count)
 
     hands.close()
