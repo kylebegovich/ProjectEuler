@@ -3,7 +3,7 @@ import math
 
 def has_flush(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_flush")
+        print("Issue, has_flush")
         return False
     else:
         temp = a_hand[0][1]
@@ -15,7 +15,7 @@ def has_flush(a_hand):
 
 def has_straight(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_straight")
+        print("Issue, has_straight")
         return False
     else:
         ranks = []
@@ -46,7 +46,7 @@ def has_straight(a_hand):
 
 def has_four_of_kind(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_four_of_kind")
+        print("Issue, has_four_of_kind")
         return False
     else:
         for i in range(0, 5):
@@ -67,7 +67,7 @@ def has_four_of_kind(a_hand):
 
 def has_three_of_kind(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_three_of_kind")
+        print("Issue, has_three_of_kind")
         return False
     else:
         for i in range(0, 5):
@@ -93,7 +93,7 @@ def has_three_of_kind(a_hand):
 
 def has_a_pair(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_a_pair")
+        print("Issue, has_a_pair")
         return False
     else:
         for i in range(0, 5):
@@ -125,7 +125,7 @@ def has_a_pair(a_hand):
 
 def has_two_pair(a_hand):
     if not len(a_hand) == 5:
-        print("o dere", "has_two_pair")
+        print("Issue, has_two_pair")
         return False
     else:
         for i in range(0, 5):
@@ -157,7 +157,7 @@ def has_two_pair(a_hand):
 
 def determine_best_hand(a_hand):
     if not len(a_hand) == 5:
-        print("o dere")
+        print("Issue, determine best hand")
         return 0
     else:
 
@@ -165,31 +165,31 @@ def determine_best_hand(a_hand):
         straight = has_straight(a_hand)
 
         if flush and straight:
-            print("has a straight flush")
+            print("straight flush")
 
         four = has_four_of_kind(a_hand)
 
         if four:
-            print("has four of a kind")
+            print("four of a kind")
 
         three = has_three_of_kind(a_hand)
         pair = has_a_pair(a_hand)
 
         if three and pair:
-            print("has a full house")
+            print("full house")
         elif flush:
-            print("has a flush")
+            print("flush")
         elif straight:
-            print("has a straight")
+            print("straight")
         elif three:
-            print ("has three of a kind")
+            print ("three of a kind")
 
         two_pair = has_two_pair(a_hand)
 
         if two_pair:
-            print("has two pair")
+            print("two pair")
         elif pair:
-            print("has pair")
+            print("pair")
         else:
             print("high card")
 
