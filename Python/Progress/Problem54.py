@@ -155,25 +155,26 @@ def has_two_pair(a_hand):
         return False
 
 
-def determine_best_hand(a_hand):
-    if not len(a_hand) == 5:
+def determine_hand_strength(hand):
+    if not len(hand) == 5:
         print("Issue, determine best hand")
         return 0
     else:
+        hand = sorted(hand)
 
-        flush = has_flush(a_hand)
-        straight = has_straight(a_hand)
+        flush = has_flush(hand)
+        straight = has_straight(hand)
 
         if flush and straight:
             print("straight flush")
 
-        four = has_four_of_kind(a_hand)
+        four = has_four_of_kind(hand)
 
         if four:
             print("four of a kind")
 
-        three = has_three_of_kind(a_hand)
-        pair = has_a_pair(a_hand)
+        three = has_three_of_kind(hand)
+        pair = has_a_pair(hand)
 
         if three and pair:
             print("full house")
@@ -184,7 +185,7 @@ def determine_best_hand(a_hand):
         elif three:
             print ("three of a kind")
 
-        two_pair = has_two_pair(a_hand)
+        two_pair = has_two_pair(hand)
 
         if two_pair:
             print("two pair")
@@ -194,22 +195,18 @@ def determine_best_hand(a_hand):
             print("high card")
 
 
+
 def does_first_win(curr_hand):
     if not (len(curr_hand) == 29):
-        print("wut")
+        print("Issue, does first win")
     else:
-        first_hand = curr_hand[0:14]
-        first_hand = first_hand.split(' ')
+        first_hand = curr_hand[0:14].split(' ')
 
-        second_hand = curr_hand[15:29]
-        second_hand = second_hand.split(' ')
+        second_hand = curr_hand[15:29].split(' ')
 
         print(first_hand, second_hand)
 
-        first_best = determine_best_hand(first_hand)
-        second_best = determine_best_hand(second_hand)
-
-        if first_best > second_best:
+        if determine_hand_strength(first_hand) > determine_hand_strength(second_hand):
             return True
         else:
             return False
@@ -222,6 +219,7 @@ if __name__ == '__main__':
     for line in hands:
         if does_first_win(line[0:29]):
             count += 1
+            print(line)
 
     print(count)
 
