@@ -1,4 +1,3 @@
-import math
 product_sum_nums = []
 
 
@@ -12,18 +11,21 @@ def product(lst):
 
 def increment(lst):
     l = len(lst)
-    for i in range(l-1, -1, -1):
-        if not lst[i] == 9:
-            lst[i] += 1
+    for k in range(l-1, -1, -1):
+        if not lst[k] == 9:
+            lst[k] += 1
             return lst
 
 
 def find_min_p_s_num(k):
     curr_nums = []
-    for i in range(k):
+    for j in range(k):
         curr_nums.append(1)
 
     while True:
+        temp = 1
+        if curr_nums is None:
+            return 0
         temp = product(curr_nums)
         if sum(curr_nums) == temp:
             return temp
@@ -32,11 +34,6 @@ def find_min_p_s_num(k):
 
 
 if __name__ == '__main__':
-    print([0, 1, 2], product([0, 1, 2]))
-    print([3, 1, 2], product([3, 1, 2]))
-    print([7, 5, 2], product([7, 5, 2]))
 
-    print()
-
-    for i in range(10):
+    for i in range(2, 10):
         print(find_min_p_s_num(i))
