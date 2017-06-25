@@ -6,6 +6,7 @@ def product(lst):
     for num in lst:
         result *= num
 
+    print("pro:", lst, result)
     return result
 
 
@@ -15,6 +16,8 @@ def increment(lst):
         if not lst[k] == 9:
             lst[k] += 1
             return lst
+        else:
+            lst[k] = 1
 
 
 def find_min_p_s_num(k):
@@ -22,18 +25,43 @@ def find_min_p_s_num(k):
     for j in range(k):
         curr_nums.append(1)
 
-    while True:
-        temp = 1
-        if curr_nums is None:
-            return 0
-        temp = product(curr_nums)
-        if sum(curr_nums) == temp:
-            return temp
-        else:
+    minimum = 5**k
+    escape = 4
+
+    try:
+        for i in range(0, 9**k):
+            if curr_nums is None:
+                print("something went wrong")
+                return 0
+            temp = product(curr_nums)
+            temp2 = sum(curr_nums)
+            print("sum:", curr_nums, sum(curr_nums))
+            if temp == temp2:
+                escape -= 1
+                print(temp)
+                if temp < minimum:
+                    print("new min: ", temp)
+                    minimum = temp
+
+            if escape == 0:
+                raise StopIteration
+
             curr_nums = increment(curr_nums)
+    except StopIteration:
+        return minimum
+    return minimum
 
 
 if __name__ == '__main__':
 
-    for i in range(2, 10):
-        print(find_min_p_s_num(i))
+#    arr = [1, 1, 9]
+#    print(arr)
+#    print(increment(arr))
+
+    answers = []
+    for i in range(2, 12001):
+        answers.append(find_min_p_s_num(i))
+
+    print(answers)
+    print(set(answers))
+    print(sum(set(answers)))
