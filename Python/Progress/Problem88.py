@@ -54,9 +54,11 @@ def find_min_p_s_num(k):
 
 if __name__ == '__main__':
 
-    answers = []
+    answers = {}
     for i in range(2, 12001):
-        answers.append(find_min_p_s_num(i))
+        temp = find_min_p_s_num(i)
+        if temp not in answers:
+            answers[temp] = 1
 
     print(answers)
     print(set(answers))
