@@ -17,4 +17,4 @@ class Totient:
 if __name__ == '__main__':
     from itertools import imap
     totient = Totient(10000)
-    print(sum(imap(totient, xrange(10000))))
+    print(len(list(imap(totient, xrange(10000)))))
