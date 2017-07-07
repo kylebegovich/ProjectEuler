@@ -1,4 +1,4 @@
 import math
 
 if __name__ == '__main__':
-    print("answer")
+    message = open("p059_cipher.txt", 'r')
