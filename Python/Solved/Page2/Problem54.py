@@ -225,7 +225,7 @@ def does_first_win(curr_hand):
 
 
 if __name__ == '__main__':
-    hands = open("poker.txt", 'r')
+    hands = open("p054_poker.txt", 'r')
     count = 0
 
     for line in hands:
