@@ -2,7 +2,7 @@
 # the plain text must contain common English words
 
 from math import floor
-from Progress.Euler import *
+from Euler import *
 import itertools
 import operator
 
