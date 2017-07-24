@@ -6,6 +6,11 @@ import itertools
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
+def heron_area(side_a, side_b, side_c):
+    p = (side_a + side_b + side_c) / 2
+    return sqrt(p * (p-side_a) * (p-side_b) * (p-side_c))
+
+
 def strings_to_ints(str_arr):
     return list(map(int, str_arr))
 
