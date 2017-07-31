@@ -82,5 +82,3 @@ for i in range(11, 1000, 2):
                 print("answer: ", candidate, i, j, k)
                 break
 
-
-# SOLVED :
