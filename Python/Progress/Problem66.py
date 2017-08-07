@@ -1,23 +1,26 @@
-import math
+from math import sqrt, floor
 
-# x**2 = 1 + D*y**2
+# useful link about Pell's Equation: https://en.wikipedia.org/wiki/Pell%27s_equation
 
-
-def is_square(apositiveint):
-  x = apositiveint // 2
-  seen = set([x])
-  while x * x != apositiveint:
-    x = (x + (apositiveint // x)) // 2
-    if x in seen: return False
-    seen.add(x)
-  return True
+"""
+Define x(0) = 1, x(1) = a(n), x(i+2) = 2*a(n)*x(i+1) - x(i) for i >= 0
+Then x(i) satisfies the Pell equation x^2 - D*y^2 = 1
+"""
 
 
-def solve_for_d(d):
-    if is_square(d):
-        return -1
+def y(n):
+    return 7
 
 
-if __name__ == '__main__':
-    for i in range(3, 68):
-        print(i, is_square(i))
+def a(n):
+    return sqrt(1 + (n + int(floor(1/2 + sqrt(n))))*y(n)^2)
+
+
+def x(n):
+    if n == 0:
+        return 1
+    if n == 1:
+        return a(n)
+    return 2 * a(n) * x(n - 1) - x(n - 2)
+
+

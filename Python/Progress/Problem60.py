@@ -3,11 +3,11 @@ from Euler import prime_sieve, is_prime
 
 result = int(100000000)
 primes = prime_sieve(30000)
-pairs = () * len(primes)
+pairs = None
 
 
 def concat(first, second):
-    return int( str(first) + str(second) )
+    return int(str(first) + str(second))
 
 
 def make_pairs(list_of_primes):
@@ -26,7 +26,8 @@ def make_pairs(list_of_primes):
 def main():
     answers = list()
     for index_a in range(0, len(primes)):
-        answers = [primes[index_a]]
+        if primes[index_a] * 5 >= result: break
+        if pairs[index_a] is None: pairs[index_a] = make_pairs([index_a])
 
         for index_b in range(index_a, len(primes)):
             if all([is_prime(n) for n in iter(make_pairs(answers + [primes[index_b]]))]):
@@ -64,6 +65,7 @@ def test_make_pairs():
         print(elem, is_prime(elem))
 
 
-test_concat()
-test_make_pairs()
 print(main())
+
+
+# SOLVED : 26033

@@ -17,22 +17,19 @@
       <file leaf-file-name="Euler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Progress/Euler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+            <state relative-caret-position="182">
+              <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Problem61.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Progress/Problem61.py">
+      <file leaf-file-name="Problem66.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Progress/Problem66.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="118" column="49" lean-forward="false" selection-start-line="118" selection-start-column="49" selection-end-line="118" selection-end-column="49" />
-              <folding>
-                <element signature="e#321#818#0" expanded="false" />
-                <element signature="e#857#1597#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,7 +102,6 @@
         <option value="$PROJECT_DIR$/Progress/Problem70.py" />
         <option value="$PROJECT_DIR$/Progress/Problem93.py" />
         <option value="$PROJECT_DIR$/Progress/p059_cipher.txt" />
-        <option value="$PROJECT_DIR$/Progress/Problem66.py" />
         <option value="$PROJECT_DIR$/Solved/Page1/Problem3.py" />
         <option value="$PROJECT_DIR$/Progress/Problem63.py" />
         <option value="$PROJECT_DIR$/Solved/Page2/Problem54.py" />
@@ -123,7 +119,6 @@
         <option value="$PROJECT_DIR$/Solved/Page2/Problem70.py" />
         <option value="$PROJECT_DIR$/Progress/Problem57.py" />
         <option value="$PROJECT_DIR$/Solved/Page2/Problem57.py" />
-        <option value="$PROJECT_DIR$/Progress/Euler.py" />
         <option value="$PROJECT_DIR$/Progress/google.py" />
         <option value="$PROJECT_DIR$/Not Started/Problem58.py" />
         <option value="$PROJECT_DIR$/Progress/Problem58.py" />
@@ -132,14 +127,16 @@
         <option value="$PROJECT_DIR$/Solved/Page2/Problem58.py" />
         <option value="$PROJECT_DIR$/Progress/Problem51.py" />
         <option value="$PROJECT_DIR$/Solved/Page2/Problem51.py" />
-        <option value="$PROJECT_DIR$/Progress/Problem60.py" />
         <option value="$PROJECT_DIR$/Progress/Problem61.py" />
+        <option value="$PROJECT_DIR$/Progress/Euler.py" />
+        <option value="$PROJECT_DIR$/Progress/Problem60.py" />
+        <option value="$PROJECT_DIR$/Progress/Problem66.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="134" />
-    <option name="y" value="24" />
+    <option name="y" value="23" />
     <option name="width" value="1306" />
     <option name="height" value="829" />
   </component>
@@ -177,8 +174,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,6 +201,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,7 +391,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="134" y="24" width="1306" height="829" extended-state="0" />
+    <frame x="134" y="23" width="1306" height="829" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17917305" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -592,13 +589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Progress/Problem66.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem69.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -691,30 +681,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Progress/Problem60.py">
+    <entry file="file://$PROJECT_DIR$/Progress/Problem61.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="36" column="55" lean-forward="false" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
-          <folding />
+        <state relative-caret-position="396">
+          <caret line="98" column="61" lean-forward="true" selection-start-line="98" selection-start-column="61" selection-end-line="98" selection-end-column="61" />
+          <folding>
+            <element signature="e#321#818#0" expanded="false" />
+            <element signature="e#857#1597#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Euler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+        <state relative-caret-position="182">
+          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Progress/Problem61.py">
+    <entry file="file://$PROJECT_DIR$/Progress/Problem60.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="118" column="49" lean-forward="false" selection-start-line="118" selection-start-column="49" selection-end-line="118" selection-end-column="49" />
-          <folding>
-            <element signature="e#321#818#0" expanded="false" />
-            <element signature="e#857#1597#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="342">
+          <caret line="29" column="72" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Progress/Problem66.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
