@@ -20,3 +20,6 @@ for i in range(length-2, -1, -1):
         grid[i][j] += min(grid[i+1][j], grid[i][j+1])
 
 print(grid[0][0])
+
+
+# SOLVED : 427337
