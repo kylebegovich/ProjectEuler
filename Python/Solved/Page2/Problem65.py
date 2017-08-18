@@ -1,4 +1,5 @@
-from Progress.Euler import strings_to_ints
+from Euler import strings_to_ints
+
 
 def contfrac_to_frac(seq):
     num, den = 1, 0

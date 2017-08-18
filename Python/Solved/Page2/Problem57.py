@@ -1,6 +1,3 @@
-from Euler import gcd
-
-
 def next_numerator(prev_numerator, prev_denominator):
     return prev_numerator + (2*prev_denominator)
 

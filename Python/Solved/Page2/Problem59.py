@@ -1,11 +1,11 @@
 # the encryption key consists of three lower case characters
 # the plain text must contain common English words
 
-from math import floor
-from Euler import *
 import itertools
 import operator
+from math import floor
 
+from Euler import *
 
 first_arr = []
 second_arr = []

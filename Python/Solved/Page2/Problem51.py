@@ -1,5 +1,7 @@
-from Euler import prime_sieve, is_prime
 from copy import deepcopy
+
+from Euler import prime_sieve, is_prime
+
 
 # we need to replace a modulo 3 set of digits, as if we don't, every third will be divisible by 3 and thus not prime
 

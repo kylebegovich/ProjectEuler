@@ -6,8 +6,12 @@ import itertools
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
+def factors(n):
+    return list((i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0)
+
+
 def heron_area(side_a, side_b, side_c):
-    p = (side_a + side_b + side_c) / 2.0
+    p = (side_a + side_b + side_c) / 2
     return sqrt(p * (p-side_a) * (p-side_b) * (p-side_c))
 
 
@@ -161,7 +165,7 @@ def miller_rabin_pass(a, s, d, n):
 """
 
 
-def factor(n):
+def prime_factor(n):
     f, factors, prime_gaps = 1, [], [2, 4, 2, 4, 6, 2, 6, 4]
     if n < 1:
         return []
@@ -245,7 +249,6 @@ def catalan_number(n):
 
 # --- generate prime numbers----------------------------------------------------------------------
 def prime_sieve(n):
-    n = int(n)
     """
     Return a list of prime numbers from 2 to a prime < n. Very fast (n<10,000,000) in 0.4 sec.
 
@@ -256,11 +259,11 @@ def prime_sieve(n):
     Algorithm & Python source: Robert William Hanks
     http://stackoverflow.com/questions/17773352/python-sieve-prime-numbers
     """
-    sieve = [True] * (n // 2)
+    sieve = [True] * (n / 2)
     for i in range(3, int(n ** 0.5) + 1, 2):
-        if sieve[i // 2]:
-            sieve[i * i // 2::i] = [False] * ((n - i * i - 1) // (2 * i) + 1)
-    return [2] + [2 * i + 1 for i in range(1, n // 2) if sieve[i]]
+        if sieve[i / 2]:
+            sieve[i * i / 2::i] = [False] * ((n - i * i - 1) / (2 * i) + 1)
+    return [2] + [2 * i + 1 for i in range(1, n / 2) if sieve[i]]
 
 
 # --- bezout coefficients--------------------------------------------------------------------------

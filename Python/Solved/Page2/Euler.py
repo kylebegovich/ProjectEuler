@@ -5,6 +5,9 @@ import itertools
 
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
+def factors(n):
+    return set(reduce(list.append(), ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
 
 def heron_area(side_a, side_b, side_c):
     p = (side_a + side_b + side_c) / 2
@@ -161,7 +164,7 @@ def miller_rabin_pass(a, s, d, n):
 """
 
 
-def factor(n):
+def prime_factor(n):
     f, factors, prime_gaps = 1, [], [2, 4, 2, 4, 6, 2, 6, 4]
     if n < 1:
         return []
