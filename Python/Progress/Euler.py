@@ -343,5 +343,6 @@ def n2words(num, join=True):
             else:
                 if u >= 1: words.append(units[u])
             if (g >= 1) and ((h + t + u) > 0): words.append(thousands[g] + '')
-    if join: return ' '.join(words)
+    if join:
+        return ' '.join(words)
     return words
