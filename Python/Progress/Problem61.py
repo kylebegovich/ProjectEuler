@@ -89,7 +89,7 @@ def find_candidates(current):
 
 def generate_chain(curr_num, curr_chain, curr_done):
     print(curr_num, curr_chain, curr_done)
-    if len(curr_chain) == 6:
+    if curr_chain is not None and sorted(curr_chain) == [0, 1, 2, 3, 4, 5]:
         return curr_chain
 
     owf = False

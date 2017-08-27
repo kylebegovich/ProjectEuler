@@ -1,7 +1,7 @@
 from itertools import permutations
 
 
-tested_up_to = 500
+tested_up_to = 520
 arbitrary_max_cubes = 1000
 arbitrary_min_answer = 100000
 arbitrary_max_answer = 1000000000
@@ -9,6 +9,8 @@ arbitrary_max_answer = 1000000000
 cubes = [n ** 3 for n in range(tested_up_to, arbitrary_max_cubes)]
 
 print(cubes)
+print()
+print()
 
 
 for curr in cubes:
