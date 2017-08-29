@@ -30,4 +30,4 @@ for i in range(length):
 print(minimum)
 
 
-# SOLVED : 1432
+# Sad reax, not yet solved
