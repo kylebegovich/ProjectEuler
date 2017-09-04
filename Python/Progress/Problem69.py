@@ -1,40 +1,40 @@
-from math import sqrt
+from fractions import gcd
+from Euler import prime_sieve
 
 
-def prime_sieve(n):
-    sieve = [True] * (n//2)
-    for i in range(3, int(n**0.5)+1, 2):
-        if sieve[i//2]:
-            sieve[i*i//2::i] = [False] * ((n-i*i-1)//(2*i)+1)
-    return [2] + [2*i+1 for i in range(1, n//2) if sieve[i]]
+bound = 1000000
 
 
-L = 10 ** 6
-primes = prime_sieve(int(1.2*sqrt(L)))
-del primes[:int(0.6*len(primes))]
+def naive():
+
+    curr_max = 1
+    for n in range(0, bound+1, 2):
+
+        phi_n = 1
+        denom = n / curr_max  # used to prevent too many operations being done within the loop
+        for p in range(1, n):
+            if gcd(n, p) == 1:
+                phi_n += 1
+            if denom < phi_n:
+                break
+
+        if n / phi_n > curr_max:
+            curr_max = n / phi_n
+            print("new max:", curr_max, n, phi_n)
 
 
-if __name__ == '__main__':
-    try:
-        max_q = 0
-        best_n = 0
-        i = 0
-        for p1 in primes:
-            i += 1
-            for p2 in primes[i:]:
-                if (p1 + p2) % 9 != 1:
-                    continue
-                n = p1 * p2
+def main():
+    primes = prime_sieve(500)
 
-                if n > L:
-                    print ("the total, overall max is: ", best_n)
-                    raise StopIteration
+    curr = 1
+    for i in primes:
+        if curr * i > bound:
+            return curr
+        else:
+            curr *= i
 
-                phi = (p1 - 1) * (p2 - 1)
-                ratio = n / float(phi)
-                if ratio > max_q:
-                    max_q = ratio
-                    best_n = n
-                    print("new max: ", best_n, max_q)
-    except StopIteration:
-        print ("done")
+
+print(main())
+
+
+# SOLVED : 510510
