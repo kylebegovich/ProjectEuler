@@ -1,18 +1,17 @@
-import math
+in_a = 600851475143
+in_b = 3
 
-a = 600851475143
-b = 3
 
-if __name__ == '__main__':
+def main(a, b):
     while a > b**2:
         if a % b == 0:
-            a = a / b
-            print (a)
-            print (b)
+            a /= b
         else:
             b += 2
-            print (b)
-    print(a)
+    return int(a)
+
+
+print(main(in_a, in_b))
 
 
 # SOLVED : 6857

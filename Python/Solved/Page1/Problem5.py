@@ -1,19 +1,24 @@
-import math
-
-check = [11, 13, 14, 16, 17, 18, 19, 20]
-minimum = 2520
+from Euler import prime_sieve
 
 
-def find_evenly_divis(step):
-
-    num = minimum
-    while True:
-        if all(num % n == 0 for n in check):
-            return num
-        num += step
+in_nums = 20
 
 
-print(find_evenly_divis(20))
+def main(nums):
+    primes = prime_sieve(nums)
+    answer = 1
+    for i in range(2, nums):
+        if i in primes:
+            answer *= i
+        elif not answer % i == 0:
+            for p in primes:
+                if i % p == 0 and answer % (i // p) == 0:
+                    answer *= p
+
+    return answer
+
+
+print(main(in_nums))
 
 
 # SOLVED : 232792560

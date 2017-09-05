@@ -1,10 +1,11 @@
-a = 1
-b = 2
-c = 0
-summation = 2
-maximum = 4000000
+in_a = 1
+in_b = 2
+in_c = 0
+in_summation = 2
+in_maximum = 4000000
 
-if __name__ == '__main__':
+
+def main(a, b, c, summation, maximum):
     while True:
         c = a + b
         a = b + c
@@ -14,7 +15,10 @@ if __name__ == '__main__':
         else:
             break
 
-    print (summation)
+    return summation
+
+
+print(main(in_a, in_b, in_c, in_summation, in_maximum))
 
 
 # SOLVED : 4613732
