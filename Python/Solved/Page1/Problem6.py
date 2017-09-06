@@ -1,23 +1,21 @@
+in_nums = 100
+
+
 def square_sum(num):
-    i = 1
-    sum = 0
-    while i <= num:
-        sum += i
-        i += 1
-    return sum*sum
+    return sum(range(num+1))**2
 
-def sum_square(num):
-    i = 1
-    sum = 0
-    while i <= num:
-        sum += i*i
-        i += 1
-    return sum
 
-if __name__ == '__main__':
-    first = sum_square(100)
-    second = square_sum(100)
-    print abs(first - second)
+def sum_squares(num):
+    return sum([n**2 for n in range(num+1)])
+
+
+def main(nums):
+    first = sum_squares(nums)
+    second = square_sum(nums)
+    return abs(first - second)
+
+
+print(main(in_nums))
 
 
 # SOLVED : 25164150

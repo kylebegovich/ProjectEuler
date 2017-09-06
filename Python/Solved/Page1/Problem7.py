@@ -1,22 +1,16 @@
-import math
+from Euler import is_prime, prime_sieve
 
-def isPrime(x):
-    i = 2
-    while i <= math.sqrt(x):
-        if x % i == 0:
-            return False
-        else:
-            i += 1
-    return True
 
-if __name__ == '__main__':
-    index = 3
-    actual = 3
-    while index < 10003:
-        actual += 2
-        if isPrime(actual):
-            index += 1
-            print actual
+guess_upper_bound = 1000000
+in_index = 10001
+
+
+def main(index, upper_bound):
+    primes = prime_sieve(upper_bound)
+    return primes[index]
+
+
+print(main(in_index-1, guess_upper_bound))
 
 
 # SOLVED : 104743
