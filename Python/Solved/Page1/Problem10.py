@@ -1,26 +1,15 @@
-import math
-
-ceiling = 2000000
+from Euler import prime_sieve
 
 
-def is_prime(x):
-    i = 2
-    while i <= math.sqrt(x):
-        if x % i == 0:
-            return False
-        else:
-            i += 1
-    return True
+in_ceiling = 2000000
 
 
-if __name__ == '__main__':
-    i = 0
-    summation = 0
-    for x in xrange(2, ceiling):
-        if is_prime(x):
-            summation += x
+def main(ceiling):
+    primes = prime_sieve(ceiling)
+    return sum(primes)
 
-    print summation
+
+print(main(in_ceiling))
 
 
 # SOLVED : 142913828922

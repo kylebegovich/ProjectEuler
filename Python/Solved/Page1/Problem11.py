@@ -1,3 +1,7 @@
+from operator import mul
+from functools import reduce
+
+
 grid = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
         [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
         [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
@@ -19,71 +23,61 @@ grid = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8]
         [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
         [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
 
-
-def vert_product(row, col):
-    product = grid[row][col] * grid[row + 1][col] * grid[row + 2][col] * grid[row + 3][col]
-    return product
+in_nums = 4
 
 
-def horiz_product(row, col):
-    product = grid[row][col] * grid[row][col + 1] * grid[row][col + 2] * grid[row][col + 3]
-    return product
+def prod(iterable):
+    return reduce(mul, iterable, 1)
 
 
-def diag_product(row, col):
-    product = grid[row][col] * grid[row + 1][col + 1] * grid[row + 2][col + 2] * grid[row + 3][col + 3]
-    return product
+def vert_product(row, col, steps):
+    return prod([grid[row+n][col] for n in range(steps + 1)])
 
 
-def other_diag_product(row, col):
-    product = grid[row][col] * grid[row + 1][col - 1] * grid[row + 2][col - 2] * grid[row + 3][col - 3]
-    return product
+def horiz_product(row, col, steps):
+    return prod([grid[row][col + n] for n in range(steps + 1)])
 
 
-if __name__ == '__main__':
+def diag_product(row, col, steps):
+    return prod([grid[row + n][col + n] for n in range(steps + 1)])
+
+
+def other_diag_product(row, col, steps):
+    return prod([grid[row + n][col - n] for n in range(steps + 1)])
+
+
+def main(grid_len, steps):
 
     curr_max = 0
-    for x in range(0, 20):
-        for y in range(0, 17):
-            print (x, y)
-            temp = horiz_product(x, y)
+
+    for x in range(grid_len):
+        for y in range(grid_len - steps):
+            temp = horiz_product(x, y, steps)
             if temp > curr_max:
                 curr_max = temp
-                print (temp, x, y)
 
-    print("done with horiz")
-
-    for x in range(0, 17):
-        for y in range(0, 20):
-            print (x, y)
-            temp = vert_product(x, y)
+    for x in range(grid_len - steps):
+        for y in range(grid_len):
+            temp = vert_product(x, y, steps)
             if temp > curr_max:
                 curr_max = temp
-                print (temp, x, y)
 
-    print("done with vert")
-
-    for x in range(0, 17):
-        for y in range(0, 17):
-            print (x, y)
-            temp = diag_product(x, y)
+    for x in range(grid_len - steps):
+        for y in range(grid_len - steps):
+            temp = diag_product(x, y, steps)
             if temp > curr_max:
                 curr_max = temp
-                print (temp, x, y)
 
-    print("done with first diag")
-
-    for x in range(0, 17):
-        for y in range(3, 20):
-            print (x, y)
-            temp = other_diag_product(x, y)
+    for x in range(grid_len - steps):
+        for y in range(steps, grid_len):
+            temp = other_diag_product(x, y, steps)
             if temp > curr_max:
                 curr_max = temp
-                print (temp, x, y)
 
-    print("done with second diag")
+    return curr_max
 
-    print(curr_max)
+
+print(main(len(grid), in_nums - 1))
 
 
 # SOLVED : 70600674
