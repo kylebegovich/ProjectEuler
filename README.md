@@ -1,5 +1,6 @@
 # ProjectEuler
-The problems for Project Euler I have solved (All Python until announced)
+The problems for Project Euler I have solved.
+Website here: https://projecteuler.net/
 
 ## Python
 These are generally very straightforward to undertand / interpret, and make great use of the math library import
