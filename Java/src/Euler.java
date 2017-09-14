@@ -42,4 +42,7 @@ public class Euler {
         return join(words, " ");
     }
 
+    public static boolean isPalendrome(String toCheck) {
+        return toCheck.equals(new StringBuffer(toCheck).reverse().toString());
+    }
 }
