@@ -4,13 +4,24 @@
 public class Problem4 {
 
 
-    public static void problem() {
+    private static int bigOlePalindrome() {
 
+        int currMax = 0;
+
+        for (int i = 800; i < 1000; i ++) {
+            for (int j = 800; j < 1000; j ++) {
+                if (i*j > currMax && Euler.isPalendrome((i*j) + "")) {
+                    currMax = i*j;
+                }
+            }
+        }
+
+        return currMax;
     }
 
 
     public static void main(String[] args) {
-        System.out.println("Problem");
-
+        int biggest = bigOlePalindrome();
+        System.out.println("Problem 4 solution: " + biggest);
     }
 }
