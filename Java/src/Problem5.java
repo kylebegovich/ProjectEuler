@@ -7,11 +7,36 @@ import java.util.List;
 public class Problem5 {
 
 
-    public static void problem() {
+    private static int[] nums = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+
+    private static int problem() {
+        int curr = 1;
+
+        for (int n : nums) {
+            List<Integer> currFactors = primeFactors(curr);
+            List<Integer> nextFactors = primeFactors(n);
+
+            ArrayList<Integer> intersection = new ArrayList<>(nextFactors);
+            intersection.removeAll(currFactors);
+
+            currFactors.addAll(intersection);
+
+            curr = 1;
+            for (int elem : currFactors) {
+                curr *= elem;
+                System.out.print(elem + ", ");
+            }
+
+            System.out.println();
+            System.out.println(curr + ", " + n);
+
+        }
+
+        return curr;
     }
 
 
-    public static List<Integer> primeFactors(int number) {
+    private static List<Integer> primeFactors(int number) {
         int n = number;
         List<Integer> factors = new ArrayList<Integer>();
         for (int i = 2; i <= n; i++) {
@@ -25,7 +50,7 @@ public class Problem5 {
 
 
     public static void main(String[] args) {
-        System.out.println(primeFactors(13650));
-
+        int out = problem();
+        System.out.println("Problem 5 solution: " + out);
     }
 }
