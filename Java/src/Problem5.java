@@ -17,19 +17,15 @@ public class Problem5 {
             List<Integer> nextFactors = primeFactors(n);
 
             ArrayList<Integer> intersection = new ArrayList<>(nextFactors);
-            intersection.removeAll(currFactors);
-
+            for (int elem : currFactors) {
+                intersection.remove(new Integer(elem));
+            }
             currFactors.addAll(intersection);
 
             curr = 1;
             for (int elem : currFactors) {
                 curr *= elem;
-                System.out.print(elem + ", ");
             }
-
-            System.out.println();
-            System.out.println(curr + ", " + n);
-
         }
 
         return curr;
