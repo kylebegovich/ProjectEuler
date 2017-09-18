@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kyle on 8/23/17.
+ * Created by Kyle on 8/23/17
  */
 public class Problem5 {
 
