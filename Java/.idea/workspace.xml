@@ -19,12 +19,12 @@
       <file leaf-file-name="Euler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Euler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="44" column="55" lean-forward="false" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
+            <state relative-caret-position="180">
+              <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
               <folding>
                 <element signature="method#join#0;class#Euler#0" expanded="false" />
                 <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-                <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+                <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Problem6.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Problem6.java">
+      <file leaf-file-name="Problem7.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Problem7.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -88,11 +88,12 @@
         <option value="$PROJECT_DIR$/src/Problem3.java" />
         <option value="$PROJECT_DIR$/src/EulerTests.java" />
         <option value="$PROJECT_DIR$/src/kek.java" />
-        <option value="$PROJECT_DIR$/src/Euler.java" />
         <option value="$PROJECT_DIR$/Tests/EulerTests.java" />
         <option value="$PROJECT_DIR$/src/Problem4.java" />
         <option value="$PROJECT_DIR$/src/Problem5.java" />
         <option value="$PROJECT_DIR$/src/Problem6.java" />
+        <option value="$PROJECT_DIR$/src/Euler.java" />
+        <option value="$PROJECT_DIR$/src/Problem7.java" />
       </list>
     </option>
   </component>
@@ -117,9 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -162,6 +160,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -176,22 +177,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Problem6">
-    <configuration default="false" name="kek" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="kek" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Project Euler" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Problem7">
     <configuration default="false" name="Problem4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Problem4" />
@@ -240,6 +226,21 @@
     <configuration default="false" name="Problem6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Problem6" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Project Euler" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Problem7" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Problem7" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -478,19 +479,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.kek" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Problem4" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Template" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Problem5" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Problem6" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Problem4" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Template" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Problem5" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Problem6" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Problem7" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Problem6" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Problem5" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Problem4" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Template" />
-        <item index="4" class="java.lang.String" itemvalue="Application.kek" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Problem7" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Problem6" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Problem5" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Problem4" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Template" />
       </list>
     </recent_temporary>
   </component>
@@ -563,7 +564,43 @@
           <folding>
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Template.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="21" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Problem6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Euler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="44" column="55" lean-forward="false" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
+          <folding>
+            <element signature="method#join#0;class#Euler#0" expanded="false" />
+            <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -590,7 +627,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="true" />
+            <element signature="e#922#931#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -602,7 +639,7 @@
           <folding>
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -638,7 +675,7 @@
           <folding>
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -673,7 +710,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="true" />
+            <element signature="e#922#931#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -709,7 +746,7 @@
           <folding>
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,7 +838,7 @@
           <folding>
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -871,31 +908,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Problem4.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Euler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="44" column="55" lean-forward="false" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
-          <folding>
-            <element signature="method#join#0;class#Euler#0" expanded="false" />
-            <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalendrome#0;class#Euler#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -905,8 +922,36 @@
           <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="true" />
+            <element signature="e#922#931#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Euler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+          <folding>
+            <element signature="method#join#0;class#Euler#0" expanded="false" />
+            <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Problem6.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -918,10 +963,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Problem6.java">
+    <entry file="file://$PROJECT_DIR$/src/Problem7.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="14" column="58" lean-forward="false" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
           <folding />
         </state>
       </provider>

@@ -10,7 +10,7 @@ public class Problem4 {
 
         for (int i = 800; i < 1000; i ++) {
             for (int j = 800; j < 1000; j ++) {
-                if (i*j > currMax && Euler.isPalendrome((i*j) + "")) {
+                if (i*j > currMax && Euler.isPalindrome((i*j) + "")) {
                     currMax = i*j;
                 }
             }
