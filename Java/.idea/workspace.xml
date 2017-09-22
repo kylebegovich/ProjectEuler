@@ -28,6 +28,7 @@
                 <element signature="method#join#0;class#Euler#0" expanded="false" />
                 <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
                 <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+                <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -43,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Problem11.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Problem11.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Problem11.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+            <state relative-caret-position="312">
+              <caret line="118" column="53" lean-forward="false" selection-start-line="118" selection-start-column="53" selection-end-line="118" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EulerTests.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -103,7 +114,6 @@
         <option value="$PROJECT_DIR$/src/Problem3.java" />
         <option value="$PROJECT_DIR$/src/EulerTests.java" />
         <option value="$PROJECT_DIR$/src/kek.java" />
-        <option value="$PROJECT_DIR$/Tests/EulerTests.java" />
         <option value="$PROJECT_DIR$/src/Problem4.java" />
         <option value="$PROJECT_DIR$/src/Problem5.java" />
         <option value="$PROJECT_DIR$/src/Problem6.java" />
@@ -111,6 +121,7 @@
         <option value="$PROJECT_DIR$/src/Problem7.java" />
         <option value="$PROJECT_DIR$/src/Problem10.java" />
         <option value="$PROJECT_DIR$/src/Problem11.java" />
+        <option value="$PROJECT_DIR$/Tests/EulerTests.java" />
       </list>
     </option>
   </component>
@@ -135,6 +146,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -178,7 +190,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -194,22 +205,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Problem10">
-    <configuration default="false" name="Problem4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Problem4" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Project Euler" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Problem11">
     <configuration default="false" name="Problem5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Problem5" />
@@ -258,6 +254,21 @@
     <configuration default="false" name="Problem10" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Problem10" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Project Euler" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Problem11" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Problem11" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -496,19 +507,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.Problem4" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Problem5" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Problem6" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Problem7" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Problem10" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Problem5" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Problem6" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Problem7" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Problem10" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Problem11" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Problem10" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Problem7" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Problem6" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Problem5" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Problem4" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Problem11" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Problem10" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Problem7" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Problem6" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Problem5" />
       </list>
     </recent_temporary>
   </component>
@@ -547,7 +558,6 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -560,6 +570,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -590,6 +601,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -614,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -626,6 +637,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -650,10 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,6 +673,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -673,7 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,6 +709,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -709,7 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -733,10 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -744,7 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,7 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,6 +773,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -788,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,7 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -812,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,7 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,7 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,6 +857,7 @@
             <element signature="method#join#0;class#Euler#0" expanded="false" />
             <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
             <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -880,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -929,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -937,10 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#922#931#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -948,35 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Euler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
-          <folding>
-            <element signature="method#join#0;class#Euler#0" expanded="false" />
-            <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
-            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Problem7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -984,7 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -992,7 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1006,8 +959,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Problem11.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        <state relative-caret-position="312">
+          <caret line="118" column="53" lean-forward="false" selection-start-line="118" selection-start-column="53" selection-end-line="118" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Problem7.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Euler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+          <folding>
+            <element signature="method#join#0;class#Euler#0" expanded="false" />
+            <element signature="method#numToWords#0;class#Euler#0" expanded="false" />
+            <element signature="method#isPalindrome#0;class#Euler#0" expanded="false" />
+            <element signature="method#primeSieve#0;class#Euler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/EulerTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
           <folding />
         </state>
       </provider>

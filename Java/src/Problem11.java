@@ -25,36 +25,115 @@ public class Problem11 {
             {20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86,  81, 16,  23, 57, 5, 54},
         {1, 70, 54, 71, 83, 51, 54, 69, 16,  92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}};
 
-    public static void problem() {
-        
+    public static int maxConsecProduct(int[][] grid, int steps) {
+        if (steps > grid.length && steps > grid[0].length) {
+            return -1;
+        }
+
+        int columns = columns(grid, steps);
+        int rows = rows(grid, steps);
+        int lrDiags = leftRightDiags(grid, steps);
+        int rlDiags = rightLeftDiags(grid, steps);
+
+        return Math.max(columns, Math.max(rows, Math.max(lrDiags, rlDiags)));
     }
 
-    public static int columns() {
+    public static int columns(int[][] grid, int steps) {
+        if (steps > grid.length && steps > grid[0].length) {
+            return -1;
+        }
+
         int max = 0;
+
+        for (int row = 0; row + steps < grid.length; row ++) {
+            for (int col = 0; col < grid[0].length; col ++) {
+                int tempProduct = 1;
+                for (int step = 0; step < steps; step ++) {
+                    tempProduct *= grid[row+step][col];
+                }
+
+                if (tempProduct > max) {
+                    max = tempProduct;
+                }
+            }
+        }
 
         return max;
     }
 
-    public static int rows() {
+    public static int rows(int[][] grid, int steps) {
+        if (steps > grid.length && steps > grid[0].length) {
+            return -1;
+        }
+
         int max = 0;
+
+        for (int row = 0; row < grid.length; row ++) {
+            for (int col = 0; col + steps < grid[0].length; col ++) {
+                int tempProduct = 1;
+                for (int step = 0; step < steps; step ++) {
+                    tempProduct *= grid[row][col+step];
+                }
+
+                if (tempProduct > max) {
+                    max = tempProduct;
+                }
+            }
+        }
 
         return max;
     }
 
-    public static int leftRightDiags() {
+    public static int leftRightDiags(int[][] grid, int steps) {
+        if (steps > grid.length && steps > grid[0].length) {
+            return -1;
+        }
+
         int max = 0;
+
+        for (int row = 0; row + steps < grid.length; row ++) {
+            for (int col = 0; col + steps < grid[0].length; col ++) {
+
+                int tempProduct = 1;
+                for (int step = 0; step < steps; step ++) {
+                    tempProduct *= grid[row+step][col+step];
+                }
+
+                if (tempProduct > max) {
+                    max = tempProduct;
+                }
+            }
+        }
 
         return max;
     }
 
-    public static int rightLeftDiags() {
+    public static int rightLeftDiags(int[][] grid, int steps) {
+        if (steps > grid.length && steps > grid[0].length) {
+            return -1;
+        }
+
         int max = 0;
+
+        for (int row = 0; row + steps < grid.length; row --) {
+            for (int col = grid[0].length - 1; col >= steps; col ++) { // likely a bug here
+                int tempProduct = 1;
+                for (int step = 0; step < steps; step ++) {
+                    tempProduct *= grid[row+step][col-step];
+                }
+
+                if (tempProduct > max) {
+                    max = tempProduct;
+                }
+            }
+        }
 
         return max;
     }
 
     public static void main(String[] args) {
-        System.out.println("Problem");
+        int answer = maxConsecProduct(theGrid, 4);
 
+        System.out.println("Problem 11 answer: " + answer);
     }
 }
