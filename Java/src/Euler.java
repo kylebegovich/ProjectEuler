@@ -43,7 +43,7 @@ public class Euler {
     }
 
     public static boolean isPalindrome(String toCheck) {
-        return toCheck.equals(new StringBuffer(toCheck).reverse().toString());
+        return toCheck.length() <= 1 || toCheck.equals(new StringBuffer(toCheck).reverse().toString());
     }
 
     public static int[] primeSieve(int max) {
