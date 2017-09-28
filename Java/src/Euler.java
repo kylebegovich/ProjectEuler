@@ -32,14 +32,16 @@ public class Euler {
                 "Septendecillion", "Octodecillion", "Novemdecillion",
                 "Vigintillion"};
 
-        String[] words = {};
-        String strNum = Integer.toString(num);
-        int strLen = strNum.length();
+        StringBuffer strNum = new StringBuffer(Integer.toString(num));
+        StringBuffer words = new StringBuffer();
 
         // not even close to done yet :(
+        while (strNum.length() > 0) {
+
+        }
 
 
-        return join(words, " ");
+        return words.toString();
     }
 
     public static boolean isPalindrome(String toCheck) {
