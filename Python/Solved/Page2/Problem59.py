@@ -112,7 +112,7 @@ def analysis(most_common_asciis, goal_char):
 if __name__ == '__main__':
 
     # open that file
-    message = open("p059_cipher.txt", 'r')
+    message = open("text_files/p059_cipher.txt", 'r')
 
     text = ""
     for line in message:

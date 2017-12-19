@@ -1,4 +1,4 @@
-matrix = open("p082_matrix.txt", 'r')
+matrix = open("text_files/p082_matrix.txt", 'r')
 
 grid = list()
 

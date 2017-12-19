@@ -21,7 +21,7 @@ def check_valid(num):
 if __name__ == '__main__':
 
     # open file to read
-    attempts = open("p079_keylog.txt", 'r')
+    attempts = open("text_files/p079_keylog.txt", 'r')
 
     # do everything else
     for line in attempts:

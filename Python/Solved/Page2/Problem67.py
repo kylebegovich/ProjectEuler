@@ -19,7 +19,7 @@ def bottom_up_step(row):
 if __name__ == '__main__':
 
     # read the data from the file, put it into triangle
-    text = open("p067_triangle.txt", 'r')
+    text = open("text_files/p067_triangle.txt", 'r')
 
     i = 0
     for line in text:
