@@ -28,6 +28,17 @@ def is_palindromic(n): n = str(n); return n == n[::-1]
 def is_pandigital(n, s=9): n = str(n); return len(n) == s and not '1234567890'[:s].strip(n)
 
 
+# --- Get a count of integers less than n and relatively prime to n (Euler's Totient Function)----
+def totient(n):
+
+    result = 1
+    for i in range(2, n):
+        if gcd(i, n) == 1:
+            result += 1
+
+    return result
+
+
 # --- Calculate the sum of proper divisors for n--------------------------------------------------
 def d(n):
     s = 1
