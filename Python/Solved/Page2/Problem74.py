@@ -1,10 +1,6 @@
 import math
-import time
-
-
 discovered = {0: 2, 1: 1, 145: 1, 363601: 3, 1454: 3, 169: 3,
               871: 2, 45361: 2, 872: 2, 45362: 2}
-
 
 def step(curr):
     s = 0
@@ -12,7 +8,6 @@ def step(curr):
         s += math.factorial(int(digit))
 
     return s
-
 
 def count(start):
 
@@ -40,7 +35,6 @@ def count(start):
 
     return discovered[start]
 
-
 def main(limit):
 
     total = 0
@@ -48,8 +42,6 @@ def main(limit):
         c = count(i)
         if c == 60:
             total += 1
-        if c > 60:
-            print("something broke :(")
 
     return total
 
