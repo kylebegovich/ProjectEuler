@@ -1,10 +1,35 @@
+from collections import defaultdict
+
+
+def cube(x): return x**3
+
+
+def main():
+    cubes = defaultdict(list)
+    for i in range(10000):
+        c = cube(i)
+        digits = ''.join(sorted([d for d in str(c)]))
+        cubes[digits].append(c)
+
+    print(min([min(v) for k, v in list(cubes.items()) if len(v) == 5]))
+
+main()
+
+
+
+
+
+
+# old code:
+
+"""
 from itertools import permutations
 
 
-tested_up_to = 520
-arbitrary_max_cubes = 1000
-arbitrary_min_answer = 100000
-arbitrary_max_answer = 1000000000
+tested_up_to = 600
+arbitrary_max_cubes = 100000
+arbitrary_min_answer = 10000000000
+arbitrary_max_answer = 100000000000000
 
 cubes = [n ** 3 for n in range(tested_up_to, arbitrary_max_cubes)]
 
@@ -27,3 +52,4 @@ for curr in cubes:
         break
 
 # should work... but quite slow... sad reax onlee
+"""
