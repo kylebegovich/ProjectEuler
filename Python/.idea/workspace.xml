@@ -11,12 +11,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Problem68.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Progress/Problem68.py">
+      <file leaf-file-name="Problem93.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Progress/Problem93.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="150">
+              <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+                <element signature="e#1822#2021#0" expanded="false" />
+                <element signature="e#2053#2445#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Problem94.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Progress/Problem94.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +83,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Progress/Problem51.py" />
         <option value="$PROJECT_DIR$/Solved/Page2/Problem51.py" />
         <option value="$PROJECT_DIR$/Progress/Problem60.py" />
         <option value="$PROJECT_DIR$/Progress/Problem66.py" />
@@ -118,6 +133,7 @@
         <option value="$PROJECT_DIR$/Progress/Problem89.py" />
         <option value="$PROJECT_DIR$/Progress/Problem62.py" />
         <option value="$PROJECT_DIR$/Progress/Problem68.py" />
+        <option value="$PROJECT_DIR$/Progress/Problem93.py" />
       </list>
     </option>
   </component>
@@ -142,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,6 +185,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -382,25 +398,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Progress/Problem66.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Solved/Page1/Problem32.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="56" lean-forward="false" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Solved/Page2/Problem60.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -683,11 +685,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem89.py" />
     <entry file="file://$PROJECT_DIR$/Progress/Problem62.py" />
-    <entry file="file://$PROJECT_DIR$/Progress/Problem68.py">
+    <entry file="file://$PROJECT_DIR$/Progress/Problem68.py" />
+    <entry file="file://$PROJECT_DIR$/Progress/Problem94.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Progress/Problem93.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#1822#2021#0" expanded="false" />
+            <element signature="e#2053#2445#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
