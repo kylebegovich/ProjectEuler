@@ -49,7 +49,6 @@ def calc(inpt):
 
 def all_ops_and_parens(vals):
     # this should be 4^3 = 64  * 5 = 320, as we select any combination of operators to calculate the total, and pick a paren_setup
-    l = (5 * (4 ** 3))
     out_list = []
     app = out_list.append
 
@@ -60,13 +59,17 @@ def all_ops_and_parens(vals):
                     o = (ops[i], ops[j], ops[k])
                     app(((vals, o), l))
 
-    print(out_list)
+    print([(calc(x), x) for x in out_list])
     return out_list
 
 
 def all_vals():
     # this should be 9 choose 4 for which values, and 4! ways to arrange them, for a total of 9!/5! = 3024 values
     return list(permutations(range(1, 10), 4))  # easier than I expected thx to itertools
+
+
+def test_vals():
+    return [(1, 2, 3, 4), (5, 6, 7, 8), (1, 3, 5, 7)]
 
 
 def max_chain(targets):
@@ -93,13 +96,13 @@ def max_chain(targets):
 
 
 def main():
-    best = 28
-    for tupe in all_vals():
+    best = 0
+    for tupe in test_vals():
         targets = [calc(op_combo) for op_combo in all_ops_and_parens(tupe)]
         temp = max_chain(targets)
         print(temp, tupe)
         if temp > best:
-            print("New Best: ", targets)
+            print("\nNew Best: ", temp, targets, '\n')
             best = temp
 
     return best

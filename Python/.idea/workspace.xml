@@ -14,12 +14,12 @@
       <file leaf-file-name="Problem93.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem93.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+            <state relative-caret-position="541">
+              <caret line="104" column="21" lean-forward="false" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
-                <element signature="e#1822#2021#0" expanded="false" />
-                <element signature="e#2053#2445#0" expanded="false" />
+                <element signature="e#1823#2022#0" expanded="false" />
+                <element signature="e#2127#2519#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -158,6 +158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,7 +187,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -398,7 +398,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -698,12 +698,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem93.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        <state relative-caret-position="541">
+          <caret line="104" column="21" lean-forward="false" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#1822#2021#0" expanded="false" />
-            <element signature="e#2053#2445#0" expanded="false" />
+            <element signature="e#1823#2022#0" expanded="false" />
+            <element signature="e#2127#2519#0" expanded="false" />
           </folding>
         </state>
       </provider>
