@@ -32,24 +32,35 @@ def fill_lists():
     hept_4s = set()
     octa_4s = set()
 
-    # these bounds were hand-calculated for each set, to be the 4 digit nums in each figurate set
-    for i in range(45, 141):
-        triag_4s.add(int(triag(i)))
+    for i in range(200):
+        t = triag(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
-    for i in range(32, 100):
-        square_4s.add(int(square(i)))
+    for i in range(175):
+        t = square(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
-    for i in range(26, 82):
-        pent_4s.add(int(pent(i)))
+    for i in range(150):
+        t = pent(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
-    for i in range(23, 71):
-        hexa_4s.add(int(hexa(i)))
+    for i in range(120):
+        t = hexa(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
-    for i in range(21, 64):
-        hept_4s.add(int(hept(i)))
+    for i in range(120):
+        t = hept(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
-    for i in range(19, 59):
-        octa_4s.add(int(octa(i)))
+    for i in range(100):
+        t = octa(i)
+        if 999 < t < 10000:
+            triag_4s.add(int(t))
 
     return triag_4s, square_4s, pent_4s, hexa_4s, hept_4s, octa_4s
 
@@ -65,8 +76,8 @@ def generate_chain(curr_list, curr_markers, master_set, master_list):
         if cand_marker not in curr_markers:
             curr_list.append(cand)
             curr_markers.append(cand_marker)
-            print(curr_list)
-            print(curr_markers)
+            #print(curr_list)
+            #print(curr_markers)
             return generate_chain(curr_list, curr_markers, master_set, master_list)
 
     return []
@@ -86,6 +97,8 @@ def main():
     sets = fill_lists()
     master_set = sets[0] | sets[1] | sets[2] | sets[3] | sets[4] | sets[5]
     master_list = [sets[0], sets[1], sets[2], sets[3], sets[4], sets[5]]
+
+    print(master_set)
 
     for elem in master_set:
         if len(str(elem)) != 4:
