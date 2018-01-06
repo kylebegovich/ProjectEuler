@@ -3,7 +3,7 @@ def next_numerator(prev_numerator, prev_denominator):
 
 
 def next_denominator(next_numerator, prev_denominator):
-    """Yes, the numerator is purposefully next, not curr"""
+    # Yes, the numerator is purposefully next, not curr
     return next_numerator - prev_denominator
 
 
