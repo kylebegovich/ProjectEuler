@@ -1,31 +1,40 @@
 
 # we can figure the last unknown is 0, as our square necessitates the last to end with either 00 or not end with 0
-# we can also, since the square now ends in 9, that our square ends with either 3 or 7, and thus must be odd
 
-max_square = 19293949596979899
-min_square = 10203040506070809
+from math import sqrt, floor, ceil
 
+example = "1_2_3_4_5_6_7_8_9"
 
 def is_condition(val):
-    string = str(val)
-    if string[0] == 1 and string[2] == 2 and string[4] == 3 and string[6] == 4 and \
-       string[8] == 5 and string[10] == 6 and string[12] == 7 and string[14] == 8 and string[16] == 9:
-        return True
+    l = [int(d) for d in str(val)]
+    #if all(l[2*n] == n+1 for n in range(9)):
+        #return True
+
+    if  (val % 10) // 1 == 9 and \
+        (val % 1000) // 100 == 8 and \
+        (val % 100000) // 10000 == 7 and \
+        (val % 10000000) // 1000000 == 6 and \
+        (val % 1000000000) // 100000000 == 5 and \
+        (val % 100000000000) // 10000000000 == 4 and \
+        (val % 10000000000000) // 1000000000000 == 3 and \
+        (val % 1000000000000000) // 100000000000000 == 2 and \
+        (val % 100000000000000000) // 10000000000000000 == 1:
+            return True
+
     return False
 
 
-def main():
-    max_val = int(max_square ** 0.5)
-    min_val = int(min_square ** 0.5)
+def main(max_val, min_val):
 
-    min_val += 2  # round up to the nearest value that ends in 3 or 7
+    # ends in 9, so must be odd, skip the evens
 
-    for i in range(min_val, max_val, 10):  # checks both the 3 and 7 step
+    for i in range(min_val, max_val, 2):
         if is_condition(i ** 2):
-            return i
-        elif is_condition((i + 4) ** 2):
-            return i + 4
+            return (i ** 2) * 10
 
     return "FAILED"
 
-print(main())
+max_val = 138902663  # = int(ceil(sqrt(19293949596979899)))
+min_val = 101010101  # = int(floor(sqrt(10203040506070809)))
+print(is_condition(12233447506877809))
+print(main(max_val, min_val))
