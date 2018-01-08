@@ -7,7 +7,7 @@ fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
 def factors(n):
-    return list((i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0)
+    return [(i, n // i) for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
 
 def heron_area(side_a, side_b, side_c):

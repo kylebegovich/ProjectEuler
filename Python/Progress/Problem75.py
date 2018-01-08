@@ -5,8 +5,8 @@ L = 1500000
 maximum = 339812
 
 
-discovered = []
-duplicates = []
+discovered = set()
+duplicates = set()
 
 
 max_perim = lambda r: int(3*r + 2*((r**2)/2) + 2)
@@ -18,17 +18,19 @@ def perim(r, s, t):
 
 
 def main():
-
+    discapp = discovered.add
+    dupeapp = duplicates.add
+    discrem = discovered.remove
     for r in range(2, maximum, 2):   # needs r to be even for Dickson's formula to work
         for tupe in factors((r**2)/2):
             temp = perim(r, tupe[0], tupe[1])
             if temp > L:
                 continue
             if temp not in duplicates and temp not in discovered:
-                discovered.append(temp)
+                discapp(temp)
             elif temp not in duplicates and temp in discovered:
-                duplicates.append(temp)
-                discovered.remove(temp)
+                dupeapp(temp)
+                discrem(temp)
 
         print("working:", r)
 
