@@ -2,14 +2,20 @@ from itertools import permutations
 from math import floor, ceil
 
 
-add = lambda a, b: int(a + b)
+def add(a, b):
+    return int(a + b)
 
-sub = lambda a, b: int(a - b)
 
-mul = lambda a, b: int(a * b)
+def sub(a, b):
+    return int(a - b)
 
-div = lambda a, b: a / b if b != 0 else 0
 
+def mul(a, b):
+    return int(a * b)
+
+
+def div(a, b):
+    return a / b if b != 0 else 0
 
 ops = [add, sub, mul, div]
 
@@ -73,7 +79,6 @@ def test_vals():
 
 
 def max_chain(targets):
-
     targets = sorted(targets)
 
     if targets is None or len(targets) == 0:
@@ -83,7 +88,7 @@ def max_chain(targets):
     curr = 0
     prev = targets[0]
     for elem in targets:
-        #print(longest, curr, prev, elem)
+        # print(longest, curr, prev, elem)
         if elem == (prev + 1):
             curr += 1
         elif curr > longest:
@@ -117,7 +122,6 @@ print(sorted(test))
 print(max_chain(test))
 """
 
-
 """
  a ~ b ~ c ~ d     : 0
  a ~ b ~(c ~ d)    : 1
@@ -125,6 +129,5 @@ print(max_chain(test))
  a ~(b ~ c ~ d)    : 3
 (a ~ b)~(c ~ d)    : 4
 """
-
 
 print(main())
