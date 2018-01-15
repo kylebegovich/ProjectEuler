@@ -5,8 +5,9 @@ import itertools
 
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
+
 def factors(n):
-    return set(reduce(list.append(), ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+    return [(i, n // i) for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
 
 def heron_area(side_a, side_b, side_c):
@@ -269,11 +270,11 @@ def prime_sieve(n):
     Algorithm & Python source: Robert William Hanks
     http://stackoverflow.com/questions/17773352/python-sieve-prime-numbers
     """
-    sieve = [True] * (n / 2)
+    sieve = [True] * (n // 2)
     for i in range(3, int(n ** 0.5) + 1, 2):
-        if sieve[i / 2]:
-            sieve[i * i / 2::i] = [False] * ((n - i * i - 1) / (2 * i) + 1)
-    return [2] + [2 * i + 1 for i in range(1, n / 2) if sieve[i]]
+        if sieve[i // 2]:
+            sieve[i * i // 2::i] = [False] * ((n - i * i - 1) // (2 * i) + 1)
+    return [2] + [2 * i + 1 for i in range(1, n // 2) if sieve[i]]
 
 
 # --- bezout coefficients--------------------------------------------------------------------------
@@ -353,5 +354,6 @@ def n2words(num, join=True):
             else:
                 if u >= 1: words.append(units[u])
             if (g >= 1) and ((h + t + u) > 0): words.append(thousands[g] + '')
-    if join: return ' '.join(words)
+    if join:
+        return ' '.join(words)
     return words
