@@ -6,6 +6,33 @@ import itertools
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
+def partitions_up_to(lim):
+
+    if lim < 0:
+        return []
+    if lim == 0:
+        return [1]
+
+    partitions = [1]
+    n = 0
+    while True:
+        i = 0
+        curr_pent = 1
+        partitions.append(0)
+
+        while curr_pent <= n:
+            sign = -1 if i % 4 > 1 else 1
+            partitions[n] += sign * partitions[n - curr_pent]
+            i += 1
+
+            j = int((i / 2 + 1)) if i % 2 == 0 else int(-(i / 2 + 1))
+            curr_pent = int(j * (3 * j - 1) / 2)
+
+        if n == lim:
+            return partitions[:-1]
+        n += 1
+
+
 def factors(n):
     return [(i, n // i) for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
