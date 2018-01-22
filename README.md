@@ -7,6 +7,3 @@ These are generally very straightforward to undertand / interpret, and make grea
 
 ## Java
 Just getting started with solving the problems in Java. Not a beginner to Java, but just starting this project now
-
-### Haskell
-I am not very familiar with Haskell, so these will be a little more dense and inefficient until I'm more experienced
