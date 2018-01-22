@@ -33,21 +33,79 @@ def is_puzzle_done(puzzle):
     return True
 
 
+all_1_to_9 = set(range(1, 10))
+
+
 def crosshatch(puzzle):
-    return puzzle  # write algorithm
+    #  Note: this is a single pass-through, not a repeated process
+    #  Rows
+    for row in puzzle:
+        elems = [row[i][0] for i in range(9)]
+        c = elems.count(0)
+        if c == 0 or c > 1:
+            continue
+        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+        e_index = elems.index(0)
+        row[e_index][0] = missing_val
+
+    #  Columns
+    for i in range(9):
+        elems = [puzzle[j][i][0] for j in range(9)]
+        c = elems.count(0)
+        if c == 0 or c > 1:
+            continue
+        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+        e_index = elems.index(0)
+        puzzle[e_index][i][0] = missing_val
+
+    #  Boxes
+    for b in range(9):
+        r, c = (b // 3) * 3, (b % 3) * 3
+        elems = [puzzle[r][c][0], puzzle[r][c+1][0], puzzle[r][c+2][0],
+                 puzzle[r+1][c][0], puzzle[r+1][c+1][0], puzzle[r+1][c+2][0],
+                 puzzle[r+2][c][0], puzzle[r+2][c+1][0], puzzle[r+2][c+2][0]]
+        c = elems.count(0)
+        if c == 0 or c > 1:
+            continue
+        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+        e_index = elems.index(0)
+        r, c = (e_index // 3) * 3, (e_index % 3) * 3
+        puzzle[r][c][0] = missing_val
+
+    return puzzle
 
 
 def memorization(puzzle):
-    return puzzle  # write algorithm
+    for r in range(9):
+        for c in range(9):
+            if puzzle[r][c][0] == 0:
+                row_elems = [puzzle[r][i][0] for i in range(9)]
+                col_elems = [puzzle[i][c][0] for i in range(9)]
+                tr = (r // 3) * 3
+                tc = (c % 3) * 3
+                box_elems = [puzzle[tr][tc][0], puzzle[tr][tc+1][0], puzzle[tr][tc+2][0],
+                             puzzle[tr+1][tc][0], puzzle[tr+1][tc+1][0], puzzle[tr+1][tc+2][0],
+                             puzzle[tr+2][tc][0], puzzle[tr+2][tc+1][0], puzzle[tr+2][tc+2][0]]
+                invalid_elems = set(row_elems + col_elems + box_elems) - {0}
+                possible_elems = all_1_to_9 - invalid_elems
+                if len(possible_elems) == 1:
+                    puzzle[r][c][0] = possible_elems.pop()
+                else:
+                    puzzle[r][c][1] = possible_elems
+
+    return puzzle
 
 
 def solve(puzzle_list):
     print("begin solving")
     new_list = []
+    count = 0
     for puzzle in puzzle_list:
         while not is_puzzle_done(puzzle):
             puzzle = crosshatch(puzzle)
             puzzle = memorization(puzzle)
+        count += 1
+        print(count)
         print(puzzle)
         new_list.append(puzzle)
 
