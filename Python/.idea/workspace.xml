@@ -14,8 +14,8 @@
       <file leaf-file-name="Problem96.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="106" column="18" lean-forward="false" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+            <state relative-caret-position="480">
+              <caret line="163" column="8" lean-forward="false" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -24,8 +24,8 @@
       <file leaf-file-name="p096_sudoku.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Progress/p096_sudoku.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            <state relative-caret-position="4365">
+              <caret line="291" column="9" lean-forward="true" selection-start-line="291" selection-start-column="9" selection-end-line="291" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -42,9 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>[0]</find>
-      <find>xrange</find>
-      <find>fact</find>
       <find>0</find>
       <find>digits</find>
       <find>divisor</find>
@@ -72,6 +69,9 @@
       <find>p</find>
       <find>Gr</find>
       <find>count</find>
+      <find>print(</find>
+      <find>for row in ni</find>
+      <find>##</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -153,6 +153,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,7 +181,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -670,16 +670,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/p096_sudoku.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        <state relative-caret-position="4365">
+          <caret line="291" column="9" lean-forward="true" selection-start-line="291" selection-start-column="9" selection-end-line="291" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="106" column="18" lean-forward="false" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+        <state relative-caret-position="480">
+          <caret line="163" column="8" lean-forward="false" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="8" />
           <folding />
         </state>
       </provider>
