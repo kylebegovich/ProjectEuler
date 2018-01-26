@@ -100,8 +100,9 @@ def memorization(puzzle):
 
 def mem_extrapolate(puzzle):
 
-    # Rows
-    for row in puzzle:
+    #  Rows
+    for k in range(len(puzzle)):
+        row = puzzle[k]
         elems = [row[i][0] for i in range(9)]
         c = elems.count(0)
         if c <= 1:
@@ -115,25 +116,57 @@ def mem_extrapolate(puzzle):
 
         for indv_val in missing_vals:
             is_unique = False
-            for indv_pot_val in potential_vals:
-                print("new indv pot val")
+            e_index = -1
+            for j in range(len(potential_vals)):
+                indv_pot_val = potential_vals[j]
+                # print("new indv pot val")
                 if indv_val in indv_pot_val and not is_unique:
                     is_unique = True
+                    e_index = j
                 elif indv_val in indv_pot_val and is_unique:
-                    print("breaking")
+                    is_unique = False
+                    # print("breaking")
                     break
-            print("done with a indv_val")
+            if is_unique:
+                puzzle[k][e_index][0] = indv_val
+                puzzle[k][e_index][1] = set()
+
+            # print("done with a indv_val")
 
 
     #  Columns
-    for i in range(9):
-        elems = [puzzle[j][i][0] for j in range(9)]
+    for k in range(len(puzzle)):
+        elems = [puzzle[j][k][0] for j in range(9)]
+        sets = [puzzle[j][k][1] for j in range(9)]
         c = elems.count(0)
-        if c == 0 or c > 1:
+        if c <= 1:
             continue
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        e_index = elems.index(0)
-        puzzle[e_index][i][0] = missing_val
+        missing_vals = (list((all_1_to_9 - set(elems)) - {0}))
+
+        potential_vals = list()
+
+        for index in range(len(elems)):
+            if elems[index] == 0:
+                potential_vals.append(sets[index])
+
+        for indv_val in missing_vals:
+            is_unique = False
+            e_index = -1
+            for j in range(len(potential_vals)):
+                indv_pot_val = potential_vals[j]
+                # print("new indv pot val")
+                if indv_val in indv_pot_val and not is_unique:
+                    is_unique = True
+                    e_index = j
+                elif indv_val in indv_pot_val and is_unique:
+                    is_unique = False
+                    # print("breaking")
+                    break
+            if is_unique:
+                puzzle[e_index][k][0] = indv_val
+                puzzle[e_index][k][1] = set()
+
+            # print("done with a indv_val")
 
     #  Boxes
     for b in range(9):
