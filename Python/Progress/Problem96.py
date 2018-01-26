@@ -99,14 +99,31 @@ def memorization(puzzle):
 
 
 def mem_extrapolate(puzzle):
+
+    # Rows
     for row in puzzle:
         elems = [row[i][0] for i in range(9)]
         c = elems.count(0)
         if c <= 1:
             continue
-        missing_vals = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        e_index = elems.index(0)
-        row[e_index][0] = missing_val
+        missing_vals = (list((all_1_to_9 - set(elems)) - {0}))
+
+        potential_vals = list()
+        for tupe in row:
+            if tupe[0] == 0:
+                potential_vals.append(tupe[1])
+
+        for indv_val in missing_vals:
+            is_unique = False
+            for indv_pot_val in potential_vals:
+                print("new indv pot val")
+                if indv_val in indv_pot_val and not is_unique:
+                    is_unique = True
+                elif indv_val in indv_pot_val and is_unique:
+                    print("breaking")
+                    break
+            print("done with a indv_val")
+
 
     #  Columns
     for i in range(9):
@@ -154,19 +171,21 @@ def solve(puzzle_list):
         while not is_puzzle_done(puzzle):
             puzzle = crosshatch(puzzle)
 
-            for row in nice_puzzle(puzzle)[0]:
-                print(row)
-            for row in nice_puzzle(puzzle)[1]:
-                print(row)
-            print(" post cross ")
+            # for row in nice_puzzle(puzzle)[0]:
+            #     print(row)
+            # for row in nice_puzzle(puzzle)[1]:
+            #     print(row)
+            # print(" post cross ")
 
             puzzle = memorization(puzzle)
 
-            for row in nice_puzzle(puzzle)[0]:
-                print(row)
-            for row in nice_puzzle(puzzle)[1]:
-                print(row)
-            print(" post mem ")
+            # for row in nice_puzzle(puzzle)[0]:
+            #     print(row)
+            # for row in nice_puzzle(puzzle)[1]:
+            #     print(row)
+            # print(" post mem ")
+
+            puzzle = mem_extrapolate(puzzle)
 
         count += 1
         print(count)

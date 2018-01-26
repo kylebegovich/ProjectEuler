@@ -14,11 +14,10 @@
       <file leaf-file-name="Problem96.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="106" column="23" lean-forward="true" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
+            <state relative-caret-position="371">
+              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
-                <element signature="e#4266#4530#0" expanded="false" />
-                <element signature="e#4561#5311#0" expanded="false" />
+                <element signature="e#4765#5029#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -27,7 +26,7 @@
       <file leaf-file-name="p096_sudoku.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Progress/p096_sudoku.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4365">
+            <state relative-caret-position="699">
               <caret line="291" column="9" lean-forward="false" selection-start-line="291" selection-start-column="9" selection-end-line="291" selection-end-column="9" />
               <folding />
             </state>
@@ -155,7 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -184,6 +182,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -673,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/p096_sudoku.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4365">
+        <state relative-caret-position="699">
           <caret line="291" column="9" lean-forward="false" selection-start-line="291" selection-start-column="9" selection-end-line="291" selection-end-column="9" />
           <folding />
         </state>
@@ -681,11 +680,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="106" column="23" lean-forward="true" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
+        <state relative-caret-position="371">
+          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
-            <element signature="e#4266#4530#0" expanded="false" />
-            <element signature="e#4561#5311#0" expanded="false" />
+            <element signature="e#4765#5029#0" expanded="false" />
           </folding>
         </state>
       </provider>
