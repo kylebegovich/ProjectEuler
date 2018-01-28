@@ -133,6 +133,10 @@ def mem_extrapolate(puzzle):
 
             # print("done with a indv_val")
 
+    for row in nice_puzzle(puzzle)[0]:
+        print(row)
+    print()
+
 
     #  Columns
     for k in range(len(puzzle)):
@@ -167,6 +171,11 @@ def mem_extrapolate(puzzle):
                 puzzle[e_index][k][1] = set()
 
             # print("done with a indv_val")
+    for row in nice_puzzle(puzzle)[0]:
+        print(row)
+    print()
+
+    # STILL NEED TO DEBUG ABOVE AND IMPLEMENT BELOW
 
     #  Boxes
     for b in range(9):
@@ -203,6 +212,9 @@ def solve(puzzle_list):
     for puzzle in puzzle_list:
         while not is_puzzle_done(puzzle):
             puzzle = crosshatch(puzzle)
+            for row in nice_puzzle(puzzle)[0]:
+                print(row)
+            print()
 
             # for row in nice_puzzle(puzzle)[0]:
             #     print(row)
