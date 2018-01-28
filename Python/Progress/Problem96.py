@@ -128,8 +128,13 @@ def mem_extrapolate(puzzle):
                     # print("breaking")
                     break
             if is_unique:
-                puzzle[k][e_index][0] = indv_val
-                puzzle[k][e_index][1] = set()
+                print("trying to write")
+                print(puzzle[k][e_index][0], " into ", indv_val, ", and it can be", puzzle[k][e_index][1])
+                if puzzle[k][e_index][0] == 0 and indv_val in puzzle[k][e_index][1]:
+                    print("actually doing it too!")
+                    puzzle[k][e_index][0] = indv_val
+                    puzzle[k][e_index][1] = set()
+                print()
 
             # print("done with a indv_val")
 
@@ -167,8 +172,13 @@ def mem_extrapolate(puzzle):
                     # print("breaking")
                     break
             if is_unique:
-                puzzle[e_index][k][0] = indv_val
-                puzzle[e_index][k][1] = set()
+                print("trying to write")
+                print(puzzle[e_index][k][0], " into ", indv_val, ", and it can be", puzzle[e_index][k][1])
+                if puzzle[e_index][k][0] == 0 and indv_val in puzzle[e_index][k][1]:
+                    print("actually doing it too!")
+                    puzzle[e_index][k][0] = indv_val
+                    puzzle[e_index][k][1] = set()
+                print()
 
             # print("done with a indv_val")
     for row in nice_puzzle(puzzle)[0]:
