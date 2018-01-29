@@ -14,10 +14,14 @@
       <file leaf-file-name="Problem96.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="180" column="23" lean-forward="false" selection-start-line="180" selection-start-column="23" selection-end-line="180" selection-end-column="23" />
+            <state relative-caret-position="-923">
+              <caret line="111" column="27" lean-forward="true" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
               <folding>
-                <element signature="e#6732#6996#0" expanded="false" />
+                <element signature="e#68#661#0" expanded="false" />
+                <element signature="e#696#814#0" expanded="false" />
+                <element signature="e#845#2099#0" expanded="false" />
+                <element signature="e#2132#3029#0" expanded="false" />
+                <element signature="e#7353#7617#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -44,8 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>0</find>
-      <find>digits</find>
       <find>divisor</find>
       <find>prime</find>
       <find>is_pri</find>
@@ -74,6 +76,8 @@
       <find>print(</find>
       <find>for row in ni</find>
       <find>##</find>
+      <find>[0]</find>
+      <find>nice_puzzle</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -154,6 +158,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,8 +187,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -680,10 +684,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="180" column="23" lean-forward="false" selection-start-line="180" selection-start-column="23" selection-end-line="180" selection-end-column="23" />
+        <state relative-caret-position="-923">
+          <caret line="111" column="27" lean-forward="true" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
           <folding>
-            <element signature="e#6732#6996#0" expanded="false" />
+            <element signature="e#68#661#0" expanded="false" />
+            <element signature="e#696#814#0" expanded="false" />
+            <element signature="e#845#2099#0" expanded="false" />
+            <element signature="e#2132#3029#0" expanded="false" />
+            <element signature="e#7353#7617#0" expanded="false" />
           </folding>
         </state>
       </provider>

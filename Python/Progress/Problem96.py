@@ -1,3 +1,4 @@
+all_1_to_9 = set(range(1, 10))
 
 
 def read_from_file(file_name):
@@ -31,9 +32,6 @@ def is_puzzle_done(puzzle):
                 return False
 
     return True
-
-
-all_1_to_9 = set(range(1, 10))
 
 
 def crosshatch(puzzle):
@@ -97,6 +95,26 @@ def memorization(puzzle):
 
     return puzzle
 
+
+def is_valid_solution(n_puzzle):
+    print(n_puzzle)
+
+    for row in n_puzzle:
+        if not all(all_1_to_9) in row:
+            return False
+
+    for i in range(9):
+        col = [n_puzzle[j][i] for j in range(9)]
+        if not all(all_1_to_9) in col:
+            return False
+
+    for b in range(9):
+        r, c = (b // 3) * 3, (b % 3) * 3
+        box = [n_puzzle[r][c], n_puzzle[r][c+1], n_puzzle[r][c+2],
+               n_puzzle[r+1][c], n_puzzle[r+1][c+1], n_puzzle[r+1][c+2],
+               n_puzzle[r+2][c], n_puzzle[r+2][c+1], n_puzzle[r+2][c+2]]
+        if not all(all_1_to_9) in box:
+            return False
 
 def mem_extrapolate(puzzle):
 
@@ -241,6 +259,10 @@ def solve(puzzle_list):
             # print(" post mem ")
 
             puzzle = mem_extrapolate(puzzle)
+
+        if not is_puzzle_done(nice_puzzle(puzzle)[0]):
+            print("bad solution generated!")
+            return
 
         count += 1
         print(count)
