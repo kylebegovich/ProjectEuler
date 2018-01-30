@@ -37,14 +37,16 @@ def is_puzzle_done(puzzle):
 def crosshatch(puzzle):
     #  Note: this is a single pass-through, not a repeated process
     #  Rows
-    for row in puzzle:
-        elems = [row[i][0] for i in range(9)]
+    for i in range(9):
+        elems = [puzzle[i][j][0] for j in range(9)]
         c = elems.count(0)
         if c == 0 or c > 1:
             continue
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
-        row[e_index][0] = missing_val
+        print("writing (row)", missing_val, " into (", i, e_index, ")")
+        puzzle[i][e_index][0] = missing_val
+        return puzzle
 
     #  Columns
     for i in range(9):
@@ -54,7 +56,9 @@ def crosshatch(puzzle):
             continue
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
+        print("writing (col)", missing_val, " into (", e_index, i, ")")
         puzzle[e_index][i][0] = missing_val
+        return puzzle
 
     #  Boxes
     for b in range(9):
@@ -68,7 +72,9 @@ def crosshatch(puzzle):
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
         r, c = (e_index // 3) * 3, (e_index % 3) * 3
+        print("writing (box)", missing_val, " into (", r, c, ")")
         puzzle[r][c][0] = missing_val
+        return puzzle
 
     return puzzle
 
@@ -87,9 +93,14 @@ def memorization(puzzle):
 
                 invalid_elems = set(row_elems + col_elems + box_elems) - {0}
                 possible_elems = all_1_to_9 - invalid_elems
+                print("invalid elems =", invalid_elems, "   possible elems =", possible_elems)
 
                 if len(possible_elems) == 1:
-                    puzzle[r][c][0] = possible_elems.pop()
+                    new_elem = possible_elems.pop()
+                    print("writing (mem)", new_elem, "into (", r, c, ")")
+                    puzzle[r][c][0] = new_elem
+                    puzzle[r][c][1] = set()
+                    return puzzle
                 else:
                     puzzle[r][c][1] = possible_elems
 
@@ -116,6 +127,7 @@ def is_valid_solution(n_puzzle):
         if not all(all_1_to_9) in box:
             return False
 
+"""
 def mem_extrapolate(puzzle):
 
     #  Rows
@@ -220,6 +232,7 @@ def mem_extrapolate(puzzle):
         puzzle[r][c][0] = missing_val
 
     return puzzle
+"""
 
 
 def nice_puzzle(puzzle):
@@ -258,9 +271,16 @@ def solve(puzzle_list):
             #     print(row)
             # print(" post mem ")
 
-            puzzle = mem_extrapolate(puzzle)
+            # puzzle = mem_extrapolate(puzzle)
 
-        if not is_puzzle_done(nice_puzzle(puzzle)[0]):
+        print("finished a puzzle!!\n")
+        for row in nice_puzzle(puzzle)[0]:
+            print(row)
+        print()
+
+        return None
+
+        if not is_puzzle_done(puzzle):
             print("bad solution generated!")
             return
 
