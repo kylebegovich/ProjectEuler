@@ -66,13 +66,21 @@ def crosshatch(puzzle):
         elems = [puzzle[r][c][0], puzzle[r][c+1][0], puzzle[r][c+2][0],
                  puzzle[r+1][c][0], puzzle[r+1][c+1][0], puzzle[r+1][c+2][0],
                  puzzle[r+2][c][0], puzzle[r+2][c+1][0], puzzle[r+2][c+2][0]]
-        c = elems.count(0)
-        if c == 0 or c > 1:
+        count = elems.count(0)
+        if count == 0 or count > 1:
             continue
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+
         e_index = elems.index(0)
-        r, c = (e_index // 3) * 3, (e_index % 3) * 3
+        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+        """
+        e = 0, 1, 2 -> r += 0; 3, 4, 5 -> r += 1; 6, 7, 8 -> r += 2
+        e = 0, 3, 6 -> c += 0; 1, 4, 7 -> c += 1; 2, 5, 8 -> c += 2
+        """
+        r += e_index // 3
+        c += e_index % 3
         print("writing (box)", missing_val, " into (", r, c, ")")
+        if puzzle[r][c][0] != 0:
+            print("I AM MAD, DON'T DO THIS!")
         puzzle[r][c][0] = missing_val
         return puzzle
 
@@ -93,7 +101,7 @@ def memorization(puzzle):
 
                 invalid_elems = set(row_elems + col_elems + box_elems) - {0}
                 possible_elems = all_1_to_9 - invalid_elems
-                print("invalid elems =", invalid_elems, "   possible elems =", possible_elems)
+                print("( r c ) = (", r, c, ") invalid elems =", invalid_elems, "   possible elems =", possible_elems)
 
                 if len(possible_elems) == 1:
                     new_elem = possible_elems.pop()
@@ -251,6 +259,7 @@ def solve(puzzle_list):
     new_list = []
     count = 0
     for puzzle in puzzle_list:
+
         while not is_puzzle_done(puzzle):
             puzzle = crosshatch(puzzle)
             for row in nice_puzzle(puzzle)[0]:
@@ -278,17 +287,12 @@ def solve(puzzle_list):
             print(row)
         print()
 
-        return None
-
         if not is_puzzle_done(puzzle):
             print("bad solution generated!")
             return
 
         count += 1
-        print(count)
-        for row in nice_puzzle(puzzle)[0]:
-            print(row)
-        print()
+        print("COUNT =", count)
         new_list.append(puzzle)
 
     return new_list
