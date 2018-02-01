@@ -72,12 +72,12 @@ def crosshatch(puzzle):
 
         e_index = elems.index(0)
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        """
-        e = 0, 1, 2 -> r += 0; 3, 4, 5 -> r += 1; 6, 7, 8 -> r += 2
-        e = 0, 3, 6 -> c += 0; 1, 4, 7 -> c += 1; 2, 5, 8 -> c += 2
-        """
+
+        #  e = 0, 1, 2 -> r += 0; 3, 4, 5 -> r += 1; 6, 7, 8 -> r += 2
+        #  e = 0, 3, 6 -> c += 0; 1, 4, 7 -> c += 1; 2, 5, 8 -> c += 2
         r += e_index // 3
         c += e_index % 3
+
         print("writing (box)", missing_val, " into (", r, c, ")")
         if puzzle[r][c][0] != 0:
             print("I AM MAD, DON'T DO THIS!")
@@ -135,43 +135,42 @@ def is_valid_solution(n_puzzle):
         if not all(all_1_to_9) in box:
             return False
 
-"""
+
 def mem_extrapolate(puzzle):
 
     #  Rows
-    for k in range(len(puzzle)):
-        row = puzzle[k]
-        elems = [row[i][0] for i in range(9)]
+    for i in range(len(puzzle)):
+        row = puzzle[i]
+        elems = [row[j][0] for j in range(9)]
         c = elems.count(0)
         if c <= 1:
             continue
-        missing_vals = (list((all_1_to_9 - set(elems)) - {0}))
+        missing_vals = sorted(list(all_1_to_9 - set(elems) - {0}))
 
         potential_vals = list()
-        for tupe in row:
+        for j in range(9):
+            tupe = row[j]
             if tupe[0] == 0:
-                potential_vals.append(tupe[1])
+                potential_vals.append((list(tupe[1]), j))
 
         for indv_val in missing_vals:
             is_unique = False
             e_index = -1
-            for j in range(len(potential_vals)):
-                indv_pot_val = potential_vals[j]
-                # print("new indv pot val")
-                if indv_val in indv_pot_val and not is_unique:
+            for indv_pot_vals in potential_vals:
+                if indv_val in indv_pot_vals[0] and not is_unique:
                     is_unique = True
-                    e_index = j
-                elif indv_val in indv_pot_val and is_unique:
+                    e_index = indv_pot_vals[1]
+                elif indv_val in indv_pot_vals[0] and is_unique:
                     is_unique = False
-                    # print("breaking")
                     break
             if is_unique:
-                print("trying to write")
-                print(puzzle[k][e_index][0], " into ", indv_val, ", and it can be", puzzle[k][e_index][1])
-                if puzzle[k][e_index][0] == 0 and indv_val in puzzle[k][e_index][1]:
+                print("trying to write ROW")
+                print(puzzle[i][e_index][0], " into ", indv_val, ", and it can be", puzzle[i][e_index][1])
+                if puzzle[i][e_index][0] == 0 and indv_val in puzzle[i][e_index][1]:
                     print("actually doing it too!")
-                    puzzle[k][e_index][0] = indv_val
-                    puzzle[k][e_index][1] = set()
+                    puzzle[i][e_index][0] = indv_val
+                    puzzle[i][e_index][1] = set()
+                    return puzzle
                 print()
 
             # print("done with a indv_val")
@@ -179,7 +178,6 @@ def mem_extrapolate(puzzle):
     for row in nice_puzzle(puzzle)[0]:
         print(row)
     print()
-
 
     #  Columns
     for k in range(len(puzzle)):
@@ -210,7 +208,7 @@ def mem_extrapolate(puzzle):
                     # print("breaking")
                     break
             if is_unique:
-                print("trying to write")
+                print("trying to write col")
                 print(puzzle[e_index][k][0], " into ", indv_val, ", and it can be", puzzle[e_index][k][1])
                 if puzzle[e_index][k][0] == 0 and indv_val in puzzle[e_index][k][1]:
                     print("actually doing it too!")
@@ -240,7 +238,7 @@ def mem_extrapolate(puzzle):
         puzzle[r][c][0] = missing_val
 
     return puzzle
-"""
+
 
 
 def nice_puzzle(puzzle):
@@ -280,7 +278,7 @@ def solve(puzzle_list):
             #     print(row)
             # print(" post mem ")
 
-            # puzzle = mem_extrapolate(puzzle)
+            puzzle = mem_extrapolate(puzzle)
 
         print("finished a puzzle!!\n")
         for row in nice_puzzle(puzzle)[0]:
