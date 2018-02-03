@@ -175,6 +175,7 @@ def mem_extrapolate(puzzle):
 
             # print("done with a indv_val")
 
+    print("M E after row:")
     for row in nice_puzzle(puzzle)[0]:
         print(row)
     print()
@@ -217,6 +218,8 @@ def mem_extrapolate(puzzle):
                 print()
 
             # print("done with a indv_val")
+
+    print("M E after col:")
     for row in nice_puzzle(puzzle)[0]:
         print(row)
     print()
@@ -240,7 +243,6 @@ def mem_extrapolate(puzzle):
     return puzzle
 
 
-
 def nice_puzzle(puzzle):
     n1 = [[0 for i in range(9)] for i in range(9)]
     n2 = [[0 for i in range(9)] for i in range(9)]
@@ -262,7 +264,7 @@ def solve(puzzle_list):
             puzzle = crosshatch(puzzle)
             for row in nice_puzzle(puzzle)[0]:
                 print(row)
-            print()
+            print("\nMem:")
 
             # for row in nice_puzzle(puzzle)[0]:
             #     print(row)
@@ -272,6 +274,10 @@ def solve(puzzle_list):
 
             puzzle = memorization(puzzle)
 
+            for row in nice_puzzle(puzzle)[0]:
+                print(row)
+            print("\nMem Extrapolate:")
+
             # for row in nice_puzzle(puzzle)[0]:
             #     print(row)
             # for row in nice_puzzle(puzzle)[1]:
@@ -279,6 +285,9 @@ def solve(puzzle_list):
             # print(" post mem ")
 
             puzzle = mem_extrapolate(puzzle)
+            for row in nice_puzzle(puzzle)[0]:
+                print(row)
+            print("\nCross")
 
         print("finished a puzzle!!\n")
         for row in nice_puzzle(puzzle)[0]:
