@@ -45,6 +45,8 @@ def crosshatch(puzzle):
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
         print("writing (row)", missing_val, " into (", i, e_index, ")")
+        if puzzle[i][e_index][0] != 0:
+            print("I AM MAD, DON'T DO THIS!")
         puzzle[i][e_index][0] = missing_val
         return puzzle
 
@@ -57,6 +59,8 @@ def crosshatch(puzzle):
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
         print("writing (col)", missing_val, " into (", e_index, i, ")")
+        if puzzle[e_index][i][0] != 0:
+            print("I AM MAD, DON'T DO THIS!")
         puzzle[e_index][i][0] = missing_val
         return puzzle
 
@@ -173,8 +177,6 @@ def mem_extrapolate(puzzle):
                     return puzzle
                 print()
 
-            # print("done with a indv_val")
-
     print("M E after row:")
     for row in nice_puzzle(puzzle)[0]:
         print(row)
@@ -238,7 +240,7 @@ def mem_extrapolate(puzzle):
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
         r, c = (e_index // 3) * 3, (e_index % 3) * 3
-        puzzle[r][c][0] = missing_val
+        # puzzle[r][c][0] = missing_val
 
     return puzzle
 
@@ -266,23 +268,12 @@ def solve(puzzle_list):
                 print(row)
             print("\nMem:")
 
-            # for row in nice_puzzle(puzzle)[0]:
-            #     print(row)
-            # for row in nice_puzzle(puzzle)[1]:
-            #     print(row)
-            # print(" post cross ")
-
             puzzle = memorization(puzzle)
 
             for row in nice_puzzle(puzzle)[0]:
                 print(row)
             print("\nMem Extrapolate:")
 
-            # for row in nice_puzzle(puzzle)[0]:
-            #     print(row)
-            # for row in nice_puzzle(puzzle)[1]:
-            #     print(row)
-            # print(" post mem ")
 
             puzzle = mem_extrapolate(puzzle)
             for row in nice_puzzle(puzzle)[0]:

@@ -14,13 +14,13 @@
       <file leaf-file-name="Problem96.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-661">
-              <caret line="221" column="25" lean-forward="false" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
+            <state relative-caret-position="378">
+              <caret line="295" column="10" lean-forward="false" selection-start-line="295" selection-start-column="10" selection-end-line="295" selection-end-column="10" />
               <folding>
                 <element signature="e#68#661#0" expanded="false" />
-                <element signature="e#3901#4485#0" expanded="false" />
-                <element signature="e#8217#8481#0" expanded="false" />
-                <element signature="e#9853#10107#0" expanded="false" />
+                <element signature="e#4071#4655#0" expanded="false" />
+                <element signature="e#8344#8608#0" expanded="false" />
+                <element signature="e#9597#9851#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,7 +47,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>n(</find>
       <find>list</find>
       <find>matrix</find>
       <find>gridSize</find>
@@ -77,6 +76,7 @@
       <find>row</find>
       <find>mem_extrapolate</find>
       <find>indv_pot_vals</find>
+      <find>#</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -158,7 +158,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,6 +185,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -375,13 +375,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16395864" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -683,13 +683,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem96.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-661">
-          <caret line="221" column="25" lean-forward="false" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
+        <state relative-caret-position="378">
+          <caret line="295" column="10" lean-forward="false" selection-start-line="295" selection-start-column="10" selection-end-line="295" selection-end-column="10" />
           <folding>
             <element signature="e#68#661#0" expanded="false" />
-            <element signature="e#3901#4485#0" expanded="false" />
-            <element signature="e#8217#8481#0" expanded="false" />
-            <element signature="e#9853#10107#0" expanded="false" />
+            <element signature="e#4071#4655#0" expanded="false" />
+            <element signature="e#8344#8608#0" expanded="false" />
+            <element signature="e#9597#9851#0" expanded="false" />
           </folding>
         </state>
       </provider>
