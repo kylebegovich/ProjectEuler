@@ -183,43 +183,39 @@ def mem_extrapolate(puzzle):
     print()
 
     #  Columns
-    for k in range(len(puzzle)):
-        elems = [puzzle[j][k][0] for j in range(9)]
-        sets = [puzzle[j][k][1] for j in range(9)]
+    for i in range(len(puzzle)):
+        col = [puzzle[j][i] for j in range(9)]
+        elems = [col[j][0] for j in range(9)]
         c = elems.count(0)
         if c <= 1:
             continue
-        missing_vals = (list((all_1_to_9 - set(elems)) - {0}))
+        missing_vals = sorted(list(all_1_to_9 - set(elems) - {0}))
 
         potential_vals = list()
 
-        for index in range(len(elems)):
-            if elems[index] == 0:
-                potential_vals.append(sets[index])
+        for j in range(9):
+            tupe = col[j]
+            if tupe[0] == 0:
+                potential_vals.append((list(tupe[1]), j))
 
         for indv_val in missing_vals:
             is_unique = False
             e_index = -1
-            for j in range(len(potential_vals)):
-                indv_pot_val = potential_vals[j]
-                # print("new indv pot val")
-                if indv_val in indv_pot_val and not is_unique:
+            for indv_pot_vals in potential_vals:
+                if indv_val in indv_pot_vals[0] and not is_unique:
                     is_unique = True
-                    e_index = j
-                elif indv_val in indv_pot_val and is_unique:
+                    e_index = indv_pot_vals[1]
+                elif indv_val in indv_pot_vals[0] and is_unique:
                     is_unique = False
-                    # print("breaking")
                     break
             if is_unique:
                 print("trying to write col")
-                print(puzzle[e_index][k][0], " into ", indv_val, ", and it can be", puzzle[e_index][k][1])
-                if puzzle[e_index][k][0] == 0 and indv_val in puzzle[e_index][k][1]:
+                print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
+                if puzzle[e_index][i][0] == 0 and indv_val in puzzle[e_index][i][1]:
                     print("actually doing it too!")
-                    puzzle[e_index][k][0] = indv_val
-                    puzzle[e_index][k][1] = set()
+                    puzzle[e_index][i][0] = indv_val
+                    puzzle[e_index][i][1] = set()
                 print()
-
-            # print("done with a indv_val")
 
     print("M E after col:")
     for row in nice_puzzle(puzzle)[0]:
@@ -227,7 +223,7 @@ def mem_extrapolate(puzzle):
     print()
 
     # STILL NEED TO DEBUG ABOVE AND IMPLEMENT BELOW
-
+    """
     #  Boxes
     for b in range(9):
         r, c = (b // 3) * 3, (b % 3) * 3
@@ -241,7 +237,7 @@ def mem_extrapolate(puzzle):
         e_index = elems.index(0)
         r, c = (e_index // 3) * 3, (e_index % 3) * 3
         # puzzle[r][c][0] = missing_val
-
+    """
     return puzzle
 
 
@@ -262,7 +258,9 @@ def solve(puzzle_list):
     count = 0
     for puzzle in puzzle_list:
 
+        cycles = 0
         while not is_puzzle_done(puzzle):
+
             puzzle = crosshatch(puzzle)
             for row in nice_puzzle(puzzle)[0]:
                 print(row)
@@ -279,6 +277,11 @@ def solve(puzzle_list):
             for row in nice_puzzle(puzzle)[0]:
                 print(row)
             print("\nCross")
+            cycles += 1
+            print("cycles = ", cycles)
+
+            if (cycles > 300):
+                return
 
         print("finished a puzzle!!\n")
         for row in nice_puzzle(puzzle)[0]:
