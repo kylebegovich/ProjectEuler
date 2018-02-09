@@ -215,6 +215,7 @@ def mem_extrapolate(puzzle):
                     print("actually doing it too!")
                     puzzle[e_index][i][0] = indv_val
                     puzzle[e_index][i][1] = set()
+                    return puzzle
                 print()
 
     print("M E after col:")
