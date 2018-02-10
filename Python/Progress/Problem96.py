@@ -1,4 +1,9 @@
+import sys
+
 all_1_to_9 = set(range(1, 10))
+
+
+verbose = False
 
 
 def read_from_file(file_name):
@@ -44,8 +49,9 @@ def crosshatch(puzzle):
             continue
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
-        print("writing (row)", missing_val, " into (", i, e_index, ")")
-        if puzzle[i][e_index][0] != 0:
+        if verbose:
+            print("writing (row)", missing_val, " into (", i, e_index, ")")
+        if verbose and puzzle[i][e_index][0] != 0:
             print("I AM MAD, DON'T DO THIS!")
         puzzle[i][e_index][0] = missing_val
         return puzzle
@@ -58,8 +64,9 @@ def crosshatch(puzzle):
             continue
         missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
         e_index = elems.index(0)
-        print("writing (col)", missing_val, " into (", e_index, i, ")")
-        if puzzle[e_index][i][0] != 0:
+        if verbose:
+            print("writing (col)", missing_val, " into (", e_index, i, ")")
+        if verbose and puzzle[e_index][i][0] != 0:
             print("I AM MAD, DON'T DO THIS!")
         puzzle[e_index][i][0] = missing_val
         return puzzle
@@ -82,8 +89,9 @@ def crosshatch(puzzle):
         r += e_index // 3
         c += e_index % 3
 
-        print("writing (box)", missing_val, " into (", r, c, ")")
-        if puzzle[r][c][0] != 0:
+        if verbose:
+            print("writing (box)", missing_val, " into (", r, c, ")")
+        if verbose and puzzle[r][c][0] != 0:
             print("I AM MAD, DON'T DO THIS!")
         puzzle[r][c][0] = missing_val
         return puzzle
@@ -105,11 +113,13 @@ def memorization(puzzle):
 
                 invalid_elems = set(row_elems + col_elems + box_elems) - {0}
                 possible_elems = all_1_to_9 - invalid_elems
-                print("( r c ) = (", r, c, ") invalid elems =", invalid_elems, "   possible elems =", possible_elems)
+                if verbose:
+                    print("( r c ) = (", r, c, ") invalid elems =", invalid_elems, "   possible elems =", possible_elems)
 
                 if len(possible_elems) == 1:
                     new_elem = possible_elems.pop()
-                    print("writing (mem)", new_elem, "into (", r, c, ")")
+                    if verbose:
+                        print("writing (mem)", new_elem, "into (", r, c, ")")
                     puzzle[r][c][0] = new_elem
                     puzzle[r][c][1] = set()
                     return puzzle
@@ -168,19 +178,23 @@ def mem_extrapolate(puzzle):
                     is_unique = False
                     break
             if is_unique:
-                print("trying to write ROW")
-                print(puzzle[i][e_index][0], " into ", indv_val, ", and it can be", puzzle[i][e_index][1])
+                if verbose:
+                    print("trying to write ROW")
+                    print(puzzle[i][e_index][0], " into ", indv_val, ", and it can be", puzzle[i][e_index][1])
                 if puzzle[i][e_index][0] == 0 and indv_val in puzzle[i][e_index][1]:
-                    print("actually doing it too!")
+                    if verbose:
+                        print("actually doing it too!")
                     puzzle[i][e_index][0] = indv_val
                     puzzle[i][e_index][1] = set()
                     return puzzle
-                print()
+                if verbose:
+                    print()
 
-    print("M E after row:")
-    for row in nice_puzzle(puzzle)[0]:
-        print(row)
-    print()
+    if verbose:
+        print("M E after row:")
+        for row in nice_puzzle(puzzle)[0]:
+            print(row)
+        print()
 
     #  Columns
     for i in range(len(puzzle)):
@@ -209,19 +223,23 @@ def mem_extrapolate(puzzle):
                     is_unique = False
                     break
             if is_unique:
-                print("trying to write col")
-                print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
+                if verbose:
+                    print("trying to write col")
+                    print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
                 if puzzle[e_index][i][0] == 0 and indv_val in puzzle[e_index][i][1]:
-                    print("actually doing it too!")
+                    if verbose:
+                        print("actually doing it too!")
                     puzzle[e_index][i][0] = indv_val
                     puzzle[e_index][i][1] = set()
                     return puzzle
-                print()
+                if verbose:
+                        print()
 
-    print("M E after col:")
-    for row in nice_puzzle(puzzle)[0]:
-        print(row)
-    print()
+    if verbose:
+        print("M E after col:")
+        for row in nice_puzzle(puzzle)[0]:
+            print(row)
+        print()
 
     # STILL NEED TO DEBUG ABOVE AND IMPLEMENT BELOW
     """
@@ -254,7 +272,8 @@ def nice_puzzle(puzzle):
 
 
 def solve(puzzle_list):
-    print("begin solving")
+    if verbose:
+        print("begin solving")
     new_list = []
     count = 0
     for puzzle in puzzle_list:
@@ -263,31 +282,33 @@ def solve(puzzle_list):
         while not is_puzzle_done(puzzle):
 
             puzzle = crosshatch(puzzle)
-            for row in nice_puzzle(puzzle)[0]:
-                print(row)
-            print("\nMem:")
+            if verbose:
+                for row in nice_puzzle(puzzle)[0]:
+                    print(row)
+                print("\nMem:")
 
             puzzle = memorization(puzzle)
 
-            for row in nice_puzzle(puzzle)[0]:
-                print(row)
-            print("\nMem Extrapolate:")
+            if verbose:
+                for row in nice_puzzle(puzzle)[0]:
+                    print(row)
+                print("\nMem Extrapolate:")
 
 
             puzzle = mem_extrapolate(puzzle)
+            cycles += 1
+
+            if verbose:
+                for row in nice_puzzle(puzzle)[0]:
+                    print(row)
+                print("\nCross")
+                print("cycles = ", cycles)
+
+        if verbose:
+            print("\nfinished a puzzle in ", cycles, "cycles!\n\n")
             for row in nice_puzzle(puzzle)[0]:
                 print(row)
-            print("\nCross")
-            cycles += 1
-            print("cycles = ", cycles)
-
-            if (cycles > 300):
-                return
-
-        print("finished a puzzle!!\n")
-        for row in nice_puzzle(puzzle)[0]:
-            print(row)
-        print()
+            print()
 
         if not is_puzzle_done(puzzle):
             print("bad solution generated!")
@@ -318,4 +339,6 @@ def main():
     return summation
 
 
+if len(sys.argv) > 1 and sys.argv[1] == "-v":
+    verbose = True
 print(main())
