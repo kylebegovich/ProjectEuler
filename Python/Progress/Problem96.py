@@ -264,23 +264,23 @@ def mem_extrapolate(puzzle):
 
         for indv_val in missing_vals:
             is_unique = False
-            e_index_row, e_index_col = -1, -1  # TODO figure out how to use these below
+            e_index_row, e_index_col = -1, -1 
             for indv_pot_vals in potential_vals:
                 if indv_val in indv_pot_vals[0] and not is_unique:
                     is_unique = True
-                    e_index = indv_pot_vals[1]
+                    e_index_row, e_index_col = (indv_pot_vals[1] // 3), (indv_pot_vals[1] % 3)
                 elif indv_val in indv_pot_vals[0] and is_unique:
                     is_unique = False
                     break
             if is_unique:
                 if verbose:
                     print("trying to write box")
-                    print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
-                if puzzle[e_index][i][0] == 0 and indv_val in puzzle[e_index][i][1]:
+                    print(puzzle[e_index_row][e_index_col][0], " into ", indv_val, ", and it can be", puzzle[e_index_row][e_index_col][1])
+                if puzzle[e_index_row][e_index_col][0] == 0 and indv_val in puzzle[e_index_row][e_index_col][1]:
                     if verbose:
                         print("actually doing it too!")
-                    puzzle[e_index][i][0] = indv_val
-                    puzzle[e_index][i][1] = set()
+                    puzzle[e_index_row][e_index_col][0] = indv_val
+                    puzzle[e_index_row][e_index_col][1] = set()
                     return puzzle
                 if verbose:
                         print()
