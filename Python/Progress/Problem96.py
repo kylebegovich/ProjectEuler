@@ -241,8 +241,7 @@ def mem_extrapolate(puzzle):
             print(row)
         print()
 
-    # STILL NEED TO DEBUG ABOVE AND IMPLEMENT BELOW
-    """
+
     #  Boxes
     for b in range(9):
         r, c = (b // 3) * 3, (b % 3) * 3
@@ -250,13 +249,42 @@ def mem_extrapolate(puzzle):
                  puzzle[r+1][c][0], puzzle[r+1][c+1][0], puzzle[r+1][c+2][0],
                  puzzle[r+2][c][0], puzzle[r+2][c+1][0], puzzle[r+2][c+2][0]]
         c = elems.count(0)
-        if c == 0 or c > 1:
+        if c <= 1:
             continue
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        e_index = elems.index(0)
-        r, c = (e_index // 3) * 3, (e_index % 3) * 3
-        # puzzle[r][c][0] = missing_val
-    """
+        missing_vals = sorted(list((all_1_to_9 - set(elems)) - {0}))
+        potential_vals = list()
+
+        tupes = [puzzle[r][c], puzzle[r][c+1], puzzle[r][c+2],
+                 puzzle[r+1][c], puzzle[r+1][c+1], puzzle[r+1][c+2],
+                 puzzle[r+2][c], puzzle[r+2][c+1], puzzle[r+2][c+2]]
+
+        for j in range(9):
+            if tupes[j][0] == 0:
+                potential_vals.append((list(tupes[j][1]), j))
+
+        for indv_val in missing_vals:
+            is_unique = False
+            e_index_row, e_index_col = -1, -1  # TODO figure out how to use these below
+            for indv_pot_vals in potential_vals:
+                if indv_val in indv_pot_vals[0] and not is_unique:
+                    is_unique = True
+                    e_index = indv_pot_vals[1]
+                elif indv_val in indv_pot_vals[0] and is_unique:
+                    is_unique = False
+                    break
+            if is_unique:
+                if verbose:
+                    print("trying to write box")
+                    print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
+                if puzzle[e_index][i][0] == 0 and indv_val in puzzle[e_index][i][1]:
+                    if verbose:
+                        print("actually doing it too!")
+                    puzzle[e_index][i][0] = indv_val
+                    puzzle[e_index][i][1] = set()
+                    return puzzle
+                if verbose:
+                        print()
+
     return puzzle
 
 
@@ -339,6 +367,8 @@ def main():
     return summation
 
 
+# verbosity flag setting
 if len(sys.argv) > 1 and sys.argv[1] == "-v":
     verbose = True
+
 print(main())
