@@ -190,12 +190,6 @@ def mem_extrapolate(puzzle):
                 if verbose:
                     print()
 
-    if verbose:
-        print("M E after row:")
-        for row in nice_puzzle(puzzle)[0]:
-            print(row)
-        print()
-
     #  Columns
     for i in range(len(puzzle)):
         col = [puzzle[j][i] for j in range(9)]
@@ -235,13 +229,6 @@ def mem_extrapolate(puzzle):
                 if verbose:
                         print()
 
-    if verbose:
-        print("M E after col:")
-        for row in nice_puzzle(puzzle)[0]:
-            print(row)
-        print()
-
-
     #  Boxes
     for b in range(9):
         r, c = (b // 3) * 3, (b % 3) * 3
@@ -264,18 +251,21 @@ def mem_extrapolate(puzzle):
 
         for indv_val in missing_vals:
             is_unique = False
-            e_index_row, e_index_col = -1, -1 
+            e_index_row, e_index_col = -1, -1
+            temp_ipvs = []
             for indv_pot_vals in potential_vals:
                 if indv_val in indv_pot_vals[0] and not is_unique:
                     is_unique = True
                     e_index_row, e_index_col = (indv_pot_vals[1] // 3), (indv_pot_vals[1] % 3)
+                    temp_ipvs = indv_pot_vals
                 elif indv_val in indv_pot_vals[0] and is_unique:
                     is_unique = False
                     break
             if is_unique:
                 if verbose:
-                    print("trying to write box")
-                    print(puzzle[e_index_row][e_index_col][0], " into ", indv_val, ", and it can be", puzzle[e_index_row][e_index_col][1])
+                    print("trying to write box at", e_index_row, e_index_col)
+                    print("from", puzzle[e_index_row][e_index_col][0], " to ", indv_val, ", and it can be", puzzle[e_index_row][e_index_col][1])
+                    print("\n", temp_ipvs)
                 if puzzle[e_index_row][e_index_col][0] == 0 and indv_val in puzzle[e_index_row][e_index_col][1]:
                     if verbose:
                         print("actually doing it too!")
