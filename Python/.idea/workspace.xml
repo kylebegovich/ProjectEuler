@@ -14,8 +14,8 @@
       <file leaf-file-name="Problem61.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Progress/Problem61.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+            <state relative-caret-position="393">
+              <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
               <folding>
                 <element signature="e#19#43#0" expanded="false" />
                 <element signature="e#64#76#0" expanded="false" />
@@ -129,7 +129,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
+    <option name="x" value="48" />
     <option name="y" value="23" />
     <option name="width" value="1354" />
     <option name="height" value="829" />
@@ -149,7 +149,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -178,6 +177,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RecentsManager">
@@ -361,7 +361,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="23" width="1354" height="829" extended-state="0" />
+    <frame x="48" y="23" width="1354" height="829" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16395864" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -648,7 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -657,7 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="981">
           <caret line="82" column="107" lean-forward="true" selection-start-line="82" selection-start-column="107" selection-end-line="82" selection-end-column="107" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,18 +663,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="380" column="47" lean-forward="true" selection-start-line="380" selection-start-column="47" selection-end-line="380" selection-end-column="47" />
-          <folding>
-            <element signature="e#4276#4860#0" expanded="false" />
-            <element signature="e#9935#10199#0" expanded="false" />
-            <element signature="e#11465#11719#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Progress/Problem61.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+        <state relative-caret-position="393">
+          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
           <folding>
             <element signature="e#19#43#0" expanded="false" />
             <element signature="e#64#76#0" expanded="false" />

@@ -27,20 +27,20 @@ def generate_chain(curr_chain, curr_groups, master_list):
     if len(curr_chain) > 6:
         return 0
 
-    last = curr_chain[-1]
     for i in range(1, 6):
-        print(i, "\n", curr_chain, "\n", curr_groups, "\n", master_list[i], "\n\n")
+        print(curr_chain, "\n", curr_groups, "\n", master_list[i], "\n\n")
         if 0 == curr_groups[i]:
             for elem in master_list[i]:
-                if elem // 100 == last % 100:
-                    next_chain = curr_chain.append(elem)
-                    next_groups = curr_groups
+                if elem // 100 == curr_chain[-1] % 100:
+                    next_chain = [] + curr_chain + [elem]
+                    next_groups = [] + curr_groups
                     next_groups[i] = 1
                     possible = generate_chain(next_chain, next_groups, master_list)
                     if possible != 0:
                         return possible
-                else:
-                    print(elem, last)
+                #else:
+                    #print(elem, last)
+    return 0
 
 
 def main():
