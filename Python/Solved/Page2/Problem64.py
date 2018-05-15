@@ -41,3 +41,6 @@ def main(max_val):
 
 
 print(main(10000))
+
+
+# SOLVED : 1322
