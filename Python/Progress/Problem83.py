@@ -5,7 +5,7 @@ INFINITY = 2147483646
 
 
 def heuristic(curr, length):
-    return 2 * int(sqrt((length - curr[0])**2 + (length - curr[1])**2))
+    return int(sqrt((length - curr[0])**2 + (length - curr[1])**2))
 
 
 def init_grid():
@@ -21,7 +21,17 @@ def init_grid():
             temp.append(int(elem))
         grid.append(temp)
 
+    matrix.close()
+
     return grid
+
+
+def sum_path(path, grid):
+    out = 0
+    for term in path:
+        out += grid[term[0]][term[1]]
+
+    return out
 
 
 def reconstruct_path(came_from, curr):
@@ -39,25 +49,25 @@ def get_neighbors(curr, grid):
     col = curr[1]
 
     if row == 0 and col == 0:                                                                   # top left
-        grid[row][col] += min([grid[row + 1][col], grid[row][col + 1]])
+        return [(row + 1, col), (row, col + 1)]
     elif row == 0 and col == length - 1:                                                        # top right
-        grid[row][col] += min([grid[row + 1][col], grid[row][col - 1]])
-    elif row == length - 1 and col == length - 1:                                               # bottom right
-        grid[row][col] += min([grid[row - 1][col], grid[row][col - 1]])
+        return [(row + 1, col), (row, col - 1)]
     elif row == length - 1 and col == 0:                                                        # bottom left
-        grid[row][col] += min([grid[row - 1][col], grid[row][col + 1]])
+        return [(row - 1, col), (row, col + 1)]
+    elif row == length - 1 and col == length - 1:                                               # bottom right
+        return [(row - 1, col), (row, col - 1)]
 
     elif row == 0 and col != length - 1:                                                        # top
-        grid[row][col] += min([grid[row + 1][col], grid[row][col - 1], grid[row][col + 1]])
+        return [(row + 1, col), (row, col + 1), (row, col - 1)]
     elif col == 0 and row != length - 1:                                                        # left
-        grid[row][col] += min([grid[row - 1][col], grid[row + 1][col], grid[row][col + 1]])
+        return [(row + 1, col), (row - 1, col), (row, col + 1)]
     elif col == length - 1 and row != 0:                                                        # right
-        grid[row][col] += min([grid[row - 1][col], grid[row + 1][col], grid[row][col - 1]])
+        return [(row + 1, col), (row - 1, col), (row, col - 1)]
     elif row == length - 1 and col != 0:                                                        # bottom
-        grid[row][col] += min([grid[row - 1][col], grid[row][col + 1], grid[row][col - 1]])
+        return [(row - 1, col), (row, col + 1), (row, col - 1)]
 
     else:                                                                                       # all other
-        grid[row][col] += min([grid[row - 1][col], grid[row + 1][col], grid[row][col - 1], grid[row][col + 1]])
+        return [(row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)]
 
 
 def main():
@@ -74,18 +84,30 @@ def main():
     f_score = dict()
     f_score[start] = heuristic(start, length)
 
-    """while len(open_set) != 0:
+    while len(open_set) != 0:
         curr = heapq.heappop(open_set)
         if curr[0] == length - 1 and curr[1] == length - 1:
-            return reconstruct_path(came_from, curr)
-    """
-    print(heuristic((0, 0), length))
-    print(heuristic((5, 0), length))
-    print(heuristic((50, 50), length))
-    print(heuristic((79, 40), length))
-    print(heuristic((79, 50), length))
-    print(heuristic((79, 78), length))
-    print(heuristic((79, 79), length))
+            path = reconstruct_path(came_from, curr)
+            return sum_path(path, grid)
+
+        closed_set.add(curr)
+
+        for neighbor in get_neighbors(curr, grid):
+            if neighbor in closed_set:
+                continue
+
+            if neighbor not in open_set:  #iscover a new node
+                heapq.heappush(open_set, neighbor)
+
+            tentative_g_score = g_score[curr] + grid[neighbor[0]][neighbor[1]]
+            if neighbor in g_score and tentative_g_score >= g_score[neighbor]:
+                continue
+
+            came_from[neighbor] = curr
+            g_score[neighbor] = tentative_g_score
+            f_score[neighbor] = g_score[neighbor] + heuristic(neighbor, length)
+
+    return "Failed :("
 
 
 print(main())
