@@ -1,13 +1,14 @@
 from decimal import *
-getcontext().prec = 100
+getcontext().prec = 102
 
 
 def get_squares(upper_bound):
 
     lst = []
+    app = lst.append
     i = 1
     while i**2 <= upper_bound:
-        lst.append(i**2)
+        app(i**2)
         i += 1
 
     return lst
@@ -16,10 +17,10 @@ def get_squares(upper_bound):
 def sum_digits_irrat_sqrt(num):
 
     s = str(Decimal(num).sqrt())
-    print(s)
-    str_list = list(s[s.find('.')+1:])
+    # print(s)
+    str_list = list(s[:-2])
 
-    return sum([int(c) for c in str_list], 0)
+    return sum([int(c) for c in str_list if c != '.'], 0)
 
 
 def main(upper_bound):
@@ -31,10 +32,11 @@ def main(upper_bound):
     for i in range(1, upper_bound):
         if i not in squares:
             total += sum_digits_irrat_sqrt(i)
-        else:
-            print(i**0.5)
 
     return total
 
 
 print(main(100))
+
+
+# SOLVED : 40886
