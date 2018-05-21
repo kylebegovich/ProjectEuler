@@ -1,9 +1,17 @@
 # coding=utf-8
 from math import sqrt, factorial
-import random
-import itertools
+from random import randrange
+from itertools import product
 
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
+
+
+def euclidean_dist_sq(x1, x2, y1, y2):
+    return (x2 - x1)**2 + (y2 - y1)**2
+
+
+def euclidean_dist(x1, x2, y1, y2):
+    return sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
 
 def partitions_up_to(lim):
@@ -83,7 +91,7 @@ def pal_list(k):
     return [sum([n * (10 ** i) for i, n in enumerate(([x] + list(ys) + [z] + list(ys)[::-1] + [x]) if k % 2
                                                      else ([x] + list(ys) + list(ys)[::-1] + [x]))])
             for x in range(1, 10)
-            for ys in itertools.product(range(10), repeat=k / 2 - 1)
+            for ys in product(range(10), repeat=k / 2 - 1)
             for z in (range(10) if k % 2 else (None,))]
 
 
@@ -175,7 +183,7 @@ def miller_rabin(n):
     for repeat in range(20):
         a = 0
         while a == 0:
-            a = random.randrange(n)
+            a = randrange(n)
         if not miller_rabin_pass(a, s, d, n):
             return False
     return True

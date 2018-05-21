@@ -1,13 +1,48 @@
 # coding=utf-8
 from math import sqrt, factorial
-import random
-import itertools
+from random import randrange
+from itertools import product
 
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
+def euclidean_dist_sq(x1, x2, y1, y2):
+    return (x2 - x1)**2 + (y2 - y1)**2
+
+
+def euclidean_dist(x1, x2, y1, y2):
+    return sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+
+def partitions_up_to(lim):
+
+    if lim < 0:
+        return []
+    if lim == 0:
+        return [1]
+
+    partitions = [1]
+    n = 0
+    while True:
+        i = 0
+        curr_pent = 1
+        partitions.append(0)
+
+        while curr_pent <= n:
+            sign = -1 if i % 4 > 1 else 1
+            partitions[n] += sign * partitions[n - curr_pent]
+            i += 1
+
+            j = int((i / 2 + 1)) if i % 2 == 0 else int(-(i / 2 + 1))
+            curr_pent = int(j * (3 * j - 1) / 2)
+
+        if n == lim:
+            return partitions[:-1]
+        n += 1
+
+
 def factors(n):
-    return set(reduce(list.append(), ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+    return [(i, n // i) for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
 
 def heron_area(side_a, side_b, side_c):
@@ -28,6 +63,17 @@ def is_palindromic(n): n = str(n); return n == n[::-1]
 def is_pandigital(n, s=9): n = str(n); return len(n) == s and not '1234567890'[:s].strip(n)
 
 
+# --- Get a count of integers less than n and relatively prime to n (Euler's Totient Function)----
+def totient(n):
+
+    result = 1
+    for i in range(2, n):
+        if gcd(i, n) == 1:
+            result += 1
+
+    return result
+
+
 # --- Calculate the sum of proper divisors for n--------------------------------------------------
 def d(n):
     s = 1
@@ -45,7 +91,7 @@ def pal_list(k):
     return [sum([n * (10 ** i) for i, n in enumerate(([x] + list(ys) + [z] + list(ys)[::-1] + [x]) if k % 2
                                                      else ([x] + list(ys) + list(ys)[::-1] + [x]))])
             for x in range(1, 10)
-            for ys in itertools.product(range(10), repeat=k / 2 - 1)
+            for ys in product(range(10), repeat=k / 2 - 1)
             for z in (range(10) if k % 2 else (None,))]
 
 
@@ -137,7 +183,7 @@ def miller_rabin(n):
     for repeat in range(20):
         a = 0
         while a == 0:
-            a = random.randrange(n)
+            a = randrange(n)
         if not miller_rabin_pass(a, s, d, n):
             return False
     return True
@@ -343,5 +389,6 @@ def n2words(num, join=True):
             else:
                 if u >= 1: words.append(units[u])
             if (g >= 1) and ((h + t + u) > 0): words.append(thousands[g] + '')
-    if join: return ' '.join(words)
+    if join:
+        return ' '.join(words)
     return words
