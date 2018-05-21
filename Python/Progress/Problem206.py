@@ -5,12 +5,13 @@ from math import sqrt, floor, ceil
 
 example = "1_2_3_4_5_6_7_8_9"
 
+
 def is_condition(val):
     l = [int(d) for d in str(val)]
     #if all(l[2*n] == n+1 for n in range(9)):
         #return True
 
-    if  (val % 10) // 1 == 9 and \
+    if (val % 10) // 1 == 9 and \
         (val % 1000) // 100 == 8 and \
         (val % 100000) // 10000 == 7 and \
         (val % 10000000) // 1000000 == 6 and \
