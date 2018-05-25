@@ -1,13 +1,11 @@
-from Euler import heron_area
-from math import cos
 
 L = 333333333   # 1,000,000,000 / 3
 
-#  Pell's equation nonsense goes here (kek)
+#  Pell's equation nonsense goes here:
+#   https://www.mathblog.dk/project-euler-94-almost-equilateral-triangles/
 
 
-if __name__ == '__main__':
-
+def main():
     summation = 0
 
     for side in range(2, L+1):
@@ -23,4 +21,4 @@ if __name__ == '__main__':
     print(summation)
 
 
-# SOLVED :
+print(main())
