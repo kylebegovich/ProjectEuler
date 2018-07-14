@@ -33,7 +33,7 @@ def read_from_file(file_name):
     matrix = open(file_name, 'r')
 
     # init puzzles to [0, set()] for every cell in every puzzle
-    puzzles = [[[[0, ([0] * 9)] for k in range(9)] for j in range(9)] for i in range(1)]
+    puzzles = [[[[0, ([0] * 9)] for k in range(9)] for j in range(9)] for i in range(50)]
 
     #print(puzzles)
 
@@ -121,7 +121,7 @@ def update_missing_values(puzzle):
                 puzzle[r][c][0] = curr_missing[0]
                 puzzle[r][c][1] = []
                 print(r, c, "is now", puzzle[r][c][0], "    update missing values")
-                return puzzle  # not sure if I should return here, it may break things?
+                #return puzzle  # not sure if I should return here, it may break things?
             else:
                 puzzle[r][c][1] = curr_missing
             #print(curr_missing)
@@ -158,7 +158,7 @@ def crosshatch(puzzle):
     for r in range(L):
         curr_missing = list(all_1_to_9)
         curr_row = [puzzle[r][i][0] for i in range(L)]
-        #print(curr_row, curr_missing)
+        #print('curr row = ', curr_row)
         for elem in curr_row:
             if elem in curr_missing:
                 curr_missing.remove(elem)
@@ -175,7 +175,7 @@ def crosshatch(puzzle):
             if poss_index >= 0:
                 puzzle[r][poss_index][0] = missing_val
                 puzzle[r][poss_index][1] = []
-                print(r, c, "is now", missing_val, "    cross row")
+                print(r, poss_index, "is now", missing_val, "    cross row")
                 return puzzle
 
     # columns
@@ -186,8 +186,7 @@ def crosshatch(puzzle):
         for elem in curr_col:
             if elem in curr_missing:
                 curr_missing.remove(elem)
-            # print(curr_missing)  # the missing values in the row
-
+            # print(curr_missing)  # the missing values in the col
         for missing_val in curr_missing:
             poss_index = -1
             for r in range(L):
@@ -200,7 +199,39 @@ def crosshatch(puzzle):
             if poss_index >= 0:
                 puzzle[poss_index][c][0] = missing_val
                 puzzle[poss_index][c][1] = []
-                print(r, c, "is now", missing_val, "    cross col")
+                print(poss_index, c, "is now", missing_val, "    cross col")
+                return puzzle
+
+    # boxes
+    for b in range(9):
+        r0, c0 = (b // 3) * 3, (b % 3) * 3
+        curr_box = [puzzle[r0][c0][0], puzzle[r0][c0+1][0], puzzle[r0][c0+2][0],
+               puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
+               puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
+        print("curr box", curr_box)
+        for elem in curr_box:
+            if elem in curr_missing:
+                curr_missing.remove(elem)
+            print(curr_missing)  # the missing values in the box
+
+        for missing_val in curr_missing:
+            poss_index = None
+            for radd in range(int(L**0.5)):
+                r = r0 + radd
+                for cadd in range(int(L**0.5)):
+                    c = c0 + cadd
+                    if missing_val in puzzle[r][c][1]:
+                        if poss_index == None:
+                            poss_index = (r, c)
+                        else:
+                            poss_index == None
+                            # 'break' both loops
+                            radd = L
+                            cadd = L
+            if poss_index is not None:
+                puzzle[poss_index[0]][poss_index[1]][0] = missing_val
+                puzzle[poss_index[0]][poss_index[1]][1] = []
+                print(poss_index[0], poss_index[1], "is now", missing_val, "    cross box")
                 return puzzle
 
     return puzzle
@@ -223,11 +254,12 @@ def print_puzzles(puzzles):
 
 
 def main():
-    #puzzles = read_from_file("p096_sudoku.txt")
-    puzzles = read_from_file("simple.txt")
+    puzzles = read_from_file("p096_sudoku.txt")
+    #puzzles = read_from_file("simple.txt")
     sum = 0
     for p in puzzles:
         while not is_puzzle_done(p):
+            # time.sleep(1)
             print()
             print_pretty(p)
             p = update_missing_values(p)
@@ -236,7 +268,6 @@ def main():
         if is_solution_valid(p):
             sum += 100 * p[0][0][0] + 10 * p[0][1][0] + p[0][2][0]
             print(sum)
-            return sum
         else:
             print_pretty(p)
 
