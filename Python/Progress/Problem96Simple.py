@@ -76,24 +76,32 @@ def is_puzzle_done(puzzle):
     return True
 
 
-def is_solution_valid(n_puzzle):
-    for i in range(L):
-        row = [n_puzzle[i][j][0] for j in range(L)]
-        if not all(all_1_to_9) in row:
-            return False
+def is_puzzle_valid(puzzle):
+    for r in range(L):
+        for c in range(L):
+            curr = puzzle[r][c][0]
+            if curr == 0:
+                continue
+            for i in range(L):
+                if puzzle[r][i][0] == curr and i != c:
+                    print('contradiction:', r, c, puzzle[r][c][0], 'and', r, i, puzzle[r][i][0], 'are in the same row')
+                    return False
+                if puzzle[i][c][0] == curr and i != r:
+                    print('contradiction:', r, c, puzzle[r][c][0], 'and', i, c, puzzle[i][c][0], 'are in the same column')
+                    return False
 
-    for i in range(9):
-        col = [n_puzzle[j][i][0] for j in range(9)]
-        if not all(all_1_to_9) in col:
-            return False
-
-    for b in range(9):
-        r, c = (b // 3) * 3, (b % 3) * 3
-        box = [n_puzzle[r][c][0], n_puzzle[r][c+1][0], n_puzzle[r][c+2][0],
-               n_puzzle[r+1][c][0], n_puzzle[r+1][c+1][0], n_puzzle[r+1][c+2][0],
-               n_puzzle[r+2][c][0], n_puzzle[r+2][c+1][0], n_puzzle[r+2][c+2][0]]
-        if not all(all_1_to_9) in box:
-            return False
+            r0, c0 = r - (r % 3), c - (c % 3)
+            curr_box = [puzzle[r0][c0][0],   puzzle[r0][c0+1][0],   puzzle[r0][c0+2][0],
+                        puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
+                        puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
+            flag = False
+            for elem in curr_box:
+                if elem == curr:
+                    if not flag:
+                        flag = True
+                    else:
+                        print('contradiction:', r, c, puzzle[r][c][0], 'and', elem, 'are in the same box')
+                        return False
 
     return True
 
@@ -149,19 +157,6 @@ def should_add_value(puzzle, loc_row, loc_col):
     for k in range(L):
         if puzzle[k][loc_col][0] in possible_values:
             possible_values.remove(puzzle[k][loc_col][0])
-
-
-def mem(puzzle):
-    for row in range(L):
-        for col in range(L):
-            if puzzle[row][col][0] == 0:
-                val = should_add_value(puzzle, row, col)
-                if val is not None and len(val) == 1:
-                    puzzle[row][col] = [val[0], []]
-                    print(row, col, "is now", puzzle[row][col], "    mem")
-                    return puzzle
-
-    return puzzle
 
 
 def box_helper_function(r0, c0, puzzle, missing_val):
@@ -264,7 +259,8 @@ def crosshatch(puzzle):
                 print(poss_index[0], poss_index[1], "is now", missing_val, "    cross box")
                 return puzzle
 
-    puzzle = update_missing_values(puzzle)
+    print("i should do a guess and check")
+    puzzle = guess_and_check(puzzle)
     return puzzle
 
 
@@ -294,6 +290,7 @@ def main():
             print()
             print_pretty(p)
             time.sleep(1)
+            p = update_missing_values(p)
             p = crosshatch(p)
             # p = mem(p)
         if is_solution_valid(p):
