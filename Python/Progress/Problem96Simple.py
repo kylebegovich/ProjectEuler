@@ -23,6 +23,17 @@ import time
 # 800203009
 # 005010300
 
+# Grid 06
+# 100920000
+# 524017009
+# 000000271
+# 050008102
+# 000102000
+# 412700090
+# 060000010
+# 001036945
+# 040071026
+
 
 
 all_1_to_9 = set(range(1, 10))
@@ -31,9 +42,10 @@ L = 9
 
 def read_from_file(file_name):
     matrix = open(file_name, 'r')
+    num_lines = sum(1 for line in open(file_name, 'r'))
 
     # init puzzles to [0, set()] for every cell in every puzzle
-    puzzles = [[[[0, ([0] * 9)] for k in range(9)] for j in range(9)] for i in range(50)]
+    puzzles = [[[[0, ([0] * 9)] for k in range(9)] for j in range(9)] for i in range(num_lines//10)]
 
     #print(puzzles)
 
@@ -152,20 +164,38 @@ def mem(puzzle):
     return puzzle
 
 
+def box_helper_function(r0, c0, puzzle, missing_val):
+    poss_index = None
+    for radd in range(int(L**0.5)):
+        r = r0 + radd
+        for cadd in range(int(L**0.5)):
+            c = c0 + cadd
+            print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+            if missing_val in puzzle[r][c][1]:
+                if poss_index == None:
+                    poss_index = (r, c)
+                else:
+                    return None;
+    return poss_index
+
+
 def crosshatch(puzzle):
 
     # rows
     for r in range(L):
         curr_missing = list(all_1_to_9)
         curr_row = [puzzle[r][i][0] for i in range(L)]
-        #print('curr row = ', curr_row)
+        print('row ', r, '= ', curr_row)
         for elem in curr_row:
             if elem in curr_missing:
                 curr_missing.remove(elem)
-            #print(curr_missing)  # the missing values in the row
+
+        print(curr_missing)  # the missing values in the row
         for missing_val in curr_missing:
             poss_index = -1
+            print("curr missing val =", missing_val)
             for c in range(L):
+                print(r, c, puzzle[r][c][0], puzzle[r][c][1])
                 if missing_val in puzzle[r][c][1]:
                     if poss_index == -1:
                         poss_index = c
@@ -178,18 +208,23 @@ def crosshatch(puzzle):
                 print(r, poss_index, "is now", missing_val, "    cross row")
                 return puzzle
 
+    print()
+
     # columns
     for c in range(L):
         curr_missing = list(all_1_to_9)
         curr_col = [puzzle[i][c][0] for i in range(L)]
-        # print(curr_col, curr_missing)
+        print('col ', c, '= ', curr_col)
         for elem in curr_col:
             if elem in curr_missing:
                 curr_missing.remove(elem)
-            # print(curr_missing)  # the missing values in the col
+
+        print(curr_missing)  # the missing values in the col
         for missing_val in curr_missing:
             poss_index = -1
+            print("curr missing val =", missing_val)
             for r in range(L):
+                print(r, c, puzzle[r][c][0], puzzle[r][c][1])
                 if missing_val in puzzle[r][c][1]:
                     if poss_index == -1:
                         poss_index = r
@@ -202,32 +237,27 @@ def crosshatch(puzzle):
                 print(poss_index, c, "is now", missing_val, "    cross col")
                 return puzzle
 
+    print()
+
     # boxes
     for b in range(9):
+        # for r in range(L):
+        #     for c in range(L):
+        #         print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+        curr_missing = list(all_1_to_9)
         r0, c0 = (b // 3) * 3, (b % 3) * 3
-        curr_box = [puzzle[r0][c0][0], puzzle[r0][c0+1][0], puzzle[r0][c0+2][0],
-               puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
-               puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
-        print("curr box", curr_box)
+        curr_box = [puzzle[r0][c0][0],   puzzle[r0][c0+1][0],   puzzle[r0][c0+2][0],
+                    puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
+                    puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
+        print('box ', b, '= ', curr_box)
         for elem in curr_box:
             if elem in curr_missing:
                 curr_missing.remove(elem)
-            print(curr_missing)  # the missing values in the box
 
+        print(curr_missing) # the missing values in the box
         for missing_val in curr_missing:
-            poss_index = None
-            for radd in range(int(L**0.5)):
-                r = r0 + radd
-                for cadd in range(int(L**0.5)):
-                    c = c0 + cadd
-                    if missing_val in puzzle[r][c][1]:
-                        if poss_index == None:
-                            poss_index = (r, c)
-                        else:
-                            poss_index == None
-                            # 'break' both loops
-                            radd = L
-                            cadd = L
+            print("curr missing val =", missing_val)
+            poss_index = box_helper_function(r0, c0, puzzle, missing_val)
             if poss_index is not None:
                 puzzle[poss_index[0]][poss_index[1]][0] = missing_val
                 puzzle[poss_index[0]][poss_index[1]][1] = []
@@ -254,14 +284,15 @@ def print_puzzles(puzzles):
 
 
 def main():
-    puzzles = read_from_file("p096_sudoku.txt")
-    #puzzles = read_from_file("simple.txt")
+    #puzzles = read_from_file("p096_sudoku.txt")
+    puzzles = read_from_file("simple.txt")
     sum = 0
     for p in puzzles:
+        print_pretty(p)
         while not is_puzzle_done(p):
-            # time.sleep(1)
             print()
             print_pretty(p)
+            time.sleep(1)
             p = update_missing_values(p)
             p = crosshatch(p)
             # p = mem(p)
