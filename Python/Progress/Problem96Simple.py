@@ -264,6 +264,7 @@ def crosshatch(puzzle):
                 print(poss_index[0], poss_index[1], "is now", missing_val, "    cross box")
                 return puzzle
 
+    puzzle = update_missing_values(puzzle)
     return puzzle
 
 
@@ -293,7 +294,6 @@ def main():
             print()
             print_pretty(p)
             time.sleep(1)
-            p = update_missing_values(p)
             p = crosshatch(p)
             # p = mem(p)
         if is_solution_valid(p):
