@@ -1,5 +1,6 @@
 from math import sqrt
 import heapq
+import time
 
 INFINITY = 2147483646
 
@@ -9,9 +10,7 @@ def heuristic(curr, length):
 
 
 def init_grid():
-
     matrix = open("p083_matrix.txt", 'r')
-
     grid = list()
 
     for line in matrix:
@@ -22,7 +21,7 @@ def init_grid():
         grid.append(temp)
 
     matrix.close()
-
+    # print(grid)
     return grid
 
 
@@ -77,37 +76,44 @@ def main():
     length = len(grid[0])
     start = (0, 0)
     closed_set = set()
-    open_set = [start]
+    open_set = [(0, start)]
     came_from = dict()
+
     g_score = dict()
     g_score[start] = 0
     f_score = dict()
     f_score[start] = heuristic(start, length)
 
+    best_answer = INFINITY
+
     while len(open_set) != 0:
-        curr = heapq.heappop(open_set)
+        # time.sleep(1)
+        # print(open_set)
+        obj = heapq.heappop(open_set)
+        curr = obj[1]
+        print("curr =", curr)
         if curr[0] == length - 1 and curr[1] == length - 1:
             path = reconstruct_path(came_from, curr)
-            return sum_path(path, grid)
+            answer = sum_path(path, grid)
+            if answer < best_answer:
+                best_answer = answer
+            # for p in path[::-1]:
+            #     print(p)
 
         closed_set.add(curr)
 
         for neighbor in get_neighbors(curr, grid):
-            if neighbor in closed_set:
+            # print("neighbor:", neighbor)
+            if neighbor in closed_set or neighbor in open_set:
                 continue
 
-            if neighbor not in open_set:  #iscover a new node
-                heapq.heappush(open_set, neighbor)
-
-            tentative_g_score = g_score[curr] + grid[neighbor[0]][neighbor[1]]
-            if neighbor in g_score and tentative_g_score >= g_score[neighbor]:
-                continue
-
+            # discover a new node
             came_from[neighbor] = curr
-            g_score[neighbor] = tentative_g_score
+            g_score[neighbor] = g_score[curr] + grid[neighbor[0]][neighbor[1]]
             f_score[neighbor] = g_score[neighbor] + heuristic(neighbor, length)
+            heapq.heappush(open_set, (f_score[neighbor], neighbor))
 
-    return "Failed :("
+    return best_answer
 
 
 print(main())
