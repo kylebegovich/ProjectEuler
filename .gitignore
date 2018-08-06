@@ -1,6 +1,7 @@
 # workspace stuff
 *.idea*
 workspace.*
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

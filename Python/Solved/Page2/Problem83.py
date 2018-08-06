@@ -10,7 +10,7 @@ def heuristic(curr, length):
 
 
 def init_grid():
-    matrix = open("p083_matrix.txt", 'r')
+    matrix = open("text_files/p083_matrix.txt", 'r')
     grid = list()
 
     for line in matrix:
