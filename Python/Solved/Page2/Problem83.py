@@ -6,7 +6,7 @@ INFINITY = 2147483646
 
 
 def heuristic(curr, length):
-    return int(sqrt((length - curr[0])**2 + (length - curr[1])**2))
+    return sum(abs(length - 1 - curr[i]) for i in range(len(curr)))
 
 
 def init_grid():
@@ -31,14 +31,6 @@ def sum_path(path, grid):
         out += grid[term[0]][term[1]]
 
     return out
-
-
-def reconstruct_path(came_from, curr):
-    total_path = [curr]
-    while curr in came_from.keys():
-        curr = came_from[curr]
-        total_path.append(curr)
-    return total_path
 
 
 def get_neighbors(curr, grid):
@@ -76,11 +68,11 @@ def main():
     length = len(grid[0])
     start = (0, 0)
     closed_set = set()
-    open_set = [(0, start)]
-    came_from = dict()
+    open_set = {(0, 0)}
+    frontier_queue = [(4603, [start])]
 
     g_score = dict()
-    g_score[start] = 0
+    g_score[start] = 4603
     f_score = dict()
     f_score[start] = heuristic(start, length)
 
@@ -89,17 +81,19 @@ def main():
     while len(open_set) != 0:
         # time.sleep(1)
         # print(open_set)
-        obj = heapq.heappop(open_set)
-        curr = obj[1]
-        print("curr =", curr)
+        obj = heapq.heappop(frontier_queue)
+        path = obj[1]
+        curr = path[-1]
+        # print("path =", path)
+        # print("curr =", curr)
         if curr[0] == length - 1 and curr[1] == length - 1:
-            path = reconstruct_path(came_from, curr)
             answer = sum_path(path, grid)
             if answer < best_answer:
                 best_answer = answer
             # for p in path[::-1]:
             #     print(p)
 
+        open_set.remove(curr)
         closed_set.add(curr)
 
         for neighbor in get_neighbors(curr, grid):
@@ -108,12 +102,16 @@ def main():
                 continue
 
             # discover a new node
-            came_from[neighbor] = curr
+            open_set.add(neighbor)
+            new_path = path + [neighbor]
             g_score[neighbor] = g_score[curr] + grid[neighbor[0]][neighbor[1]]
             f_score[neighbor] = g_score[neighbor] + heuristic(neighbor, length)
-            heapq.heappush(open_set, (f_score[neighbor], neighbor))
+            heapq.heappush(frontier_queue, (f_score[neighbor], new_path))
 
     return best_answer
 
 
 print(main())
+
+
+# SOLUTION : 425185
