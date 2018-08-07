@@ -17,9 +17,7 @@ def is_anagram(combo):
     return sorted(w1) == sorted(w2)
 
 
-def main():
-
-    reference = read_from_file('p098_words.txt')
+def get_anagrams(reference):
     # Found max length of the list of words, it's 14, so here's 15 lists
     ref_by_len = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
     # print(ref_by_len)
@@ -30,9 +28,6 @@ def main():
         i = len(r)
         ref_by_len[i].append(r)
 
-    # print(ref_by_len[1])
-    # print(ref_by_len[14])
-
     anagrams = {}
 
     for i in range(len(ref_by_len)):
@@ -42,13 +37,26 @@ def main():
                 anagrams[combo[0]] = combo[1]
 
     # print(anagrams)
+    # for key in anagrams.keys():
+    #     print(key)
+    return anagrams
 
+
+def max_square_if_match(w1, w2):
+    return -1
+
+
+def main():
+    reference = read_from_file('p098_words.txt')
+    anagrams = get_anagrams(reference)
+    maximum = 0
     for key in anagrams.keys():
-        print(key)
+        s = max_square_if_match(key, anagrams[key])
+        if s > maximum:
+            maximum = s
 
-    # comboss = combinations(reference, 2)
-    # for combo in comboss:
-    #     print(combo)
+    return maximum
+
 
 
 main()
