@@ -1,4 +1,4 @@
-from itertools import combinations
+from itertools import combinations, permutations
 
 def read_from_file(filename):
     words = open(filename, 'r')
@@ -15,6 +15,10 @@ def is_anagram(combo):
     (w1, w2) = combo
     # print(w1, w2)
     return sorted(w1) == sorted(w2)
+
+
+def is_square(value):
+    return int(value**0.5)**2 == value
 
 
 def get_anagrams(reference):
@@ -43,11 +47,18 @@ def get_anagrams(reference):
 
 
 def max_square_if_match(w1, w2):
+    letter_set = {x:y for y, x in enumerate(set(w1))}
+    for mapping in permutations('123456789', len(letter_set)):
+        v1 = int(''.join(mapping[letter_set[i]] for i in w1))
+        v2 = int(''.join(mapping[letter_set[i]] for i in w2))
+        if is_square(v1) and is_square(v2):
+            return max(v1, v2)
+
     return -1
 
 
 def main():
-    reference = read_from_file('p098_words.txt')
+    reference = read_from_file('text_files/p098_words.txt')
     anagrams = get_anagrams(reference)
     maximum = 0
     for key in anagrams.keys():
@@ -55,8 +66,10 @@ def main():
         if s > maximum:
             maximum = s
 
-    return maximum
-
+    print(maximum)
 
 
 main()
+
+
+# SOLVED : 18769
