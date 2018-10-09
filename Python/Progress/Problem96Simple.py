@@ -1,5 +1,6 @@
 import sys
 import time
+from copy import deepcopy as dc
 
 # Grid 01
 # 123406789
@@ -115,6 +116,20 @@ def get_curr_box(puzzle, r, c):
     return [                     puzzle[ro][co+1][0],   puzzle[ro][co+2][0],
             puzzle[ro+1][co][0], puzzle[ro+1][co+1][0], puzzle[ro+1][co+2][0],
             puzzle[ro+2][co][0], puzzle[ro+2][co+1][0], puzzle[ro+2][co+2][0]]
+
+
+def guess_next(puzzle):
+    potential_next = []
+    for r in range(L):
+        for c in range(L):
+            if puzzle[r][c][0] != 0:
+                continue
+            for elem in puzzle[r][c][1]:
+                copy = dc(puzzle)
+                copy[r][c][0] = elem
+                copy[r][c][1] = []
+                potential_next.append(copy)
+            return potential_next
 
 
 def update_missing_values(puzzle):
@@ -299,6 +314,32 @@ def main():
         else:
             print_pretty(p)
 
+
+def new_main():
+    #puzzles = read_from_file("p096_sudoku.txt")
+    puzzles = read_from_file("simple.txt")
+    sum = 0
+    for p in puzzles:
+        potent = [p]
+        count = 0
+        print_pretty(p)
+        while not any([is_puzzle_done(p) for p in potent]):
+            for p in potent:
+                unchanged = dc(p)
+                print()
+                print_pretty(p)
+                time.sleep(1)
+                p = update_missing_values(p)
+                p = crosshatch(p)
+                if p == unchanged:
+                    guesses = guess_next(p)
+                    for guess in guesses:
+                        potent.append(guess)
+        if is_solution_valid(p):
+            sum += 100 * p[0][0][0] + 10 * p[0][1][0] + p[0][2][0]
+            print(sum)
+        else:
+            print_pretty(p)
 
 
 print(main())

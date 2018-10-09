@@ -2,14 +2,17 @@ import sys
 
 
 all_1_to_9 = set(range(1, 10))
-verbose = False
+L = 9
 
 
 def read_from_file(file_name):
     matrix = open(file_name, 'r')
+    num_lines = sum(1 for line in open(file_name, 'r'))
 
-    # init puzzles to [0, set()] for every cell in every puzzle
-    puzzles = [[[[0, set()] for k in range(9)] for j in range(9)] for i in range(50)]
+    # init puzzles to 0 for every cell in every puzzle
+    puzzles = [[[0 for k in range(9)] for j in range(9)] for i in range(num_lines//10)]
+
+    # print(puzzles)
 
     # fill in the actual values
     grid_index = -1
@@ -21,7 +24,7 @@ def read_from_file(file_name):
         else:
             col_index = 0
             for e in [int(i) for i in list(line)[:-1]]:
-                puzzles[grid_index][row_index][col_index][0] = e
+                puzzles[grid_index][row_index][col_index] = e
                 col_index += 1
 
         row_index += 1
@@ -32,369 +35,306 @@ def read_from_file(file_name):
 def is_puzzle_done(puzzle):
     for row in puzzle:
         for elem in row:
-            if elem[0] == 0:
+            if elem == 0:
                 return False
 
     return True
 
+#
+# def is_puzzle_valid(puzzle):
+#     for r in range(L):
+#         for c in range(L):
+#             curr = puzzle[r][c][0]
+#             if curr == 0:
+#                 continue
+#             for i in range(L):
+#                 if puzzle[r][i][0] == curr and i != c:
+#                     print('contradiction:', r, c, puzzle[r][c][0], 'and', r, i, puzzle[r][i][0], 'are in the same row')
+#                     return False
+#                 if puzzle[i][c][0] == curr and i != r:
+#                     print('contradiction:', r, c, puzzle[r][c][0], 'and', i, c, puzzle[i][c][0], 'are in the same column')
+#                     return False
+#
+#             r0, c0 = r - (r % 3), c - (c % 3)
+#             curr_box = [puzzle[r0][c0][0],   puzzle[r0][c0+1][0],   puzzle[r0][c0+2][0],
+#                         puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
+#                         puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
+#             flag = False
+#             for elem in curr_box:
+#                 if elem == curr:
+#                     if not flag:
+#                         flag = True
+#                     else:
+#                         print('contradiction:', r, c, puzzle[r][c][0], 'and', elem, 'are in the same box')
+#                         return False
+#
+#     return True
+#
 
-def crosshatch(puzzle):
-    #  Note: this is a single pass-through, not a repeated process
-    #  Rows
-    for i in range(9):
-        elems = [puzzle[i][j][0] for j in range(9)]
-        c = elems.count(0)
-        if c == 0 or c > 1:
-            continue
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        e_index = elems.index(0)
-        if verbose:
-            print("writing (row)", missing_val, " into (", i, e_index, ")")
-        if verbose and puzzle[i][e_index][0] != 0:
-            print("I AM MAD, DON'T DO THIS!")
-        puzzle[i][e_index][0] = missing_val
-        return puzzle
+def get_curr_box(puzzle, r, c):
+    # print(r, type(r), c, type(c))
+    # ro and co are the row and column 'origin', where it's the top left of the box
+    # ONLY WORKS FOR 9x9
+    ro = r - (r % 3)
+    co = c - (c % 3)
+    return [puzzle[ro][co],   puzzle[ro][co+1],   puzzle[ro][co+2],
+            puzzle[ro+1][co], puzzle[ro+1][co+1], puzzle[ro+1][co+2],
+            puzzle[ro+2][co], puzzle[ro+2][co+1], puzzle[ro+2][co+2]]
+#
+#
+# def guess_next(puzzle):
+#     potential_next = []
+#     for r in range(L):
+#         for c in range(L):
+#             if puzzle[r][c][0] != 0:
+#                 continue
+#             for elem in puzzle[r][c][1]:
+#                 copy = dc(puzzle)
+#                 copy[r][c][0] = elem
+#                 copy[r][c][1] = []
+#                 potential_next.append(copy)
+#             return potential_next
+#
+#
+# def update_missing_values(puzzle):
+#     #print("updating missing values")
+#     for r in range(L):
+#         for c in range(L):
+#             if puzzle[r][c][0] != 0:
+#                 continue
+#             curr_missing = list(all_1_to_9)
+#             curr_row = [puzzle[r][i][0] for i in range(L)]
+#             curr_col = [puzzle[i][c][0] for i in range(L)]
+#             curr_box = get_curr_box(puzzle, r, c)
+#             #print(r, c, curr_row, curr_col, curr_box)
+#             for c_r in curr_row:
+#                 if c_r in curr_missing:
+#                     curr_missing.remove(c_r)
+#             for c_c in curr_col:
+#                 if c_c in curr_missing:
+#                     curr_missing.remove(c_c)
+#             for c_b in curr_box:
+#                 if c_b in curr_missing:
+#                     curr_missing.remove(c_b)
+#             if len(curr_missing) == 1:
+#                 puzzle[r][c][0] = curr_missing[0]
+#                 puzzle[r][c][1] = []
+#                 print(r, c, "is now", puzzle[r][c][0], "    update missing values")
+#                 #return puzzle  # not sure if I should return here, it may break things?
+#             else:
+#                 puzzle[r][c][1] = curr_missing
+#             #print(curr_missing)
+#
+#     return puzzle
+#
+#
+# def should_add_value(puzzle, loc_row, loc_col):
+#     possible_values = list(all_1_to_9)
+#     for k in range(L):
+#         if puzzle[loc_row][k][0] in possible_values:
+#             possible_values.remove(puzzle[loc_row][k][0])
+#     for k in range(L):
+#         if puzzle[k][loc_col][0] in possible_values:
+#             possible_values.remove(puzzle[k][loc_col][0])
+#
+#
+# def box_helper_function(r0, c0, puzzle, missing_val):
+#     poss_index = None
+#     for radd in range(int(L**0.5)):
+#         r = r0 + radd
+#         for cadd in range(int(L**0.5)):
+#             c = c0 + cadd
+#             print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+#             if missing_val in puzzle[r][c][1]:
+#                 if poss_index == None:
+#                     poss_index = (r, c)
+#                 else:
+#                     return None;
+#     return poss_index
+#
+#
+# def crosshatch(puzzle):
+#
+#     # rows
+#     for r in range(L):
+#         curr_missing = list(all_1_to_9)
+#         curr_row = [puzzle[r][i][0] for i in range(L)]
+#         print('row ', r, '= ', curr_row)
+#         for elem in curr_row:
+#             if elem in curr_missing:
+#                 curr_missing.remove(elem)
+#
+#         print(curr_missing)  # the missing values in the row
+#         for missing_val in curr_missing:
+#             poss_index = -1
+#             print("curr missing val =", missing_val)
+#             for c in range(L):
+#                 print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+#                 if missing_val in puzzle[r][c][1]:
+#                     if poss_index == -1:
+#                         poss_index = c
+#                     else:
+#                         poss_index = -2
+#                         break
+#             if poss_index >= 0:
+#                 puzzle[r][poss_index][0] = missing_val
+#                 puzzle[r][poss_index][1] = []
+#                 print(r, poss_index, "is now", missing_val, "    cross row")
+#                 return puzzle
+#
+#     print()
+#
+#     # columns
+#     for c in range(L):
+#         curr_missing = list(all_1_to_9)
+#         curr_col = [puzzle[i][c][0] for i in range(L)]
+#         print('col ', c, '= ', curr_col)
+#         for elem in curr_col:
+#             if elem in curr_missing:
+#                 curr_missing.remove(elem)
+#
+#         print(curr_missing)  # the missing values in the col
+#         for missing_val in curr_missing:
+#             poss_index = -1
+#             print("curr missing val =", missing_val)
+#             for r in range(L):
+#                 print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+#                 if missing_val in puzzle[r][c][1]:
+#                     if poss_index == -1:
+#                         poss_index = r
+#                     else:
+#                         poss_index = -2
+#                         break
+#             if poss_index >= 0:
+#                 puzzle[poss_index][c][0] = missing_val
+#                 puzzle[poss_index][c][1] = []
+#                 print(poss_index, c, "is now", missing_val, "    cross col")
+#                 return puzzle
+#
+#     print()
+#
+#     # boxes
+#     for b in range(9):
+#         # for r in range(L):
+#         #     for c in range(L):
+#         #         print(r, c, puzzle[r][c][0], puzzle[r][c][1])
+#         curr_missing = list(all_1_to_9)
+#         r0, c0 = (b // 3) * 3, (b % 3) * 3
+#         curr_box = [puzzle[r0][c0][0],   puzzle[r0][c0+1][0],   puzzle[r0][c0+2][0],
+#                     puzzle[r0+1][c0][0], puzzle[r0+1][c0+1][0], puzzle[r0+1][c0+2][0],
+#                     puzzle[r0+2][c0][0], puzzle[r0+2][c0+1][0], puzzle[r0+2][c0+2][0]]
+#         print('box ', b, '= ', curr_box)
+#         for elem in curr_box:
+#             if elem in curr_missing:
+#                 curr_missing.remove(elem)
+#
+#         print(curr_missing) # the missing values in the box
+#         for missing_val in curr_missing:
+#             print("curr missing val =", missing_val)
+#             poss_index = box_helper_function(r0, c0, puzzle, missing_val)
+#             if poss_index is not None:
+#                 puzzle[poss_index[0]][poss_index[1]][0] = missing_val
+#                 puzzle[poss_index[0]][poss_index[1]][1] = []
+#                 print(poss_index[0], poss_index[1], "is now", missing_val, "    cross box")
+#                 return puzzle
+#
+#     print("i should do a guess and check")
+#     puzzle = guess_and_check(puzzle)
+#     return puzzle
+#
 
-    #  Columns
-    for i in range(9):
-        elems = [puzzle[j][i][0] for j in range(9)]
-        c = elems.count(0)
-        if c == 0 or c > 1:
-            continue
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
-        e_index = elems.index(0)
-        if verbose:
-            print("writing (col)", missing_val, " into (", e_index, i, ")")
-        if verbose and puzzle[e_index][i][0] != 0:
-            print("I AM MAD, DON'T DO THIS!")
-        puzzle[e_index][i][0] = missing_val
-        return puzzle
+def solve_puzzle(puzzle):
+    print_pretty(puzzle)
+    for row in range(len(puzzle)):
+        for col in range(len(puzzle)):
+            if puzzle[row][col] == 0:
+                for value in all_1_to_9:
 
-    #  Boxes
-    for b in range(9):
-        r, c = (b // 3) * 3, (b % 3) * 3
-        elems = [puzzle[r][c][0], puzzle[r][c+1][0], puzzle[r][c+2][0],
-                 puzzle[r+1][c][0], puzzle[r+1][c+1][0], puzzle[r+1][c+2][0],
-                 puzzle[r+2][c][0], puzzle[r+2][c+1][0], puzzle[r+2][c+2][0]]
-        count = elems.count(0)
-        if count == 0 or count > 1:
-            continue
+                    # check not in row
+                    if value in puzzle[row]:
+                        continue
 
-        e_index = elems.index(0)
-        missing_val = (list((all_1_to_9 - set(elems)) - {0}))[0]
+                    # check not in col
+                    column = [puzzle[i][col] for i in range(len(puzzle))]
+                    if value in column:
+                        continue
 
-        #  e = 0, 1, 2 -> r += 0; 3, 4, 5 -> r += 1; 6, 7, 8 -> r += 2
-        #  e = 0, 3, 6 -> c += 0; 1, 4, 7 -> c += 1; 2, 5, 8 -> c += 2
-        r += e_index // 3
-        c += e_index % 3
+                    # check not in box
+                    box = get_curr_box(puzzle, row, col)
+                    if value in box:
+                        continue
 
-        if verbose:
-            print("writing (box)", missing_val, " into (", r, c, ")")
-        if verbose and puzzle[r][c][0] != 0:
-            print("I AM MAD, DON'T DO THIS!")
-        puzzle[r][c][0] = missing_val
-        return puzzle
-
-    return puzzle
-
-
-def memorization(puzzle):
-    for r in range(9):
-        for c in range(9):
-            if puzzle[r][c][0] == 0:
-                row_elems = [puzzle[r][i][0] for i in range(9)]
-                col_elems = [puzzle[i][c][0] for i in range(9)]
-                tr = (r // 3) * 3
-                tc = (c // 3) * 3
-                box_elems = [puzzle[tr][tc][0], puzzle[tr][tc+1][0], puzzle[tr][tc+2][0],
-                             puzzle[tr+1][tc][0], puzzle[tr+1][tc+1][0], puzzle[tr+1][tc+2][0],
-                             puzzle[tr+2][tc][0], puzzle[tr+2][tc+1][0], puzzle[tr+2][tc+2][0]]
-
-                invalid_elems = set(row_elems + col_elems + box_elems) - {0}
-                possible_elems = all_1_to_9 - invalid_elems
-                if verbose:
-                    print("( r c ) = (", r, c, ") invalid elems =", invalid_elems, "   possible elems =", possible_elems)
-
-                if len(possible_elems) == 1:
-                    new_elem = possible_elems.pop()
-                    if verbose:
-                        print("writing (mem)", new_elem, "into (", r, c, ")")
-                    puzzle[r][c][0] = new_elem
-                    puzzle[r][c][1] = set()
-                    return puzzle
-                else:
-                    puzzle[r][c][1] = possible_elems
-
-    return puzzle
-
-
-def is_valid_solution(n_puzzle):
-    print(n_puzzle)
-
-    for row in n_puzzle:
-        if not all(all_1_to_9) in row:
-            return False
-
-    for i in range(9):
-        col = [n_puzzle[j][i] for j in range(9)]
-        if not all(all_1_to_9) in col:
-            return False
-
-    for b in range(9):
-        r, c = (b // 3) * 3, (b % 3) * 3
-        box = [n_puzzle[r][c], n_puzzle[r][c+1], n_puzzle[r][c+2],
-               n_puzzle[r+1][c], n_puzzle[r+1][c+1], n_puzzle[r+1][c+2],
-               n_puzzle[r+2][c], n_puzzle[r+2][c+1], n_puzzle[r+2][c+2]]
-        if not all(all_1_to_9) in box:
-            return False
-
-
-def mem_extrapolate(puzzle):
-
-    #  Rows
-    for i in range(len(puzzle)):
-        row = puzzle[i]
-        elems = [row[j][0] for j in range(9)]
-        c = elems.count(0)
-        if c <= 1:
-            continue
-        missing_vals = sorted(list(all_1_to_9 - set(elems) - {0}))
-
-        potential_vals = list()
-        for j in range(9):
-            tupe = row[j]
-            if tupe[0] == 0:
-                potential_vals.append((list(tupe[1]), j))
-
-        for indv_val in missing_vals:
-            is_unique = False
-            e_index = -1
-            for indv_pot_vals in potential_vals:
-                if indv_val in indv_pot_vals[0] and not is_unique:
-                    is_unique = True
-                    e_index = indv_pot_vals[1]
-                elif indv_val in indv_pot_vals[0] and is_unique:
-                    is_unique = False
-                    break
-            if is_unique:
-                if verbose:
-                    print("trying to write ROW")
-                    print(puzzle[i][e_index][0], " into ", indv_val, ", and it can be", puzzle[i][e_index][1])
-                if puzzle[i][e_index][0] == 0 and indv_val in puzzle[i][e_index][1]:
-                    if verbose:
-                        print("actually doing it too!")
-                    puzzle[i][e_index][0] = indv_val
-                    puzzle[i][e_index][1] = set()
-                    return puzzle
-                if verbose:
-                    print()
-
-    #  Columns
-    for i in range(len(puzzle)):
-        col = [puzzle[j][i] for j in range(9)]
-        elems = [col[j][0] for j in range(9)]
-        c = elems.count(0)
-        if c <= 1:
-            continue
-        missing_vals = sorted(list(all_1_to_9 - set(elems) - {0}))
-
-        potential_vals = list()
-
-        for j in range(9):
-            tupe = col[j]
-            if tupe[0] == 0:
-                potential_vals.append((list(tupe[1]), j))
-
-        for indv_val in missing_vals:
-            is_unique = False
-            e_index = -1
-            for indv_pot_vals in potential_vals:
-                if indv_val in indv_pot_vals[0] and not is_unique:
-                    is_unique = True
-                    e_index = indv_pot_vals[1]
-                elif indv_val in indv_pot_vals[0] and is_unique:
-                    is_unique = False
-                    break
-            if is_unique:
-                if verbose:
-                    print("trying to write col")
-                    print(puzzle[e_index][i][0], " into ", indv_val, ", and it can be", puzzle[e_index][i][1])
-                if puzzle[e_index][i][0] == 0 and indv_val in puzzle[e_index][i][1]:
-                    if verbose:
-                        print("actually doing it too!")
-                    puzzle[e_index][i][0] = indv_val
-                    puzzle[e_index][i][1] = set()
-                    return puzzle
-                if verbose:
-                        print()
-
-    #  Boxes
-    for b in range(9):
-        r, c = (b // 3) * 3, (b % 3) * 3
-        elems = [puzzle[r][c][0], puzzle[r][c+1][0], puzzle[r][c+2][0],
-                 puzzle[r+1][c][0], puzzle[r+1][c+1][0], puzzle[r+1][c+2][0],
-                 puzzle[r+2][c][0], puzzle[r+2][c+1][0], puzzle[r+2][c+2][0]]
-        c = elems.count(0)
-        if c <= 1:
-            continue
-        missing_vals = sorted(list((all_1_to_9 - set(elems)) - {0}))
-        potential_vals = list()
-
-        tupes = [puzzle[r][c], puzzle[r][c+1], puzzle[r][c+2],
-                 puzzle[r+1][c], puzzle[r+1][c+1], puzzle[r+1][c+2],
-                 puzzle[r+2][c], puzzle[r+2][c+1], puzzle[r+2][c+2]]
-
-        for j in range(9):
-            if tupes[j][0] == 0:
-                potential_vals.append((list(tupes[j][1]), j))
-
-        for indv_val in missing_vals:
-            is_unique = False
-            e_index_row, e_index_col = -1, -1
-            temp_ipvs = []
-            for indv_pot_vals in potential_vals:
-                if indv_val in indv_pot_vals[0] and not is_unique:
-                    is_unique = True
-                    e_index_row, e_index_col = (indv_pot_vals[1] // 3), (indv_pot_vals[1] % 3)
-                    temp_ipvs = indv_pot_vals
-                elif indv_val in indv_pot_vals[0] and is_unique:
-                    is_unique = False
-                    break
-            if is_unique:
-                if verbose:
-                    print("trying to write box at", e_index_row, e_index_col)
-                    print("from", puzzle[e_index_row][e_index_col][0], " to ", indv_val, ", and it can be", puzzle[e_index_row][e_index_col][1])
-                    print("\n", temp_ipvs)
-                if puzzle[e_index_row][e_index_col][0] == 0 and indv_val in puzzle[e_index_row][e_index_col][1]:
-                    if verbose:
-                        print("actually doing it too!")
-                    puzzle[e_index_row][e_index_col][0] = indv_val
-                    puzzle[e_index_row][e_index_col][1] = set()
-                    return puzzle
-                if verbose:
-                        print()
-
-    return puzzle
+                    puzzle[row][col] = value
+                    if is_puzzle_done(puzzle):
+                      print("Puzzle Complete and Checked")
+                      return True
+                    else:
+                      if solve_puzzle(puzzle):
+                        return True
+                break
+    puzzle[row][col] = 0
 
 
-def nice_puzzle(puzzle):
-    n1 = [[0 for i in range(9)] for i in range(9)]
-    n2 = [[0 for i in range(9)] for i in range(9)]
-    for row in range(9):
-        for col in range(9):
-            n1[row][col] = puzzle[row][col][0]
-            n2[row][col] = puzzle[row][col][1]
-
-    return n1, n2
+def print_pretty(puzzle):
+    for r in range(L):
+        row_to_print = ""
+        for c in range(L):
+            row_to_print += str(puzzle[r][c]) + " "
+        print(row_to_print)
+    print()
 
 
-def solve(puzzle_list):
-    if verbose:
-        print("begin solving")
-    new_list = []
-    count = 0
-    for puzzle in puzzle_list:
-
-        cycles = 0
-        while not is_puzzle_done(puzzle):
-
-            puzzle = crosshatch(puzzle)
-            if verbose:
-                for row in nice_puzzle(puzzle)[0]:
-                    print(row)
-                print("\nMem:")
-
-            puzzle = memorization(puzzle)
-
-            if verbose:
-                for row in nice_puzzle(puzzle)[0]:
-                    print(row)
-                print("\nMem Extrapolate:")
-
-
-            puzzle = mem_extrapolate(puzzle)
-            cycles += 1
-
-            if verbose:
-                for row in nice_puzzle(puzzle)[0]:
-                    print(row)
-                print("\nCross")
-                print("cycles = ", cycles)
-
-        if verbose:
-            print("\nfinished a puzzle in ", cycles, "cycles!\n\n")
-            for row in nice_puzzle(puzzle)[0]:
-                print(row)
-            print()
-
-        if not is_puzzle_done(puzzle):
-            print("bad solution generated!")
-            return
-
-        count += 1
-        print("COUNT =", count)
-        new_list.append(puzzle)
-
-    return new_list
-
-
-def add_first_three_all_puzzles(puzzles):
-    summation = 0
-    for puzzle in puzzles:
-        first_digit = puzzle[0][0][0]
-        second_digit = puzzle[0][1][0]
-        third_digit = puzzle[0][2][0]
-        summation += (first_digit * 100) + (second_digit * 10) + third_digit
-
-    return summation
-
-
-def read_from_file2(file_name):
-    matrix = open(file_name, 'r')
-
-    # init puzzles to [0, set()] for every cell in every puzzle
-    puzzles = [[[0 for k in range(9)] for j in range(9)] for i in range(50)]
-
-    # fill in the actual values
-    grid_index = -1
-    row_index = 9
-    for line in matrix:
-        if "Grid" in line:
-            row_index = -1
-            grid_index += 1
-        else:
-            col_index = 0
-            for e in [int(i) for i in list(line)[:-1]]:
-                puzzles[grid_index][row_index][col_index][0] = e
-                col_index += 1
-
-        row_index += 1
-
-    return puzzles
-
-
-# ----- from https://www.reddit.com/r/ProgrammerHumor/comments/7yecbo/my_conjecture_any_solvable_problem_can_be/ -------
-lambda grid: all(map(lambda x: len(x) == len(set(x)),grid + list(zip(*tuple(grid))) + [(lambda a: list(a[0]+a[1]+a[2]))(list(zip(*tuple(grid[3*y:3*y+3])))[3*x:3*x+3]) for x in range(3) for y in range(3)]))
-
-
-def main2():
-    puzzles = read_from_file("p096_sudoku.txt")
-    solved_list = []
-    for puzz in puzzles:
-        solved_list.append(grid(puzz))
-    summation = add_first_three_all_puzzles(solved_list)
-    return summation
+def print_puzzles(puzzles):
+    for p in puzzles:
+        for line in p:
+            print(line)
+        print()
 
 
 def main():
+    #puzzles = read_from_file("p096_sudoku.txt")
     puzzles = read_from_file("p096_sudoku.txt")
-    solved = solve(puzzles)
-    summation = add_first_three_all_puzzles(solved)
-    return summation
+    sum = 0
+    count = 1
+    for p in puzzles:
+        print_pretty(p)
+        if solve_puzzle(p):
+            count += 1
+            sum += 100 * p[0][0] + 10 * p[0][1] + p[0][2]
+            print('able to solve p #' + str(count), 'sum = ')
+        else:
+            print('failed to solve p #' + str(count), ', breaking')
+            return -1
 
 
-# verbosity flag setting
-if len(sys.argv) > 1 and sys.argv[1] == "-v":
-    verbose = True
 
-print(main2())
+
+def new_main():
+    #puzzles = read_from_file("p096_sudoku.txt")
+    puzzles = read_from_file("simple.txt")
+    sum = 0
+    for p in puzzles:
+        potent = [p]
+        count = 0
+        print_pretty(p)
+        while not any([is_puzzle_done(p) for p in potent]):
+            for p in potent:
+                unchanged = dc(p)
+                print()
+                print_pretty(p)
+                time.sleep(1)
+                p = update_missing_values(p)
+                p = crosshatch(p)
+                if p == unchanged:
+                    guesses = guess_next(p)
+                    for guess in guesses:
+                        potent.append(guess)
+        if is_solution_valid(p):
+            sum += 100 * p[0][0][0] + 10 * p[0][1][0] + p[0][2][0]
+            print(sum)
+        else:
+            print_pretty(p)
+
+
+# print_puzzles(read_from_file('p096_sudoku.txt'))
+print(main())
