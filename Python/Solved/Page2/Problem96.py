@@ -309,7 +309,7 @@ def print_puzzles(puzzles):
 
 def main():
     # puzzles = read_from_file("simple.txt")
-    puzzles = read_from_file("p096_sudoku.txt")
+    puzzles = read_from_file("text_files/p096_sudoku.txt")
     sum = 0
     count = 0
     count_real = 0
