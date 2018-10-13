@@ -33,9 +33,9 @@ def read_from_file(file_name):
 
 
 def is_puzzle_done(puzzle):
-    for row in puzzle:
-        for elem in row:
-            if elem == 0:
+    for row in range(len(puzzle)):
+        for col in range(len(puzzle)):
+            if puzzle[row][col] == 0:
                 return False
 
     return True
@@ -244,35 +244,51 @@ def get_curr_box(puzzle, r, c):
 #
 
 def solve_puzzle(puzzle):
-    print_pretty(puzzle)
-    for row in range(len(puzzle)):
-        for col in range(len(puzzle)):
-            if puzzle[row][col] == 0:
-                for value in all_1_to_9:
+    # print('\n\nNEW FUNCTION CALL')
+    # print_pretty(puzzle)
+    for i in range(81):
+        row = i // 9
+        col = i % 9
+        if puzzle[row][col] == 0:
+            for value in all_1_to_9:
 
-                    # check not in row
-                    if value in puzzle[row]:
-                        continue
+                # check not in row
+                if value in puzzle[row]:
+                    # print('value in row')
+                    continue
 
-                    # check not in col
-                    column = [puzzle[i][col] for i in range(len(puzzle))]
-                    if value in column:
-                        continue
+                # check not in col
+                column = [puzzle[i][col] for i in range(len(puzzle))]
+                if value in column:
+                    # print('value in col')
+                    continue
 
-                    # check not in box
-                    box = get_curr_box(puzzle, row, col)
-                    if value in box:
-                        continue
+                # check not in box
+                # box = get_curr_box(puzzle, row, col)
+                ro = row - (row % 3)
+                co = col - (col % 3)
+                box =  [puzzle[ro][co],   puzzle[ro][co+1],   puzzle[ro][co+2],
+                        puzzle[ro+1][co], puzzle[ro+1][co+1], puzzle[ro+1][co+2],
+                        puzzle[ro+2][co], puzzle[ro+2][co+1], puzzle[ro+2][co+2]]
+                # print(box)
+                if value in box:
+                    # print('value in box')
+                    continue
 
-                    puzzle[row][col] = value
-                    if is_puzzle_done(puzzle):
-                      print("Puzzle Complete and Checked")
-                      return True
-                    else:
-                      if solve_puzzle(puzzle):
-                        return True
-                break
+                # print('value =', value, 'row =', row, 'col =', col)
+                # print('value match!')
+
+                puzzle[row][col] = value
+                if is_puzzle_done(puzzle):
+                  print("Puzzle Complete and Checked")
+                  return True
+                else:
+                  if solve_puzzle(puzzle):
+                    return True
+            break
     puzzle[row][col] = 0
+    # print('backtrack')
+    return False
 
 
 def print_pretty(puzzle):
@@ -292,48 +308,57 @@ def print_puzzles(puzzles):
 
 
 def main():
-    #puzzles = read_from_file("p096_sudoku.txt")
+    # puzzles = read_from_file("simple.txt")
     puzzles = read_from_file("p096_sudoku.txt")
     sum = 0
-    count = 1
+    count = 0
+    count_real = 0
     for p in puzzles:
         print_pretty(p)
         if solve_puzzle(p):
-            count += 1
+            print("actually done!")
+            print_pretty(p)
+            count_real += 1
             sum += 100 * p[0][0] + 10 * p[0][1] + p[0][2]
-            print('able to solve p #' + str(count), 'sum = ')
+            print('solved p #' + str(count_real), 'sum = ', sum, '\n\n')
+        # elif p[0][0] != 0 and p[0][1] != 0 and p[0][2] != 0:
+        #     print("semi-complete here")
+        #     print_pretty(p)
+        #     count += 1
+        #     sum += 100 * p[0][0] + 10 * p[0][1] + p[0][2]
+        #     print('(only kinda) solved p #' + str(count), 'sum = ', sum, '\n\n')
         else:
-            print('failed to solve p #' + str(count), ', breaking')
+            print('FAILED TO SOLVE p #' + str(count), ', breaking')
+            print('current p =')
+            print_pretty(p)
             return -1
 
-
-
-
-def new_main():
-    #puzzles = read_from_file("p096_sudoku.txt")
-    puzzles = read_from_file("simple.txt")
-    sum = 0
-    for p in puzzles:
-        potent = [p]
-        count = 0
-        print_pretty(p)
-        while not any([is_puzzle_done(p) for p in potent]):
-            for p in potent:
-                unchanged = dc(p)
-                print()
-                print_pretty(p)
-                time.sleep(1)
-                p = update_missing_values(p)
-                p = crosshatch(p)
-                if p == unchanged:
-                    guesses = guess_next(p)
-                    for guess in guesses:
-                        potent.append(guess)
-        if is_solution_valid(p):
-            sum += 100 * p[0][0][0] + 10 * p[0][1][0] + p[0][2][0]
-            print(sum)
-        else:
-            print_pretty(p)
+#
+# def new_main():
+#     #puzzles = read_from_file("p096_sudoku.txt")
+#     puzzles = read_from_file("simple.txt")
+#     sum = 0
+#     for p in puzzles:
+#         potent = [p]
+#         count = 0
+#         print_pretty(p)
+#         while not any([is_puzzle_done(p) for p in potent]):
+#             for p in potent:
+#                 unchanged = dc(p)
+#                 print()
+#                 print_pretty(p)
+#                 time.sleep(1)
+#                 p = update_missing_values(p)
+#                 p = crosshatch(p)
+#                 if p == unchanged:
+#                     guesses = guess_next(p)
+#                     for guess in guesses:
+#                         potent.append(guess)
+#         if is_solution_valid(p):
+#             sum += 100 * p[0][0][0] + 10 * p[0][1][0] + p[0][2][0]
+#             print(sum)
+#         else:
+#             print_pretty(p)
 
 
 # print_puzzles(read_from_file('p096_sudoku.txt'))
