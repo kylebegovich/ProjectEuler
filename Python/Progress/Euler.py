@@ -44,6 +44,9 @@ def partitions_up_to(lim):
 def factors(n):
     return [(i, n // i) for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
 
+def unique_divisors(n):
+    return [i for i in range(1, int(sqrt(n)) + 1) if n % i == 0]
+
 
 def heron_area(side_a, side_b, side_c):
     p = (side_a + side_b + side_c) / 2
