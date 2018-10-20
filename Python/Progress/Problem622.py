@@ -1,4 +1,4 @@
-import itertools, Euler
+import itertools, Euler, math
 
 def shuffle(deck):
     l = len(deck) // 2
@@ -24,10 +24,10 @@ def s(n):
     return count
 
 
-# def all_X_in_Y():
-#     for i in range(2, 30, 2):
-#         print(s(i))
-        # print()
+def all_X_in_Y():
+    for i in range(2, 30, 2):
+        print(s(i))
+        print()
 
 # print(s(52))
 # print(s(86))
@@ -36,20 +36,28 @@ def solve():
     n = 2
     summation = 0
     while True:
-        if s(n) == 60:
+        s_val = s(n)
+        print(n, s_val, n//2, math.log(n, 2))
+        if s_val == 60:
             summation += n
-            print(summation, n)
+            # print(summation, n)
         if n % 1000 == 0:
             print(n)
         n += 2
 
 
 def pows_of_2():
-    n = 2
+    n = 4
     # summation = 0
     while True:
         print(n, s(n))
+        print(n+2, s(n+2))
+        print(n-2, s(n-2))
+        print()
         n *= 2
+        if n > 100:
+            break
 
 
-pows_of_2()
+solve()
+# pows_of_2()
