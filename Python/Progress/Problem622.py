@@ -11,10 +11,10 @@ def shuffle(deck):
     return shuffled
 
 
-def count_num_shuffles(deck_len):
-    deck = [i for i in range(1, deck_len+1)]
+def s(n):
+    deck = [i for i in range(1, n+1)]
     curr = shuffle(deck)
-    count = 0
+    count = 1
 
     while curr != deck:
         # print(curr)
@@ -24,6 +24,32 @@ def count_num_shuffles(deck_len):
     return count
 
 
-for i in range(2, 30, 2):
-    print(count_num_shuffles(i))
-    print()
+# def all_X_in_Y():
+#     for i in range(2, 30, 2):
+#         print(s(i))
+        # print()
+
+# print(s(52))
+# print(s(86))
+
+def solve():
+    n = 2
+    summation = 0
+    while True:
+        if s(n) == 60:
+            summation += n
+            print(summation, n)
+        if n % 1000 == 0:
+            print(n)
+        n += 2
+
+
+def pows_of_2():
+    n = 2
+    # summation = 0
+    while True:
+        print(n, s(n))
+        n *= 2
+
+
+pows_of_2()
