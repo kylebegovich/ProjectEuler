@@ -29,7 +29,7 @@ def all_X_in_Y():
         print(s(i))
         print()
 
-# print(s(52))
+# print(s(14))
 # print(s(86))
 
 def solve():
