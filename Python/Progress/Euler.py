@@ -6,6 +6,16 @@ from itertools import product
 fact = (1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
 
+def parse_file(text_file):
+    f = open(text_file, 'r')
+    to_ret = []
+    app = to_ret.append
+    for line in f:
+        app(line[:-1])
+    f.close()
+    return to_ret
+
+
 def euclidean_dist_sq(x1, x2, y1, y2):
     return (x2 - x1)**2 + (y2 - y1)**2
 
