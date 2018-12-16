@@ -10,22 +10,28 @@ def line_to_triangle(line):
 
 
 def positive_line_intersects(point, line):
+    x1 = line[0][0]
+    y1 = line[0][1]
+    x2 = line[1][0]
+    y2 = line[1][1]
+
     print(line)
     slope = 0
-    if line[0][0] - line[1][0] == 0:
+    if x1 - x2 == 0:
         # slope = infinity
-        return line[0][0] > point[0], False
-    if line[0][1] - line[1][1] == 0:
+        return x1 > point[0], False
+    if y1 - y2 == 0:
         # slope = 0, does not intersect y-axis
-        return False, line[0][1] > point[1]
-    slope = (line[0][1] - line[1][1])/(line[0][0] - line[1][0])
+        return False, y1 > point[1]
+    slope = (y1 - y2)/(x1 - x2)
 
     print(slope)
 
-    x_intersect = (-1 * line[0][1] / slope) + line[0][0]
-    y_intersect = slope * -1 * line[0][0] - line[0][1]
+    x_intersect = (-1 * y1 / slope) + x1
+    y_intersect = (-1 * x1 * slope) + y1
 
     print(x_intersect, y_intersect)
+    print(x1, slope, y1)
 
     return x_intersect > point[0], y_intersect > point[1]
 
@@ -48,7 +54,7 @@ def main():
     lines = parse_file("p102_triangles.txt")
     triangles = [line_to_triangle(line) for line in lines]
 
-    point_in_triangle(origin, [(5, 5), (-10, -3), (1, -15)])
+    point_in_triangle(origin, [(5, 6), (-10, -3), (1, -15)])
 
     return 1
 
