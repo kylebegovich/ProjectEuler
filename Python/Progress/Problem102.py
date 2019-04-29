@@ -1,6 +1,9 @@
 from Euler import parse_file
 
 
+# Triangle 
+
+
 def line_to_triangle(line):
     nums = line.split(',')
     # print(nums)
