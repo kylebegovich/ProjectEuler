@@ -39,11 +39,23 @@ prob2 divisor bound = sum [x | x <- takeWhile (<= bound) fibs, (x `mod` divisor)
 
 
 problem3 :: IO ()
-problem3 = putStrLn "unimplemented"
+problem3 = putStrLn $ show (prob3 600851475143)
+-- problem3 = putStrLn $ show (prob3 1610612736)
 
+bad3 num = helper (num-1) where
+    helper curr | curr `mod` num == 0 = curr
+    helper curr = helper $ curr - 1
 
+primeSieve lim = sieve [2..lim] where
+    sieve (x:xs) = x : sieve [i | i <- xs, i `mod` x /= 0]
+    sieve [] = []
 
-
+prob3 :: Integer -> Integer
+prob3 num = helper num (primeSieve (ceiling (sqrt (fromIntegral num)))) 1 where
+    helper num [] big                        = big
+    helper num (x:xs) big | big > num        = big
+    helper num (x:xs) big | num `mod` x == 0 = helper (num `div` x) (x:xs) x
+    helper num (x:xs) big                    = helper num xs big
 
 problem4 :: IO ()
 problem4 = putStrLn "unimplemented"
