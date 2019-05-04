@@ -26,9 +26,15 @@ prob1 div1 div2 start end = helper 0 start where
     helper acc curr                        = helper (acc) (curr + 1)
 
 
-problem2 :: IO ()
-problem2 = putStrLn "unimplemented"
 
+
+problem2 :: IO ()
+problem2 = putStrLn $ show (prob2 2 4000000)
+
+
+fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
+
+prob2 divisor bound = sum [x | x <- takeWhile (<= bound) fibs, (x `mod` divisor) == 0]
 
 
 
