@@ -46,6 +46,7 @@ bad3 num = helper (num-1) where
     helper curr | curr `mod` num == 0 = curr
     helper curr = helper $ curr - 1
 
+primeSieve :: Integer -> [Integer]
 primeSieve lim = sieve [2..lim] where
     sieve (x:xs) = x : sieve [i | i <- xs, i `mod` x /= 0]
     sieve [] = []
@@ -56,6 +57,8 @@ prob3 num = helper num (primeSieve (ceiling (sqrt (fromIntegral num)))) 1 where
     helper num (x:xs) big | big > num        = big
     helper num (x:xs) big | num `mod` x == 0 = helper (num `div` x) (x:xs) x
     helper num (x:xs) big                    = helper num xs big
+
+
 
 problem4 :: IO ()
 problem4 = putStrLn $ show (prob4 100 1000)
@@ -77,11 +80,21 @@ prob4 start end = helper end end 0 where
 
 
 
-
-
 problem5 :: IO ()
-problem5 = putStrLn "unimplemented"
+problem5 = putStrLn $ show (prob5 10)
 
+-- divisChecker num 1   = True
+-- divisChecker num fac | num `mod` fac == 0 = divisChecker num (fac-1)
+--                      | otherwise          = False
+--
+-- reduce num top = helper num 2 where
+--     helper num fac | divisChecker (num `div` fac) fac = helper (num `div` fac) (fac+1)
+--                    | otherwise                        = helper num (fac+1)
+--
+-- prob5 num = helper 1 1 where
+--     helper fac acc | fac == num = acc
+--                    | acc `mod` fac /= 0 = helper (fac + 1) $ reduce (acc * fac) fac
+--                    | otherwise          = helper (fac + 1) acc
 
 
 
