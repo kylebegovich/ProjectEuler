@@ -58,7 +58,22 @@ prob3 num = helper num (primeSieve (ceiling (sqrt (fromIntegral num)))) 1 where
     helper num (x:xs) big                    = helper num xs big
 
 problem4 :: IO ()
-problem4 = putStrLn "unimplemented"
+problem4 = putStrLn $ show (prob4 100 1000)
+
+
+reverseNum :: Integer -> Integer
+reverseNum num = helper 0 num where
+    helper :: Integer -> Integer -> Integer
+    helper a 0 = a
+    helper a b = helper ((a * 10) + (b `mod` 10)) (b `div` 10)
+
+isPal num1 = (num1 == reverseNum num1)
+
+prob4 start end = helper end end 0 where
+    helper 0 _ best = best
+    helper a b best | (a * b) < best = helper (a-1) end best
+                    | isPal (a * b)  = helper (a-1) end (a*b)
+                    | otherwise      = helper a (b-1) best
 
 
 
