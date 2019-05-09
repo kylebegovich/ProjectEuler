@@ -93,3 +93,7 @@ distro2 = make_distro(6, 6)
 wins = calc_wins(distro1, distro2)
 ways = 4**9 * 6**6
 print(wins, ways, wins/ways)
+
+
+
+# SOLVED : 0.5731441
