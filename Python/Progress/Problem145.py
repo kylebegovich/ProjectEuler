@@ -5,6 +5,97 @@ def reverse(n_str):
     return n_str[::-1]
 
 
+# the property we want, for non-carry sums, is for indices (i, n-i-1) to be opposite pairity
+#   for carry-sums, (i, n-i-1) to the same pairty, with indices (i-1, n-i) > 10
+def construction(limit):
+
+    non_carry_pairs = []
+    pair_temp = [1, 0]
+    while pair_temp[0] + pair_temp[1] < 10:
+        non_carry_pairs.append(pair_temp)
+        next_pair = [pair_temp[0], pair_temp[1] + 2]
+
+        # this line guarentees that the sum doesn't carry
+        if next_pair[0] + next_pair[1] > 9:
+            next_pair[0] += 2
+            next_pair[1] = 0
+        pair_temp = next_pair
+
+    middle_factors = 2*len(non_carry_pairs)
+    print("\nmiddle-pairs:", middle_factors)
+    [print(p) for p in non_carry_pairs]
+
+    non_carry_pairs = [p for p in non_carry_pairs if p[1] != 0]
+    non_carry_factor = 2*len(non_carry_pairs)
+    print("\nnon-carry:", non_carry_factor)
+    [print(p) for p in non_carry_pairs]
+
+
+    carry_pairs = []
+    pair_temp = [3, 8]
+    while pair_temp[0] < 10:
+        carry_pairs.append(pair_temp)
+        next_pair = [pair_temp[0], pair_temp[1] + 2]
+
+        # this line guarentees that the second digit is a single digit
+        if next_pair[1] > 9:
+            next_pair[0] += 2
+            next_pair[1] = 11 - next_pair[0]
+        pair_temp = next_pair
+
+    carry_factor = 2*len(carry_pairs)
+    print("\ncarry:", carry_factor)
+    [print(p) for p in carry_pairs]
+
+
+    even_no_carry_pairs = []
+    pair_temp = [0,0]
+    while pair_temp[0] + pair_temp[1] < 10:
+        even_no_carry_pairs.append(pair_temp)
+        next_pair = [pair_temp[0], pair_temp[1] + 2]
+
+        # this line guarentees that the second digit is a digit
+        if next_pair[0] + next_pair[1] > 9:
+            next_pair[0] += 2
+            next_pair[1] = 0
+        pair_temp = next_pair
+    pair_temp = [1,1]
+    while pair_temp[0] + pair_temp[1] < 10:
+        even_no_carry_pairs.append(pair_temp)
+        next_pair = [pair_temp[0], pair_temp[1] + 2]
+
+        # this line guarentees that the second digit is a digit
+        if next_pair[0] + next_pair[1] > 9:
+            next_pair[0] += 2
+            next_pair[1] = 1
+        pair_temp = next_pair
+
+    even_no_carry_factor = len(even_no_carry_pairs)
+    print("\neven:", even_no_carry_factor)
+    [print(p) for p in sorted(even_no_carry_pairs)]
+
+
+    num_digits = len(str(limit))
+
+    total = 0
+    for digits in range(4, num_digits):
+
+        # even number of digits
+        if digits % 2 == 0:
+            pairs = digits // 2
+            temp = non_carry_factor * middle_factors**(pairs-1)
+            print(digits, temp)
+            total += temp
+
+        if digits == 7:
+            # kinda specific, analytic solution in this case:
+            #   number of the form ABCDEFG, where D < 5, AG and CE carry, and BF even
+            temp = 5 * carry_factor * carry_factor * even_no_carry_factor
+            print(digits, temp)
+            total += temp
+
+    return total
+
 
 def single_step(n, should_print):
     n_str = [int(d) for d in str(n)]  # this is one of the two slow lines
@@ -103,6 +194,7 @@ def is_reversible(num):
             return False
         added = added // 10
 
+    memo.add(rev)
     return True
 
 def optimized_brute(limit):
@@ -111,8 +203,9 @@ def optimized_brute(limit):
     while n < limit:
         if n % 10000 == 0:
             print(n, count)
-        if is_reversible(n):
+        if n in memo or is_reversible(n):
             count += 1
+            n += 1
         n += 1
 
     print(count)
@@ -132,4 +225,6 @@ def optimized_brute(limit):
 # print(10 ** 9)
 # main(1, 10 ** 9)
 
-print(optimized_brute(10 ** 9))
+# print(optimized_brute(10 ** 9))
+
+print(120 + construction(10 ** 9))
