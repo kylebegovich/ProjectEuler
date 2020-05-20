@@ -1,10 +1,4 @@
 
-
-
-def reverse(n_str):
-    return n_str[::-1]
-
-
 # the property we want, for non-carry sums, is for indices (i, n-i-1) to be opposite pairity
 #   for carry-sums, (i, n-i-1) to the same pairty, with indices (i-1, n-i) > 10
 def construction(limit):
@@ -22,13 +16,13 @@ def construction(limit):
         pair_temp = next_pair
 
     middle_factors = 2*len(non_carry_pairs)
-    print("\nmiddle-pairs:", middle_factors)
-    [print(p) for p in non_carry_pairs]
+    # print("\nmiddle-pairs:", middle_factors)
+    # [print(p) for p in non_carry_pairs]
 
     non_carry_pairs = [p for p in non_carry_pairs if p[1] != 0]
     non_carry_factor = 2*len(non_carry_pairs)
-    print("\nnon-carry:", non_carry_factor)
-    [print(p) for p in non_carry_pairs]
+    # print("\nnon-carry:", non_carry_factor)
+    # [print(p) for p in non_carry_pairs]
 
 
     carry_pairs = []
@@ -44,8 +38,8 @@ def construction(limit):
         pair_temp = next_pair
 
     carry_factor = 2*len(carry_pairs)
-    print("\ncarry:", carry_factor)
-    [print(p) for p in carry_pairs]
+    # print("\ncarry:", carry_factor)
+    # [print(p) for p in carry_pairs]
 
 
     even_no_carry_pairs = []
@@ -59,6 +53,7 @@ def construction(limit):
             next_pair[0] += 2
             next_pair[1] = 0
         pair_temp = next_pair
+
     pair_temp = [1,1]
     while pair_temp[0] + pair_temp[1] < 10:
         even_no_carry_pairs.append(pair_temp)
@@ -71,8 +66,8 @@ def construction(limit):
         pair_temp = next_pair
 
     even_no_carry_factor = len(even_no_carry_pairs)
-    print("\neven:", even_no_carry_factor)
-    [print(p) for p in sorted(even_no_carry_pairs)]
+    # print("\neven:", even_no_carry_factor)
+    # [print(p) for p in sorted(even_no_carry_pairs)]
 
 
     num_digits = len(str(limit))
@@ -84,19 +79,20 @@ def construction(limit):
         if digits % 2 == 0:
             pairs = digits // 2
             temp = non_carry_factor * middle_factors**(pairs-1)
-            print(digits, temp)
+            # print(digits, temp)
             total += temp
 
         if digits == 7:
             # kinda specific, analytic solution in this case:
             #   number of the form ABCDEFG, where D < 5, AG and CE carry, and BF even
             temp = 5 * carry_factor * carry_factor * even_no_carry_factor
-            print(digits, temp)
+            # print(digits, temp)
             total += temp
 
     return total
 
 
+# all of the below functions are for brute-force style solutions, none of which were actually used
 def single_step(n, should_print):
     n_str = [int(d) for d in str(n)]  # this is one of the two slow lines
     if n_str[-1] == 0:
@@ -124,7 +120,6 @@ def single_step(n, should_print):
         if should_print:
             print(n, n_sum)
         return False
-
 
 memo = set()
 
@@ -178,7 +173,6 @@ def main(start, limit):
     print(sorted(memo))
     print(count)
 
-
 def is_reversible(num):
     if num % 10 == 0:
         return False
@@ -197,6 +191,7 @@ def is_reversible(num):
     memo.add(rev)
     return True
 
+# probably solves in a few minutes, but I'm impatient
 def optimized_brute(limit):
     count = 0
     n = 1
@@ -212,19 +207,8 @@ def optimized_brute(limit):
     return count
 
 
-# main(1, 30)
-# main(1, 1000) # = 120
-# main(1, 10000)
-# main(1000, 10000)
-# main(100000, 500000)
-# main(10000, 100000)  # there are 0 of these... interesting
-# main(1, 100000)
-# main(100000, 120000)
-# main(1000000, 1200000)  # there are 0 of these... interesting
-# main(10000000, 10100000)
-# print(10 ** 9)
-# main(1, 10 ** 9)
-
-# print(optimized_brute(10 ** 9))
-
+# 120 is the brute-force solution to the 2 or 3 digit cases
 print(120 + construction(10 ** 9))
+
+
+# SOLVED : 608720
