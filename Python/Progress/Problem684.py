@@ -18,7 +18,7 @@ def s(n):
         acc %= mod
         # print(acc)
 
-    return (((n % 9) * 10 ** num_nines) + acc) % mod
+    return (((n % 9) * ((10 ** num_nines) % mod)) + acc) % mod
 
 # def s(n):
 #     num_nines = n // 9
@@ -26,7 +26,7 @@ def s(n):
 #     nines = 10 ** num_nines - 1
 #     num = 10 ** num_nines * first_dig
 #     return num + nines
-
+#
 # print(s(1), s2(1))
 # print(s(10), s2(10))
 # print(s(11), s2(11))
@@ -42,24 +42,54 @@ def S(k):
         s_n = s(n) % mod
         running_sum += s_n
         memo[n] = running_sum
-        # print("s_n", n, s_n)
-        # print("running_sum", running_sum)
+        print("s_n", n, s_n)
+        print("running_sum", running_sum)
 
     memo_max = k
     return running_sum
 
 # print(S(20))
 
-def sum_fibs(n):
 
+# CITE: https://stackoverflow.com/questions/4798654/modular-multiplicative-inverse-function-in-python
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
+def modinv(a, m):
+    g, x, y = egcd(a, m)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % m
+
+# CITE: https://github.com/trizen/project-euler/blob/master/Sidef/684%20Inverse%20Digit%20Sum%20--%20v2.sf
+# Was stuck trying to make a closed form for s(), found this closed form for S() instead...
+def S2(k):
+    n = k // 9
+    r = k % 9 + 2
+
+    return ((((r-1)*r + 10) * pow(10, n, mod) - 2*(r + 9*n + 4)) * modinv(2, mod)) % mod
+
+print(S2(20))
+
+def sum_fibs(n):
     running_sum = 0
-    for i in range(2, n):
+    for i in range(2, n+1):
         f = fibonacci(i)
-        Sf = S(f) % mod
-        running_sum += Sf
+        Sf = S2(f) % mod
+        running_sum = (running_sum + Sf) % mod
         print("i", i)
         print("f", f)
         print("running_sum", running_sum)
 
+    return running_sum
 
-# print(sum_fibs(90))
+
+# print(sum_fibs(10))
+print(sum_fibs(90))
+
+
+# SOLVED: 922058210
