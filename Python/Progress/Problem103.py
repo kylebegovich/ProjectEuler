@@ -24,33 +24,37 @@ def wiggle_solutions(arr, wiggle):
 
 
 
-# can prob parameterize sB, sC, lB, lC, if need be
+# can prob parameterize sB, sC, lB, lC, if needed
 def check_special_condition(B, C):
     sB = sum(B)
     sC = sum(C)
     if sB == sC:
         return False
 
-    lB = len(B)
-    lC = len(C)
-
-    if lB > lC and sB < sC:
-        return False
-
-    if lB < lC and sB > sC:
-        return False
+    return True
 
 
 def check_all_subsets(A):
-    print("check_all_subsets")
+    # print("check_all_subsets")
     subsets = set()
 
-    for i in range(2, 8):
+    for i in range(2, 7):
         subsets = subsets.union(set(combinations(A, i)))
 
     for pair in combinations(subsets, 2):
         if not check_special_condition(pair[0], pair[1]):
-            print(False, pair[0], pair[1])
+            # print(False, pair[0], pair[1])
+            return False
+
+    A = sorted(A)
+    sum1 = A[0]
+    sum2 = 0
+
+    for i in range(0, 4):
+        sum1 += A[i + 1]
+        sum2 += A[6 - i]
+
+        if sum1 <= sum2:
             return False
 
     return True
@@ -59,7 +63,7 @@ def check_all_subsets(A):
 n6 = [11, 18, 19, 20, 22, 25]
 
 def main():
-    arrs = wiggle_solutions(near_optimum(7, n6), 2)
+    arrs = wiggle_solutions(near_optimum(7, n6), 3)
 
     min_sum = 1000
     min_arr = []
@@ -78,10 +82,13 @@ def main():
                             curr_sum_set += v5
                             for v6 in arrs[6]:
                                 curr_sum_set += v6
-                                if curr_sum_set <= min_sum:
-                                    if check_all_subsets([v0, v1, v2, v3, v4, v5, v6]):
+                                if curr_sum_set < min_sum:
+                                    arr = [v0, v1, v2, v3, v4, v5, v6]
+                                    # print(curr_sum_set, arr)
+                                    if check_all_subsets(arr):
                                         min_sum = curr_sum_set
-                                        min_arr = [v0, v1, v2, v3, v4, v5, v6]
+                                        min_arr = arr
+                                        print("new min:", min_sum)
 
                                 curr_sum_set -= v6
                             curr_sum_set -= v5
@@ -91,9 +98,10 @@ def main():
             curr_sum_set -= v1
         curr_sum_set -= v0
 
-    print("oof")
+    # print("oof")
+    #
+    # print(check_all_subsets(near_optimum(7, n6)))
 
-    print(check_all_subsets(near_optimum(7, n6)))
+    return sorted(list(min_arr))
 
-
-main()
+print(main())
