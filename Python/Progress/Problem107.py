@@ -1,5 +1,7 @@
-# High level plan: Kruskall
+# High level plan: Kruskal
+# ref pseudocode at https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
 
+text_file = "p107_network.txt"
 
 def text_to_matrix(file_name):
     f = open(file_name, 'r')
@@ -12,28 +14,64 @@ def text_to_matrix(file_name):
     return to_ret
 
 
-def count_edges(matrix):
-    count = 0
+def sort_edges(matrix):
+    edge_cost = 0
+    sorted_edges = []
     for i in range(len(matrix)):
         for j in range(i, len(matrix)):
             if matrix[i][j] != -1:
-                count += 1
+                sorted_edges.append((matrix[i][j], i, j))
+                edge_cost += matrix[i][j]
 
-    return count
-
-
-def is_neighbor(index1, set2):
-    pass
+    return (sorted(sorted_edges), edge_cost)
 
 
-def main():
-    text_file = "p107_network.txt"
+def set_index(value, sets):
+    for i in range(len(sets)):
+        if value in sets[i]:
+            return i
+
+
+def main(text_file):
     matrix = text_to_matrix(text_file)
     # for line in matrix:
     #     print(line)
 
-    edges = count_edges(matrix)
-    print(edges)
+    sets = []
+    for i in range(len(matrix)):
+        sets.append(set([i]))
+    # [print(s) for s in sets]
+
+    sorted_edges, brute_edge_cost = sort_edges(matrix)
+    # [print(e) for e in sorted_edges]
+
+    total_edges = 0
+    total_edge_cost = 0
+    for edge in sorted_edges:
+        if total_edges == len(matrix) - 1:
+            break
+
+        set_1 = set_index(edge[1], sets)
+        set_2 = set_index(edge[2], sets)
+        if set_1 == set_2:
+            # print("same set!")
+            continue
+
+        sets[set_1] = sets[set_1].union(sets[set_2])
+        sets.pop(set_2)
+
+        total_edges += 1
+        total_edge_cost += edge[0]
+
+        # [print(s) for s in sets]
+        # merge sets, add to edge weight count
+
+    print("all_edge_cost =", brute_edge_cost)
+    print("optimized_edge_cost =", total_edge_cost)
+    print("difference =", brute_edge_cost - total_edge_cost)
 
 
-main()
+main(text_file)
+
+
+# SOLVED : 259679
