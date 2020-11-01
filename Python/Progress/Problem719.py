@@ -28,14 +28,16 @@ def multiSlice(s,cutpoints):
         return multislices
 
 def allPartitions(s):
+    # if s in memo:
+    #     return memo[s]
     n = len(s)
     cuts = list(range(1,n))
-    for k in range(n):
+    for k in range(1, n):
         for cutpoints in itertools.combinations(cuts,k):
             yield multiSlice(s,cutpoints)
 
 ##### End block
-print(list(allPartitions([int(i) for i in str(12345)])))
+# print(list(allPartitions([int(i) for i in str(1234)])))
 
 def list_sum(num_list):
     outer_sum = 0
