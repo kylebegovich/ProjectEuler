@@ -1,17 +1,16 @@
-in_a = 600851475143
-in_b = 3
+from math import ceil, sqrt
 
+N = 600851475143
 
-def main(a, b):
-    while a > b**2:
-        if a % b == 0:
-            a /= b
-        else:
-            b += 2
-    return int(a)
+def main(N):
+    largest = 1
+    for i in range(2, ceil(sqrt(N))):
+        while N % i == 0:
+            largest = i
+            N /= i
+    return largest
 
-
-print(main(in_a, in_b))
+print(main(N))
 
 
 # SOLVED : 6857

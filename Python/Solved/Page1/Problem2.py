@@ -6,14 +6,11 @@ in_maximum = 4000000
 
 
 def main(a, b, c, summation, maximum):
-    while True:
+    while b < maximum:
+        summation += b
         c = a + b
         a = b + c
         b = c + a
-        if b < maximum:
-            summation += b
-        else:
-            break
 
     return summation
 
