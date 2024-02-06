@@ -73,7 +73,7 @@ def is_perm(a, b): return sorted(str(a)) == sorted(str(b))
 def is_palindromic(n): n = str(n); return n == n[::-1]
 
 
-def is_pandigital(n, s=9): n = str(n); return len(n) == s and not '1234567890'[:s].strip(n)
+def is_pandigital(n, s=9): n = str(n); return len(n) == s and not '123456789'[:s].strip(n)
 
 
 # --- Get a count of integers less than n and relatively prime to n (Euler's Totient Function)----
